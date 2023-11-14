@@ -24,13 +24,13 @@
                     <span class="animate-circle"></span>
                 </span>
                 <span class="user-content">
-                    <span class="user-details">Admin</span>
-                    <span class="user-name">John Smith</span>
+                    {{-- <span class="user-details">Admin</span> --}}
+                    <span class="user-name">{{Auth::user()->name}}</span>
                 </span>
             </a>
             <div class="dropdown-menu menu-drop-user">
                 <div class="profilemenu">
-                    <div class="subscription-menu">
+                    {{-- <div class="subscription-menu">
                         <ul>
                             <li>
                                 <a class="dropdown-item" href="javascript::void(o);">Profile</a>
@@ -39,7 +39,7 @@
                                 <a class="dropdown-item" href="javascript::void(o);">Settings</a>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                     <div class="subscription-logout">
                         <ul>
                             <li class="pb-0">

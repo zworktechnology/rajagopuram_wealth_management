@@ -22,22 +22,22 @@
             <ul>
                 <li class="menu-title"><span>Project</span></li>
                 <li class="{{ Route::is('customer.index', 'customer.create', 'customer.store', 'customer.edit' ) ? 'active' : '' }}">
-                    <a href="{{ route('customer.index') }}"><i class="fe fe-file-text"></i> <span>User</span></a>
+                    <a href="{{ route('customer.index') }}"><i class="fe fe-users"></i> <span>Customer</span></a>
                 </li>
                 <li class="{{ Route::is('employee.index', 'employee.store') ? 'active' : '' }}">
-                    <a href="{{ route('employee.index') }}"><i class="fe fe-file-text"></i> <span>Staff</span></a>
+                    <a href="{{ route('employee.index') }}"><i class="fe fe-user"></i> <span>Staff</span></a>
                 </li>
                 <li class="{{ Route::is('product.index', 'product.store') ? 'active' : '' }}">
-                    <a href="{{ route('product.index') }}"><i class="fe fe-file-text"></i> <span>Product</span></a>
+                    <a href="{{ route('product.index') }}"><i class="fe fe-package"></i> <span>Product</span></a>
                 </li>
                 <li class="{{ Route::is('billing.index', 'billing.store') ? 'active' : '' }}">
-                    <a href="{{ route('billing.index') }}"><i class="fe fe-file-text"></i> <span>Billing</span></a>
+                    <a href="{{ route('billing.index') }}"><i class="fe fe-shopping-cart"></i> <span>Billing</span></a>
                 </li>
             </ul>
 
-          
 
-         
+
+
 
         </div>
     </div>
