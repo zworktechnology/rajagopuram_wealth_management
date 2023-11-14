@@ -9,13 +9,19 @@ class Customer extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
         'unique_key',
+        'soft_delete',
         'name',
-        'address',
-        'phone_number',
+        'phonenumber',
+        'alter_phonenumber',
         'email_id',
-        'balance_amount',
-        'soft_delete'
+        'address',
+        'source_from',
+        'customer_photo',
+        'birth_date',
+        'wedding_date',
+        'employee_id'
     ];
 }

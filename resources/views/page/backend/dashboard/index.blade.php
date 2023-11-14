@@ -42,7 +42,7 @@
                                 <div class="dash-count">
                                     <div class="dash-title">Quotation Amount</div>
                                     <div class="dash-counts">
-                                        <p>₹  {{$tot_quotationAmount}}</p>
+                                        <p>₹  </p>
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                 <div class="dash-count">
                                     <div class="dash-title">Bill Amount</div>
                                     <div class="dash-counts">
-                                        <p>₹ {{$tot_billAmount}}</p>
+                                        <p>₹ </p>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                 <div class="dash-count">
                                     <div class="dash-title">Purchase Amount</div>
                                     <div class="dash-counts">
-                                        <p>₹ {{$tot_purchaseAmount}}</p>
+                                        <p>₹ </p>
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                                 <div class="dash-count">
                                     <div class="dash-title">Expense Amount</div>
                                     <div class="dash-counts">
-                                        <p>₹  {{$tot_expenseAmount}}</p>
+                                        <p>₹  </p>
                                     </div>
                                 </div>
                             </div>
@@ -126,14 +126,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($bill_arr as $keydata => $bill_recentsarr)
+                                    
                                         <tr>
-                                            <td>{{$bill_recentsarr['billno']}}</td>
-                                            <td>{{$bill_recentsarr['customer']}}</td>
-                                            <td>{{$bill_recentsarr['bill_grand_total']}}</td>
-                                            <td>{{$bill_recentsarr['bill_paid_amount']}}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
-                                        @endforeach
+                                      
                                     </tbody>
                                 </table>
                             </div>
@@ -162,14 +162,14 @@
                                     </thead>
                                     <tbody>
                                         
-                                    @foreach ($purhcase_arr as $keydata => $purhcase_recent_arr)
+                                  
                                         <tr>
-                                            <td>{{$purhcase_recent_arr['vocher_number']}}</td>
-                                            <td>{{$purhcase_recent_arr['Vendor']}}</td>
-                                            <td>{{$purhcase_recent_arr['purchase_grandtotal']}}</td>
-                                            <td>{{$purhcase_recent_arr['purchase_paidamount']}}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
-                                        @endforeach
+                                    
                                     </tbody>
                                 </table>
                             </div>
@@ -203,13 +203,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($expense_arr as $keydata => $expense_array)
+                                  
                                         <tr>
-                                            <td>{{$expense_array['expence_number']}}</td>
-                                            <td>{{$expense_array['grand_total']}}</td>
-                                            <td>{{$expense_array['add_on_note']}}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
-                                        @endforeach
+                                     
                                     </tbody>
                                 </table>
                             </div>

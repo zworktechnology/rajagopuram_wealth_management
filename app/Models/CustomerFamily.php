@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class CustomerFamily extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
-        'unique_key',
-        'soft_delete',
-        'name',
-        'description',
-        'image'
+        'customer_id',
+        'family_name',
+        'family_relationship',
+        'family_dob',
+        'family_weddingdate'
     ];
 }

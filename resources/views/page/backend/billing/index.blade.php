@@ -7,13 +7,13 @@
 
       <div class="page-header">
          <div class="content-page-header">
-            <h6>Product</h6>
+            <h6>Billing</h6>
                <div class="list-btn">
                   <div style="display:flex;">
                      <ul class="filter-list">
                         <li>
-                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".product-modal-xl">
-                              <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Product</a>
+                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".billing-modal-xl">
+                              <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Billing</a>
                         </li>
                      </ul>
                   </div>
@@ -32,49 +32,49 @@
                            <thead class="thead-light">
                               <tr>
                                  <th style="width:5%">S.No</th>
+                                 <th style="width:15%">Date</th>
+                                 <th style="width:15%">Customer</th>
                                  <th style="width:15%">Product</th>
-                                 <th style="width:15%">Description</th>
-                                 <th style="width:15%">Image</th>
+                                 <th style="width:15%">Starting - Ending Date</th>
+                                 <th style="width:15%">Employee</th>
                                  <th style="width:20%">Action</th>
                               </tr>
                            </thead>
                            <tbody>
-                           @foreach ($data as $keydata => $product_data)
+                           @foreach ($Billingdata as $keydata => $billingdata)
                               <tr>
                                  <td>{{ ++$keydata }}</td>
-                                 <td>{{ $product_data->name }}</td>
-                                 <td>{{ $product_data->description }}</td>
-                                 @if ($product_data->image == "")
-                                        <td></td>
-                                        @elseif ($product_data->image != "")
-                                        <td><img src="{{ asset('assets/product_image/' .$product_data->image) }}" alt="" width="50" height="50"></td>
-                                        @endif
+                                 <td>{{ date('d-m-Y', strtotime($billingdata['date'])) }}</td>
+                                 <td>{{ $billingdata['customer'] }}</td>
+                                 <td>{{ $billingdata['product'] }}</td>
+                                 <td>{{ date('d M Y', strtotime($billingdata['starting_date'])) }} - {{ date('d M Y', strtotime($billingdata['ending_date'])) }}</td>
+                                 <td>{{ $billingdata['employee'] }}</td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
-                                       <a class="badge bg-warning-light" href="#edit{{ $product_data->unique_key }}" data-bs-toggle="modal"
-                                          data-bs-target=".productedit-modal-xl{{ $product_data->unique_key }}" style="color: #28084b;">Edit</a>
+                                       <a class="badge bg-warning-light" href="#edit{{ $billingdata['unique_key'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".billing_edit-modal-xl{{ $billingdata['unique_key'] }}" style="color: #28084b;">Edit</a>
                                        </li>
                                        <li>
-                                          <a href="#delete{{ $product_data->unique_key }}" data-bs-toggle="modal"
-                                          data-bs-target=".productdelete-modal-xl{{ $product_data->unique_key }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                          <a href="#delete{{ $billingdata['unique_key'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".billingdelete-modal-xl{{ $billingdata['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                     </ul>
                                  
                                  </td>
                               </tr>
 
-                              <div class="modal fade productedit-modal-xl{{ $product_data->unique_key }}"
+                              <div class="modal fade billing_edit-modal-xl{{ $billingdata['unique_key'] }}"
                                     tabindex="-1" role="dialog" data-bs-backdrop="static"
-                                    aria-labelledby="producteditLargeModalLabel{{ $product_data->unique_key }}"
+                                    aria-labelledby="billing_editLargeModalLabel{{ $billingdata['unique_key']}}"
                                     aria-hidden="true">
-                                    @include('page.backend.product.edit')
+                                    @include('page.backend.billing.edit')
                               </div>
-                              <div class="modal fade productdelete-modal-xl{{ $product_data->unique_key }}"
+                              <div class="modal fade billingdelete-modal-xl{{ $billingdata['unique_key'] }}"
                                     tabindex="-1" role="dialog"data-bs-backdrop="static"
-                                    aria-labelledby="productdeleteLargeModalLabel{{ $product_data->unique_key }}"
+                                    aria-labelledby="billingdeleteLargeModalLabel{{ $billingdata['unique_key'] }}"
                                     aria-hidden="true">
-                                    @include('page.backend.product.delete')
+                                    @include('page.backend.billing.delete')
                               </div>
                            @endforeach
                            </tbody>
@@ -90,9 +90,9 @@
 
 
 
-      <div class="modal fade product-modal-xl" tabindex="-1" role="dialog" aria-labelledby="productLargeModalLabel"
+      <div class="modal fade billing-modal-xl" tabindex="-1" role="dialog" aria-labelledby="billingLargeModalLabel"
             aria-hidden="true" data-bs-backdrop="static">
-            @include('page.backend.product.create')
+            @include('page.backend.billing.create')
         </div>
 
 

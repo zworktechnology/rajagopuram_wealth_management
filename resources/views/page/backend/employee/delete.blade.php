@@ -2,13 +2,13 @@
       <div class="modal-content modal-filled bg-danger">
          <div class="modal-body">
             <div class="form-header">
-               <h6 class="text-white">Delete Product</h6>
+               <h6 class="text-white">Delete Employee</h6>
                <p class="text-white">Are you sure want to delete?</p>
             </div>
             <div class="modal-btn delete-action">
                <div class="row">
                   
-                  <form autocomplete="off" method="POST" action="{{ route('product.delete', [$product_data->unique_key]) }}">
+                  <form autocomplete="off" method="POST" action="{{ route('employee.delete', [$employee_data->unique_key]) }}">
                      @method('PUT')
                      @csrf
 
