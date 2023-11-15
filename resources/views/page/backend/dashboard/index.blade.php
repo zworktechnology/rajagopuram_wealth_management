@@ -32,71 +32,54 @@
 
                 
 
-                <div class="col-xl-3 col-sm-6 col-12">
+                <div class="col-xl-4 col-sm-6 col-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="dash-widget-header">
+                            <a href="{{ route('employee.index') }}"><div class="dash-widget-header">
                                 <span class="dash-widget-icon bg-1">
-                                    <i class="far fa-file"></i>
+                                    <i class="far fa-user"></i>
                                 </span>
                                 <div class="dash-count">
-                                    <div class="dash-title">Quotation Amount</div>
+                                    <div class="dash-title">Total Employees</div>
                                     <div class="dash-counts">
-                                        <p>₹  </p>
+                                        <p> {{$total_Employee}}</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 col-12">
+                <div class="col-xl-4 col-sm-6 col-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="dash-widget-header">
+                            <a href="{{ route('customer.index') }}"><div class="dash-widget-header">
                                 <span class="dash-widget-icon bg-2">
-                                    <i class="fas fa-file-alt"></i>
+                                    <i class="fas fa-user"></i>
                                 </span>
                                 <div class="dash-count">
-                                    <div class="dash-title">Bill Amount</div>
+                                    <div class="dash-title">Total Customers</div>
                                     <div class="dash-counts">
-                                        <p>₹ </p>
+                                        <p>{{$total_Customer}}</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 col-12">
-                    <div class="card">
+                <div class="col-xl-4 col-sm-6 col-12">
+                    <div class="card" >
                         <div class="card-body">
-                            <div class="dash-widget-header">
+                            <a href="{{ route('product.index') }}"><div class="dash-widget-header">
                                 <span class="dash-widget-icon bg-3">
-                                    <i class="fas fa-dollar-sign"></i>
+                                    <i class="fas fa-user"></i>
                                 </span>
                                 <div class="dash-count">
-                                    <div class="dash-title">Purchase Amount</div>
+                                    <div class="dash-title">Total Products</div>
                                     <div class="dash-counts">
-                                        <p>₹ </p>
+                                        <p> {{$total_Product}}</p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="dash-widget-header">
-                                <span class="dash-widget-icon bg-4">
-                                    <i class="fas fa-dollar-sign"></i>
-                                </span>
-                                <div class="dash-count">
-                                    <div class="dash-title">Expense Amount</div>
-                                    <div class="dash-counts">
-                                        <p>₹  </p>
-                                    </div>
-                                </div>
-                            </div>
+                            </div></a>
                         </div>
                     </div>
                 </div>
@@ -110,7 +93,7 @@
                         <div class="card-header">
                             <div class="row align-center">
                                 <div class="col">
-                                    <h5 class="card-title">Recent Bills</h5>
+                                    <h5 class="card-title"> Bills</h5>
                                 </div>
                             </div>
                         </div>
@@ -119,21 +102,21 @@
                                 <table class="table table-stripped table-hover">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th>Bill No</th>
+                                            <th>Product</th>
                                             <th>Customer</th>
-                                            <th>Amount</th>
-                                            <th>Paid</th>
+                                            <th>Employee</th>
+                                            <th>Starting - Ending Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    
+                                    @foreach ($Billingdata as $keydata => $billingdata)
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ $billingdata['product'] }}</td>
+                                            <td>{{ $billingdata['customer'] }}</td>
+                                            <td>{{ $billingdata['employee'] }}</td>
+                                            <td>{{ date('d M Y', strtotime($billingdata['starting_date'])) }} - {{ date('d M Y', strtotime($billingdata['ending_date'])) }}</td>
                                         </tr>
-                                      
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -145,7 +128,7 @@
                         <div class="card-header">
                             <div class="row align-center">
                                 <div class="col">
-                                    <h5 class="card-title">Recent Purchase</h5>
+                                    <h5 class="card-title"> Followups</h5>
                                 </div>
                             </div>
                         </div>
@@ -154,22 +137,20 @@
                                 <table class="table table-hover">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th>Voucher No</th>
-                                            <th>Vendor</th>
-                                            <th>Amount</th>
-                                            <th>Paid</th>
+                                            <th>Customer</th>
+                                            <th>Employee</th>
+                                            <th>Next Call Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+                                    @foreach ($followupdata as $keydata => $followupdatas)
                                   
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ $followupdatas['customer'] }}</td>
+                                            <td>{{ $followupdatas['employee'] }}</td>
+                                            <td>{{ date('d M Y', strtotime($followupdatas['next_call_date'])) }}</td>
                                         </tr>
-                                    
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -179,44 +160,6 @@
             </div>
 
 
-
-
-
-            <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="row align-center">
-                                <div class="col">
-                                    <h5 class="card-title">Recent Expenses</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-stripped table-hover">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>Expense No</th>
-                                            <th>Amount</th>
-                                            <th>Note</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                  
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                     
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
 
