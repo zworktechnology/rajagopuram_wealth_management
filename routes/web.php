@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BillingController;
+use App\Http\Controllers\FollowupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -90,4 +91,18 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/billing/edit/{unique_key}', [BillingController::class, 'edit'])->name('billing.edit');
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/billing/delete/{unique_key}', [BillingController::class, 'delete'])->name('billing.delete');
+});
+
+
+
+// DAY BY DAY FOLLOWUP CONTROLLER
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    // INDEX
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-rajagopuram/followup', [FollowupController::class, 'index'])->name('followup.index');
+    // STORE
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/followup/store', [FollowupController::class, 'store'])->name('followup.store');
+    // EDIT
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/followup/edit/{unique_key}', [FollowupController::class, 'edit'])->name('followup.edit');
+    // DELETE
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/followup/delete/{unique_key}', [FollowupController::class, 'delete'])->name('followup.delete');
 });

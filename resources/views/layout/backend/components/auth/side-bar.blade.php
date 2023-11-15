@@ -33,6 +33,9 @@
                 <li class="{{ Route::is('billing.index', 'billing.store') ? 'active' : '' }}">
                     <a href="{{ route('billing.index') }}"><i class="fe fe-shopping-cart"></i> <span>Billing</span></a>
                 </li>
+                <li class="{{ Route::is('followup.index', 'followup.store') ? 'active' : '' }}">
+                    <a href="{{ route('followup.index') }}"><i class="fe fe-book-open"></i> <span>Day by Day Followup</span></a>
+                </li>
             </ul>
 
 
