@@ -21,20 +21,20 @@
                </div>
                <div class="col-lg-6 col-md-12">
                   <div class="form-group">
-                     <label>Phone Number<span class="text-danger">*</span></label>
+                     <label>Phone Number <span class="text-danger">*</span></label>
                      <input type="text" class="form-control customer_phoneno" placeholder="Enter Employee Contact No" name="phonenumber" value="{{$employee_data->phonenumber}}" id="emp_phonenumber" required>
                   </div>
                </div>
                <div class="col-lg-6 col-md-12">
                   <div class="form-group">
-                     <label>Alternate Phone Number<span class="text-danger">*</span></label>
+                     <label>Alternate Phone Number <span class="text-danger">*</span></label>
                      <input type="text" class="form-control customer_phoneno" placeholder="Enter Employee Alternate Contact No" name="alter_phonenumber" value="{{$employee_data->alter_phonenumber}}" id="alter_phonenumber">
                   </div>
                </div>
                <div class="col-lg-6 col-md-12">
                   <div class="form-group">
-                     <label>Email ID</label>
-                     <input type="email" class="form-control" placeholder="Enter Employee E-Mail" name="email_id" id="email_id" value="{{$employee_data->email_id}}">
+                     <label>Email ID <span class="text-danger">*</span></label>
+                     <input type="email" class="form-control" placeholder="Enter Employee E-Mail" name="email_id" id="email_id" value="{{$employee_data->email_id}}" required>
                   </div>
                </div>
                <div class="col-lg-6 col-md-12">

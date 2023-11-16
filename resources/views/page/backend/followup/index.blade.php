@@ -7,7 +7,7 @@
 
       <div class="page-header">
          <div class="content-page-header">
-            <h6>Day By Day Followup</h6>
+            <h6>Day By Day</h6>
                <div class="list-btn">
                   <div style="display:flex;">
                      <ul class="filter-list">
@@ -17,7 +17,7 @@
                         </li>
                      </ul>
                   </div>
-                  
+
                </div>
          </div>
       </div>
@@ -25,7 +25,7 @@
       <div class="row">
          <div class="col-sm-12">
             <div class="card">
-               
+
                   <div class="card-body">
                      <div class="table-responsive">
                         <table class="table table-center table-hover datatable table-striped">
@@ -58,7 +58,7 @@
                                           data-bs-target=".followupdelete-modal-xl{{ $followup_data['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                     </ul>
-                                 
+
                                  </td>
                               </tr>
 
@@ -79,7 +79,7 @@
                         </table>
                      </div>
                   </div>
-               
+
             </div>
          </div>
 

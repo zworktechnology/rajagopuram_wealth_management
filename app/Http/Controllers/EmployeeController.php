@@ -36,21 +36,19 @@ class EmployeeController extends Controller
         $data->address = $request->get('address');
         $data->role = $request->get('role');
         $data->password = $request->get('password');
+
         $data->save();
-
-
         
         $password = $request->get('password');
         $hashedPassword = Hash::make($password);
 
-
         $Userdata = new User();
         $Userdata->name = $request->get('name');
         $Userdata->email = $request->get('email_id');
+        $Userdata->role = $request->get('role');
         $Userdata->password = $hashedPassword;
         $Userdata->save();
 
-      
         return redirect()->route('employee.index')->with('message', 'Added !');
     }
 

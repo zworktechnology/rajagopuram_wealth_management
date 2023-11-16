@@ -15,7 +15,7 @@
          <div class="row">
                <div class="col-lg-6 col-md-12">
                   <div class="form-group">
-                     <label>Date<span class="text-danger">*</span></label>
+                     <label>Date <span class="text-danger">*</span></label>
                      <input type="date" class="form-control"  name="date" id="date" value="{{$today}}">
                   </div>
                </div>
@@ -32,7 +32,7 @@
                </div>
                <div class="col-lg-6 col-md-12">
                   <div class="form-group">
-                     <label>Product<span class="text-danger">*</span></label>
+                     <label>Product <span class="text-danger">*</span></label>
                      <select class="form-control select product_id js-example-basic-single" name="product_id" id="product_id" required>
                            <option value="" disabled selected hiddden>Select Product</option>
                               @foreach ($product as $products)
@@ -43,7 +43,7 @@
                </div>
                <div class="col-lg-6 col-md-12">
                   <div class="form-group">
-                     <label>Employee</label>
+                     <label>Employee <span class="text-danger">*</span></label>
                      <select class="form-control select  js-example-basic-single" name="employee_id" id="employee_id" required>
                            <option value="" disabled selected hiddden>Select Employee</option>
                               @foreach ($employee as $employees)
@@ -54,18 +54,18 @@
                </div>
                <div class="col-lg-6 col-md-12">
                   <div class="form-group">
-                     <label>Starting Date<span class="text-danger">*</span></label>
+                     <label>Starting Date <span class="text-danger">*</span></label>
                      <input type="date" class="form-control"  name="starting_date" id="starting_date" required>
                   </div>
                </div>
-               
+
                <div class="col-lg-6 col-md-12">
                   <div class="form-group">
-                     <label>Ending Date<span class="text-danger">*</span></label>
+                     <label>Ending Date <span class="text-danger">*</span></label>
                      <input type="date" class="form-control"  name="ending_date" id="ending_date" required>
                   </div>
                </div>
-               
+
                <div class="col-lg-6 col-md-12">
                   <div class="form-group">
                      <label>Remainder Date<span class="text-danger">*</span></label>
