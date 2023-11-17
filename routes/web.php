@@ -105,4 +105,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/followup/edit/{unique_key}', [FollowupController::class, 'edit'])->name('followup.edit');
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/followup/delete/{unique_key}', [FollowupController::class, 'delete'])->name('followup.delete');
+    // DATAE FILTER
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/followup/datefilter', [FollowupController::class, 'datefilter'])->name('followup.datefilter');
 });

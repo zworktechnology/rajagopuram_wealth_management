@@ -31,18 +31,24 @@
                      <select class="form-control select customer_id js-example-basic-single" name="customer_id" id="customer_id" required>
                            <option value="" disabled selected hiddden>Select Customer</option>
                               @foreach ($customer as $customers)
+                                 @if(Auth::user()->role == 'Admin')
+                                    @if(Auth::user()->emp_id == $customers->employee_id)
                               <option value="{{ $customers->id }}">{{ $customers->name }} </option>
+                                    @endif
+                                 @else
+                                 <option value="{{ $customers->id }}">{{ $customers->name }} </option>
+                                 @endif
                               @endforeach
                       </select>
                   </div>
                </div>
-               <div class="col-lg-6 col-md-12">
+               <div class="col-lg-6 col-md-12" @if(Auth::user()->role == 'Admin') hidden   @endif>
                   <div class="form-group">
                      <label>Employee</label>
                      <select class="form-control select  js-example-basic-single" name="employee_id" id="employee_id" required>
                            <option value="" disabled selected hiddden>Select Employee</option>
                               @foreach ($employee as $employees)
-                              <option value="{{ $employees->id }}">{{ $employees->name }} </option>
+                              <option value="{{ $employees->id }}" {{ Auth::user()->emp_id == $employees->id ? 'selected' : '' }}>{{ $employees->name }} </option>
                               @endforeach
                       </select>
                   </div>

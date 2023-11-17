@@ -54,6 +54,7 @@ class CustomerController extends Controller
                 'unique_key' => $datas->unique_key,
                 'id' => $datas->id,
                 'customer_photo' => $datas->customer_photo,
+                'employee_id' => $datas->employee_id,
                 'employee' => $employeename,
                 'families' => $families,
             );

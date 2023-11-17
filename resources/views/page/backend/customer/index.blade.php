@@ -30,7 +30,6 @@
                         <table class="table table-center table-hover datatable table-striped">
                            <thead class="thead-light">
                               <tr>
-                                 <th style="width:5%">S.No</th>
                                  <th style="width:15%">Customer</th>
                                  <th style="width:15%">Address</th>
                                  <th style="width:15%">Phone No</th>
@@ -41,8 +40,9 @@
                            </thead>
                            <tbody>
                            @foreach ($Customer_data as $keydata => $customer_data)
+                              @if(Auth::user()->role == 'Admin')
+                                 @if(Auth::user()->emp_id == $customer_data['employee_id'])
                               <tr>
-                                 <td>{{ ++$keydata }}</td>
                                  <td>{{ $customer_data['name'] }}</td>
                                  <td>{{ $customer_data['address'] }}</td>
                                  <td>{{ $customer_data['phonenumber'] }}</td>
@@ -79,6 +79,50 @@
                                     aria-hidden="true">
                                     @include('page.backend.customer.delete')
                               </div>
+                                 @endif
+                              @else
+
+
+                              <tr>
+                                 <td>{{ $customer_data['name'] }}</td>
+                                 <td>{{ $customer_data['address'] }}</td>
+                                 <td>{{ $customer_data['phonenumber'] }}</td>
+                                 <td>{{ $customer_data['email_id'] }}</td>
+                                 <td>{{ $customer_data['employee'] }}</td>
+                                 <td>
+                                    <ul class="list-unstyled hstack gap-1 mb-0">
+                                       <li>
+                                          <a class="badge" href="#customerview{{ $customer_data['unique_key'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".customerview-modal-xl{{ $customer_data['unique_key'] }}" style="color: #f8f9fa;background: #8068dc;">View</a>
+                                       </li>
+                                       <li>
+                                          <a href="{{ route('customer.edit', ['unique_key' => $customer_data['unique_key']]) }}"
+                                                   class="badge bg-warning-light" style="color:#28084b;">Edit</a>
+                                       </li>
+                                       <li>
+                                          <a href="#delete{{ $customer_data['unique_key'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".customerdelete-modal-xl{{ $customer_data['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                       </li>
+                                    </ul>
+                                 
+                                 </td>
+                              </tr>
+
+                              <div class="modal fade customerview-modal-xl{{ $customer_data['unique_key'] }}"
+                                    tabindex="-1" role="dialog" data-bs-backdrop="static"
+                                    aria-labelledby="customerviewLargeModalLabel{{ $customer_data['unique_key'] }}"
+                                    aria-hidden="true">
+                                    @include('page.backend.customer.view')
+                              </div>
+                              <div class="modal fade customerdelete-modal-xl{{ $customer_data['unique_key'] }}"
+                                    tabindex="-1" role="dialog"data-bs-backdrop="static"
+                                    aria-labelledby="customerdeleteLargeModalLabel{{ $customer_data['unique_key'] }}"
+                                    aria-hidden="true">
+                                    @include('page.backend.customer.delete')
+                              </div>
+
+
+                              @endif
                            @endforeach
                            </tbody>
                         </table>

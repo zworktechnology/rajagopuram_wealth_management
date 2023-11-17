@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
@@ -35,8 +36,20 @@ class HomeController extends Controller
         $Employee = Employee::where('soft_delete', '!=', 1)->get();
         $total_Employee = count(collect($Employee));
 
-        $Customer = Customer::where('soft_delete', '!=', 1)->get();
-        $total_Customer = count(collect($Customer));
+        
+
+        if(Auth::user()->role == 'Admin')
+        {
+            $Customer = Customer::where('soft_delete', '!=', 1)->where('employee_id', '=', Auth::user()->emp_id)->get();
+            $total_Customer = count(collect($Customer));
+        }else {
+            $Customer = Customer::where('soft_delete', '!=', 1)->get();
+            $total_Customer = count(collect($Customer));
+        }
+
+       
+        
+        
 
         $Product = Product::where('soft_delete', '!=', 1)->get();
         $total_Product = count(collect($Product));
@@ -100,11 +113,20 @@ class HomeController extends Controller
 
         $today = $request->get('from_date');
 
+        
+
         $Employee = Employee::where('soft_delete', '!=', 1)->get();
         $total_Employee = count(collect($Employee));
 
-        $Customer = Customer::where('soft_delete', '!=', 1)->get();
-        $total_Customer = count(collect($Customer));
+        if(Auth::user()->role == 'Admin')
+        {
+            $Customer = Customer::where('soft_delete', '!=', 1)->where('employee_id', '=', Auth::user()->emp_id)->get();
+            $total_Customer = count(collect($Customer));
+        }else {
+            $Customer = Customer::where('soft_delete', '!=', 1)->get();
+            $total_Customer = count(collect($Customer));
+        }
+
 
         $Product = Product::where('soft_delete', '!=', 1)->get();
         $total_Product = count(collect($Product));
@@ -137,7 +159,7 @@ class HomeController extends Controller
 
 
 
-        $followuyp = Followup::where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->get();
+        $followuyp = Followup::where('soft_delete', '!=', 1)->where('date', '=', $today)->orWhere('next_call_date', '=', $today)->orderBy('id', 'DESC')->get();
         $followupdata = [];
         foreach ($followuyp as $key => $followuyps) {
             

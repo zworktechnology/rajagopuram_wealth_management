@@ -17,7 +17,7 @@ class FollowupController extends Controller
     {
         $today = Carbon::now()->format('Y-m-d');
         $timenow = Carbon::now()->format('H:i');
-        $data = Followup::where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->get();
+        $data = Followup::where('soft_delete', '!=', 1)->where('date', '=', $today)->orWhere('next_call_date', '=', $today)->orderBy('id', 'DESC')->get();
         $followupdata = [];
         foreach ($data as $key => $datas) {
             
@@ -41,6 +41,41 @@ class FollowupController extends Controller
         $employee = Employee::where('soft_delete', '!=', 1)->get();
         $customer = Customer::where('soft_delete', '!=', 1)->get();
         return view('page.backend.followup.index', compact('followupdata', 'today', 'employee', 'customer', 'timenow'));
+    }
+
+
+
+
+    public function datefilter(Request $request) {
+
+        $today = $request->get('from_date');
+
+        $timenow = Carbon::now()->format('H:i');
+        $data = Followup::where('soft_delete', '!=', 1)->where('date', '=', $today)->orWhere('next_call_date', '=', $today)->orderBy('id', 'DESC')->get();
+        $followupdata = [];
+        foreach ($data as $key => $datas) {
+            
+            $customer = Customer::findOrFail($datas->customer_id);
+            $employee = Employee::findOrFail($datas->employee_id);
+
+            $followupdata[] = array(
+                'unique_key' => $datas->unique_key,
+                'customer_id' => $datas->customer_id,
+                'customer' => $customer->name,
+                'date' => $datas->date,
+                'employee_id' => $datas->employee_id,
+                'employee' => $employee->name,
+                'time' => $datas->time,
+                'description' => $datas->description,
+                'next_call_date' => $datas->next_call_date,
+                'id' => $datas->id
+            );
+        }
+
+        $employee = Employee::where('soft_delete', '!=', 1)->get();
+        $customer = Customer::where('soft_delete', '!=', 1)->get();
+        return view('page.backend.followup.index', compact('followupdata', 'today', 'employee', 'customer', 'timenow'));
+
     }
 
 

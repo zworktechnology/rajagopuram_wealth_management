@@ -31,7 +31,6 @@
                         <table class="table table-center table-hover datatable table-striped">
                            <thead class="thead-light">
                               <tr>
-                                 <th style="width:5%">S.No</th>
                                  <th style="width:15%">Date</th>
                                  <th style="width:15%">Customer</th>
                                  <th style="width:15%">Product</th>
@@ -42,8 +41,10 @@
                            </thead>
                            <tbody>
                            @foreach ($Billingdata as $keydata => $billingdata)
+
+                              @if(Auth::user()->role == 'Admin')
+                                 @if(Auth::user()->emp_id == $billingdata['employee_id'])
                               <tr>
-                                 <td>{{ ++$keydata }}</td>
                                  <td>{{ date('d-m-Y', strtotime($billingdata['date'])) }}</td>
                                  <td>{{ $billingdata['customer'] }}</td>
                                  <td>{{ $billingdata['product'] }}</td>
@@ -76,6 +77,46 @@
                                     aria-hidden="true">
                                     @include('page.backend.billing.delete')
                               </div>
+
+                                 @endif
+                              @else
+
+
+                              <tr>
+                                 <td>{{ date('d-m-Y', strtotime($billingdata['date'])) }}</td>
+                                 <td>{{ $billingdata['customer'] }}</td>
+                                 <td>{{ $billingdata['product'] }}</td>
+                                 <td>{{ date('d M Y', strtotime($billingdata['starting_date'])) }} - {{ date('d M Y', strtotime($billingdata['ending_date'])) }}</td>
+                                 <td>{{ $billingdata['employee'] }}</td>
+                                 <td>
+                                    <ul class="list-unstyled hstack gap-1 mb-0">
+                                       <li>
+                                       <a class="badge bg-warning-light" href="#edit{{ $billingdata['unique_key'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".billing_edit-modal-xl{{ $billingdata['unique_key'] }}" style="color: #28084b;">Edit</a>
+                                       </li>
+                                       <li>
+                                          <a href="#delete{{ $billingdata['unique_key'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".billingdelete-modal-xl{{ $billingdata['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                       </li>
+                                    </ul>
+                                 
+                                 </td>
+                              </tr>
+
+                              <div class="modal fade billing_edit-modal-xl{{ $billingdata['unique_key'] }}"
+                                    tabindex="-1" role="dialog" data-bs-backdrop="static"
+                                    aria-labelledby="billing_editLargeModalLabel{{ $billingdata['unique_key']}}"
+                                    aria-hidden="true">
+                                    @include('page.backend.billing.edit')
+                              </div>
+                              <div class="modal fade billingdelete-modal-xl{{ $billingdata['unique_key'] }}"
+                                    tabindex="-1" role="dialog"data-bs-backdrop="static"
+                                    aria-labelledby="billingdeleteLargeModalLabel{{ $billingdata['unique_key'] }}"
+                                    aria-hidden="true">
+                                    @include('page.backend.billing.delete')
+                              </div>
+
+                              @endif
                            @endforeach
                            </tbody>
                         </table>

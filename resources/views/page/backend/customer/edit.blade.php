@@ -31,11 +31,11 @@
                                                     required>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="col-lg-4 col-md-4 col-sm-12" @if(Auth::user()->role == 'Admin') hidden   @endif>
                                             <div class="form-group">
                                                 <label>Staff <span class="text-danger">*</span></label>
                                                 <select class="form-control select employee_id js-example-basic-single"
-                                                    name="employee_id" id="employee_id" required>
+                                                    name="employee_id" id="employee_id" >
                                                     <option value="" disabled selected hiddden>Select Staff
                                                     </option>
                                                     @foreach ($employee as $employees)

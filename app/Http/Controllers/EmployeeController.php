@@ -45,6 +45,7 @@ class EmployeeController extends Controller
         $Userdata = new User();
         $Userdata->name = $request->get('name');
         $Userdata->email = $request->get('email_id');
+        $Userdata->emp_id = $data->id;
         $Userdata->role = $request->get('role');
         $Userdata->password = $hashedPassword;
         $Userdata->save();

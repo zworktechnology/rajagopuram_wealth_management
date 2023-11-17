@@ -31,7 +31,7 @@
             <div class="row">
 
                 
-
+            @if(Auth::user()->role == 'Super-Admin')
                 <div class="col-xl-4 col-sm-6 col-12">
                     <div class="card">
                         <div class="card-body">
@@ -49,6 +49,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 <div class="col-xl-4 col-sm-6 col-12">
                     <div class="card">
                         <div class="card-body">
@@ -110,12 +111,23 @@
                                     </thead>
                                     <tbody>
                                     @foreach ($Billingdata as $keydata => $billingdata)
+                                        @if(Auth::user()->role == 'Admin')
+                                            @if(Auth::user()->emp_id == $billingdata['employee_id'])
                                         <tr>
                                             <td>{{ $billingdata['product'] }}</td>
                                             <td>{{ $billingdata['customer'] }}</td>
                                             <td>{{ $billingdata['employee'] }}</td>
                                             <td>{{ date('d M Y', strtotime($billingdata['starting_date'])) }} - {{ date('d M Y', strtotime($billingdata['ending_date'])) }}</td>
                                         </tr>
+                                            @endif
+                                        @else
+                                        <tr>
+                                            <td>{{ $billingdata['product'] }}</td>
+                                            <td>{{ $billingdata['customer'] }}</td>
+                                            <td>{{ $billingdata['employee'] }}</td>
+                                            <td>{{ date('d M Y', strtotime($billingdata['starting_date'])) }} - {{ date('d M Y', strtotime($billingdata['ending_date'])) }}</td>
+                                        </tr>
+                                        @endif
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -144,12 +156,21 @@
                                     </thead>
                                     <tbody>
                                     @foreach ($followupdata as $keydata => $followupdatas)
-                                  
-                                        <tr>
-                                            <td>{{ $followupdatas['customer'] }}</td>
-                                            <td>{{ $followupdatas['employee'] }}</td>
-                                            <td>{{ date('d M Y', strtotime($followupdatas['next_call_date'])) }}</td>
-                                        </tr>
+                                        @if(Auth::user()->role == 'Admin')
+                                            @if(Auth::user()->emp_id == $followupdatas['employee_id'])
+                                            <tr>
+                                                <td>{{ $followupdatas['customer'] }}</td>
+                                                <td>{{ $followupdatas['employee'] }}</td>
+                                                <td>{{ date('d M Y', strtotime($followupdatas['next_call_date'])) }}</td>
+                                            </tr>
+                                            @endif
+                                        @else
+                                            <tr>
+                                                <td>{{ $followupdatas['customer'] }}</td>
+                                                <td>{{ $followupdatas['employee'] }}</td>
+                                                <td>{{ date('d M Y', strtotime($followupdatas['next_call_date'])) }}</td>
+                                            </tr>
+                                        @endif
                                         @endforeach
                                     </tbody>
                                 </table>

@@ -27,7 +27,7 @@
                                                     required>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="col-lg-4 col-md-4 col-sm-12"  @if(Auth::user()->role == 'Admin') hidden   @endif>
                                             <div class="form-group">
                                                 <label>Staff <span class="text-danger">*</span></label>
                                                 <select class="form-control select employee_id js-example-basic-single"
@@ -35,7 +35,7 @@
                                                     <option value="" disabled selected hiddden>Select Staff
                                                     </option>
                                                     @foreach ($employee as $employees)
-                                                        <option value="{{ $employees->id }}">{{ $employees->name }}
+                                                        <option value="{{ $employees->id }}" {{ Auth::user()->emp_id == $employees->id ? 'selected' : '' }}>{{ $employees->name }}
                                                         </option>
                                                     @endforeach
                                                 </select>
