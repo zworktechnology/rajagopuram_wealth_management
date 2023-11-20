@@ -17,7 +17,7 @@ class FollowupController extends Controller
     {
         $today = Carbon::now()->format('Y-m-d');
         $timenow = Carbon::now()->format('H:i');
-        $data = Followup::where('soft_delete', '!=', 1)->where('date', '=', $today)->orWhere('next_call_date', '=', $today)->orderBy('id', 'DESC')->get();
+        $data = Followup::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
         $followupdata = [];
         foreach ($data as $key => $datas) {
             
@@ -51,7 +51,7 @@ class FollowupController extends Controller
         $today = $request->get('from_date');
 
         $timenow = Carbon::now()->format('H:i');
-        $data = Followup::where('soft_delete', '!=', 1)->where('date', '=', $today)->orWhere('next_call_date', '=', $today)->orderBy('id', 'DESC')->get();
+        $data = Followup::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
         $followupdata = [];
         foreach ($data as $key => $datas) {
             

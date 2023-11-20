@@ -49,7 +49,9 @@
                               <tr>
                                  <th style="width:15%">Date</th>
                                  <th style="width:15%">Customer</th>
-                                 <th style="width:15%">Employee</th>
+                                 @if(Auth::user()->role != 'Admin')
+                                    <th style="width:15%">Employee</th>
+                                 @endif
                                  <th style="width:15%">Description</th>
                                  <th style="width:15%">Next Call Date</th>
                                  <th style="width:20%">Action</th>
@@ -62,7 +64,6 @@
                               <tr>
                                  <td>{{ date('d-m-Y', strtotime($followup_data['date'])) }}</td>
                                  <td>{{ $followup_data['customer'] }}</td>
-                                 <td>{{ $followup_data['employee'] }}</td>
                                  <td>{{ $followup_data['description'] }}</td>
                                  <td>{{ date('d M Y', strtotime($followup_data['next_call_date'])) }}</td>
                                  <td>

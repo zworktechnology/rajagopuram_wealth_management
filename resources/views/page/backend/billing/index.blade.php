@@ -35,7 +35,9 @@
                                  <th style="width:15%">Customer</th>
                                  <th style="width:15%">Product</th>
                                  <th style="width:15%">Starting - Ending Date</th>
-                                 <th style="width:15%">Employee</th>
+                                 @if(Auth::user()->role != 'Admin')
+                                    <th style="width:15%">Employee</th>
+                                 @endif
                                  <th style="width:20%">Action</th>
                               </tr>
                            </thead>
@@ -49,7 +51,6 @@
                                  <td>{{ $billingdata['customer'] }}</td>
                                  <td>{{ $billingdata['product'] }}</td>
                                  <td>{{ date('d M Y', strtotime($billingdata['starting_date'])) }} - {{ date('d M Y', strtotime($billingdata['ending_date'])) }}</td>
-                                 <td>{{ $billingdata['employee'] }}</td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
