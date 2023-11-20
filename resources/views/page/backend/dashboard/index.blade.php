@@ -30,7 +30,7 @@
                 </div>
             <div class="row">
 
-                
+
             @if(Auth::user()->role == 'Super-Admin')
                 <div class="col-xl-4 col-sm-6 col-12">
                     <div class="card">
@@ -89,7 +89,7 @@
 
 
             <div class="row">
-                <div class="col-md-6 col-sm-6">
+                {{-- <div class="col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-header">
                             <div class="row align-center">
@@ -132,7 +132,7 @@
                                         </tr>
                                         @endif
                                         @endforeach
-                                        
+
                                     </tbody>
 
 
@@ -142,13 +142,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
+                </div> --}}
+                <div class="col-md-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="row align-center">
                                 <div class="col">
-                                    <h5 class="card-title"> Followups</h5>
+                                    <h5 class="card-title">Upcoming Followups</h5>
                                 </div>
                             </div>
                         </div>
@@ -158,11 +158,12 @@
                                 <table class="table table-hover border">
                                     <thead class="thead-light">
                                         <tr>
+                                            <th class="border">PreviousCall Date</th>
                                             <th class="border">Customer</th>
                                             @if(Auth::user()->role != 'Admin')
                                             <th class="border">Employee</th>
                                             @endif
-                                            <th class="border">Description</th>
+                                            <th class="border">Call Details</th>
                                             <th class="border">Next Call Date</th>
                                         </tr>
                                     </thead>
@@ -171,6 +172,7 @@
                                         @if(Auth::user()->role == 'Admin')
                                             @if(Auth::user()->emp_id == $followupdatas['employee_id'])
                                             <tr>
+                                                <td class="border">{{ date('d M Y', strtotime($followupdatas['date'])) }}</td>
                                                 <td class="border" style="font-weight: 700;">{{ $followupdatas['customer'] }}</td>
                                                 <td class="border">{{ $followupdatas['description'] }}</td>
                                                 <td class="border">{{ date('d M Y', strtotime($followupdatas['next_call_date'])) }}</td>
@@ -178,6 +180,7 @@
                                             @endif
                                         @else
                                             <tr>
+                                                <td class="border">{{ date('d M Y', strtotime($followupdatas['date'])) }}</td>
                                                 <td class="border" style="font-weight: 700;">{{ $followupdatas['customer'] }}</td>
                                                 <td class="border" style="color: red;">{{ $followupdatas['employee'] }}</td>
                                                 <td class="border">{{ $followupdatas['description'] }}</td>
