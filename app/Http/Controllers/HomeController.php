@@ -81,7 +81,7 @@ class HomeController extends Controller
         }
 
 
-        $followuyp = Followup::where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->get();
+        $followuyp = Followup::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
         $followupdata = [];
         foreach ($followuyp as $key => $followuyps) {
             
@@ -159,7 +159,7 @@ class HomeController extends Controller
 
 
 
-        $followuyp = Followup::where('soft_delete', '!=', 1)->where('date', '=', $today)->orWhere('next_call_date', '=', $today)->orderBy('id', 'DESC')->get();
+        $followuyp = Followup::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
         $followupdata = [];
         foreach ($followuyp as $key => $followuyps) {
             

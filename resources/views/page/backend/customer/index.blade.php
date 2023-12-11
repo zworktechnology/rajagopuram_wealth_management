@@ -18,12 +18,36 @@
                   </div>
                   
                </div>
+               
+
+
+
          </div>
       </div>
 
       <div class="row">
          <div class="col-sm-12">
+               <div class="profile-picture">
+                 
+                              <form id="csvimport_form" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                              @csrf
+                                 <div style="display:flex;">
+						                  <div class="upload-profile">
+													<div class="add-profile">
+														<input type="file" name="file" id="file" class="form-control"/>
+													</div>
+												</div>
+												<div class="img-upload">
+                                       <input type="hidden" name="hidden_field" value="1" />
+                                          <input type="submit" name="import" id="import" class="btn btn-info" value="Import" />
+												</div>	
+                                 </div>	
+                              </form>	
+                  							
+					</div>
+            
             <div class="card">
+               
                
                   <div class="card-body">
                      <div class="table-responsive">

@@ -39,7 +39,7 @@
                                  <th style="width:20%">Action</th>
                               </tr>
                            </thead>
-                           <tbody>
+                            
                            @foreach ($data as $keydata => $employee_data)
                               <tr>
                                  <td>{{ ++$keydata }}</td>
