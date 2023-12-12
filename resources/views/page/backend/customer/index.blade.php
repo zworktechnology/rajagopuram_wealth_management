@@ -29,7 +29,7 @@
          <div class="col-sm-12">
                <div class="profile-picture">
                  
-                              <form id="csvimport_form" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                              <form id="csvimport_form" method="POST" action="{{ route('customer.excel_import') }}" enctype="multipart/form-data" class="form-horizontal">
                               @csrf
                                  <div style="display:flex;">
 						                  <div class="upload-profile">
@@ -75,31 +75,31 @@
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
-                                          <a class="badge" href="#customerview{{ $customer_data['unique_key'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".customerview-modal-xl{{ $customer_data['unique_key'] }}" style="color: #f8f9fa;background: #8068dc;">View</a>
+                                          <a class="badge" href="#customerview{{ $customer_data['id'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".customerview-modal-xl{{ $customer_data['id'] }}" style="color: #f8f9fa;background: #8068dc;">View</a>
                                        </li>
                                        <li>
-                                          <a href="{{ route('customer.edit', ['unique_key' => $customer_data['unique_key']]) }}"
+                                          <a href="{{ route('customer.edit', ['id' => $customer_data['id']]) }}"
                                                    class="badge bg-warning-light" style="color:#28084b;">Edit</a>
                                        </li>
                                        <li>
-                                          <a href="#delete{{ $customer_data['unique_key'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".customerdelete-modal-xl{{ $customer_data['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                          <a href="#delete{{ $customer_data['id'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".customerdelete-modal-xl{{ $customer_data['id'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                     </ul>
                                  
                                  </td>
                               </tr>
 
-                              <div class="modal fade customerview-modal-xl{{ $customer_data['unique_key'] }}"
+                              <div class="modal fade customerview-modal-xl{{ $customer_data['id'] }}"
                                     tabindex="-1" role="dialog" data-bs-backdrop="static"
-                                    aria-labelledby="customerviewLargeModalLabel{{ $customer_data['unique_key'] }}"
+                                    aria-labelledby="customerviewLargeModalLabel{{ $customer_data['id'] }}"
                                     aria-hidden="true">
                                     @include('page.backend.customer.view')
                               </div>
-                              <div class="modal fade customerdelete-modal-xl{{ $customer_data['unique_key'] }}"
+                              <div class="modal fade customerdelete-modal-xl{{ $customer_data['id'] }}"
                                     tabindex="-1" role="dialog"data-bs-backdrop="static"
-                                    aria-labelledby="customerdeleteLargeModalLabel{{ $customer_data['unique_key'] }}"
+                                    aria-labelledby="customerdeleteLargeModalLabel{{ $customer_data['id'] }}"
                                     aria-hidden="true">
                                     @include('page.backend.customer.delete')
                               </div>
@@ -116,31 +116,31 @@
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
-                                          <a class="badge" href="#customerview{{ $customer_data['unique_key'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".customerview-modal-xl{{ $customer_data['unique_key'] }}" style="color: #f8f9fa;background: #8068dc;">View</a>
+                                          <a class="badge" href="#customerview{{ $customer_data['id'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".customerview-modal-xl{{ $customer_data['id'] }}" style="color: #f8f9fa;background: #8068dc;">View</a>
                                        </li>
                                        <li>
-                                          <a href="{{ route('customer.edit', ['unique_key' => $customer_data['unique_key']]) }}"
+                                          <a href="{{ route('customer.edit', ['id' => $customer_data['id']]) }}"
                                                    class="badge bg-warning-light" style="color:#28084b;">Edit</a>
                                        </li>
                                        <li>
-                                          <a href="#delete{{ $customer_data['unique_key'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".customerdelete-modal-xl{{ $customer_data['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                          <a href="#delete{{ $customer_data['id'] }}" data-bs-toggle="modal"
+                                          data-bs-target=".customerdelete-modal-xl{{ $customer_data['id'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                     </ul>
                                  
                                  </td>
                               </tr>
 
-                              <div class="modal fade customerview-modal-xl{{ $customer_data['unique_key'] }}"
+                              <div class="modal fade customerview-modal-xl{{ $customer_data['id'] }}"
                                     tabindex="-1" role="dialog" data-bs-backdrop="static"
-                                    aria-labelledby="customerviewLargeModalLabel{{ $customer_data['unique_key'] }}"
+                                    aria-labelledby="customerviewLargeModalLabel{{ $customer_data['id'] }}"
                                     aria-hidden="true">
                                     @include('page.backend.customer.view')
                               </div>
-                              <div class="modal fade customerdelete-modal-xl{{ $customer_data['unique_key'] }}"
+                              <div class="modal fade customerdelete-modal-xl{{ $customer_data['id'] }}"
                                     tabindex="-1" role="dialog"data-bs-backdrop="static"
-                                    aria-labelledby="customerdeleteLargeModalLabel{{ $customer_data['unique_key'] }}"
+                                    aria-labelledby="customerdeleteLargeModalLabel{{ $customer_data['id'] }}"
                                     aria-hidden="true">
                                     @include('page.backend.customer.delete')
                               </div>

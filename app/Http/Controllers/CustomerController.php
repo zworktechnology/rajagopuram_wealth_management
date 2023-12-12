@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Customer;
 use App\Models\CustomerFamily;
 use App\Models\Employee;
+use App\Imports\ImportCustomer;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
@@ -120,9 +122,9 @@ class CustomerController extends Controller
 
 
 
-    public function edit($unique_key)
+    public function edit($id)
     {
-        $CustomerData = Customer::where('unique_key', '=', $unique_key)->first();
+        $CustomerData = Customer::findOrFail($id);
         $CustomerFamily = CustomerFamily::where('customer_id', '=', $CustomerData->id)->get();
         $employee = Employee::where('soft_delete', '!=', 1)->get();
 
@@ -131,11 +133,11 @@ class CustomerController extends Controller
 
 
 
-    public function update(Request $request, $unique_key)
+    public function update(Request $request, $id)
     {
         $random_no =  rand(100,999);
 
-        $CustomerData = Customer::where('unique_key', '=', $unique_key)->first();
+        $CustomerData = Customer::findOrFail($id);
         $CustomerData->name = $request->get('name');
         $CustomerData->phonenumber = $request->get('phonenumber');
         $CustomerData->alter_phonenumber = $request->get('alter_phonenumber');
@@ -210,9 +212,9 @@ class CustomerController extends Controller
 
 
 
-    public function delete($unique_key)
+    public function delete($id)
     {
-        $data = Customer::where('unique_key', '=', $unique_key)->first();
+        $data = Customer::findOrFail($id);
 
         $data->soft_delete = 1;
 
@@ -236,5 +238,9 @@ class CustomerController extends Controller
     }
 
 
-    
+    public function excel_import(Request $request){ 
+        error_reporting(0);
+        Excel::import(new ImportCustomer, request()->file('file'));
+        return redirect()->back();
+    }
 }

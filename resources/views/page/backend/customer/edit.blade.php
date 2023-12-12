@@ -10,7 +10,7 @@
             </div>
 
             <form autocomplete="off" method="POST"
-                action="{{ route('customer.update', ['unique_key' => $CustomerData->unique_key]) }}"
+                action="{{ route('customer.update', ['id' => $CustomerData->id]) }}"
                 enctype="multipart/form-data">
                 @method('PUT')
                 @csrf

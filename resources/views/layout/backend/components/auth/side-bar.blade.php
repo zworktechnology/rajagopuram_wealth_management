@@ -38,6 +38,9 @@
                 <li class="{{ Route::is('followup.index', 'followup.store') ? 'active' : '' }}">
                     <a href="{{ route('followup.index') }}"><i class="fe fe-book-open"></i> <span>Day by Day</span></a>
                 </li>
+                <li class="{{ Route::is('lead.index', 'lead.store') ? 'active' : '' }}">
+                    <a href="{{ route('lead.index') }}"><i class="fe fe-book-open"></i> <span>Leads</span></a>
+                </li>
             </ul>
 
 

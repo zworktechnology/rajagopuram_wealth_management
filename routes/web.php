@@ -6,6 +6,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\FollowupController;
+use App\Http\Controllers\LeadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,13 +41,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // STORE
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/customer/store', [CustomerController::class, 'store'])->name('customer.store');
     // EDIT
-    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-rajagopuram/customer/edit/{unique_key}', [CustomerController::class, 'edit'])->name('customer.edit');
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-rajagopuram/customer/edit/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
     // UPDATE
-    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/customer/update/{unique_key}', [CustomerController::class, 'update'])->name('customer.update');
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/customer/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
     // DELETE
-    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/customer/delete/{unique_key}', [CustomerController::class, 'delete'])->name('customer.delete');
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/customer/delete/{id}', [CustomerController::class, 'delete'])->name('customer.delete');
     // CHECK DUPLICATE
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/customer/checkduplicate', [CustomerController::class, 'checkduplicate'])->name('customer.checkduplicate');
+    // EXCEL IMPORT
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/customer/excel_import', [CustomerController::class, 'excel_import'])->name('customer.excel_import');
 });
 
 
@@ -107,4 +110,20 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/followup/delete/{unique_key}', [FollowupController::class, 'delete'])->name('followup.delete');
     // DATAE FILTER
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/followup/datefilter', [FollowupController::class, 'datefilter'])->name('followup.datefilter');
+});
+
+
+
+// LEADS CONTROLLER
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    // INDEX
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-rajagopuram/lead', [LeadController::class, 'index'])->name('lead.index');
+    // STORE
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/lead/store', [LeadController::class, 'store'])->name('lead.store');
+    // EDIT
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/lead/edit/{id}', [LeadController::class, 'edit'])->name('lead.edit');
+    // DELETE
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/lead/delete/{id}', [LeadController::class, 'delete'])->name('lead.delete');
+    // EXCEL IMPORT
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/lead/excel_import', [LeadController::class, 'excel_import'])->name('lead.excel_import');
 });
