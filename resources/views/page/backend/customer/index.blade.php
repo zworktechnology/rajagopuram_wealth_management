@@ -7,12 +7,12 @@
 
       <div class="page-header">
          <div class="content-page-header">
-            <h6>Customer</h6>
+            <h6 style="text-transform:uppercase">Customer</h6>
                <div class="list-btn">
                   <div style="display:flex;">
                      <ul class="filter-list">
                         <li>
-                           <a class="btn btn-primary" href="{{ route('customer.create') }}"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Customer</a>
+                           <a class="btn btn-primary" href="{{ route('customer.create') }}" style="text-transform:uppercase"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Customer</a>
                         </li>
                      </ul>
                   </div>
@@ -54,12 +54,12 @@
                         <table class="table table-center table-hover datatable table-striped">
                            <thead class="thead-light">
                               <tr>
-                                 <th style="width:15%">Customer</th>
-                                 <th style="width:15%">Address</th>
-                                 <th style="width:15%">Phone No</th>
-                                 <th style="width:15%">Email</th>
-                                 <th style="width:15%">Staff</th>
-                                 <th style="width:20%">Action</th>
+                                 <th style="width:15%;text-transform:uppercase">Customer</th>
+                                 <th style="width:15%;text-transform:uppercase">Address</th>
+                                 <th style="width:15%;text-transform:uppercase">Phone No</th>
+                                 <th style="width:15%;text-transform:uppercase">Email</th>
+                                 <th style="width:15%;text-transform:uppercase">Staff</th>
+                                 <th style="width:20%;text-transform:uppercase">Action</th>
                               </tr>
                            </thead>
                            <tbody>
@@ -67,24 +67,24 @@
                               @if(Auth::user()->role == 'Admin')
                                  @if(Auth::user()->emp_id == $customer_data['employee_id'])
                               <tr>
-                                 <td>{{ $customer_data['name'] }}</td>
-                                 <td>{{ $customer_data['address'] }}</td>
-                                 <td>{{ $customer_data['phonenumber'] }}</td>
-                                 <td>{{ $customer_data['email_id'] }}</td>
-                                 <td>{{ $customer_data['employee'] }}</td>
+                                 <td style="text-transform:uppercase">{{ $customer_data['name'] }}</td>
+                                 <td style="text-transform:uppercase">{{ $customer_data['address'] }}</td>
+                                 <td style="text-transform:uppercase">{{ $customer_data['phonenumber'] }}</td>
+                                 <td style="text-transform:uppercase">{{ $customer_data['email_id'] }}</td>
+                                 <td style="text-transform:uppercase">{{ $customer_data['employee'] }}</td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
                                           <a class="badge" href="#customerview{{ $customer_data['id'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".customerview-modal-xl{{ $customer_data['id'] }}" style="color: #f8f9fa;background: #8068dc;">View</a>
+                                          data-bs-target=".customerview-modal-xl{{ $customer_data['id'] }}" style="color: #f8f9fa;background: #8068dc;text-transform:uppercase">View</a>
                                        </li>
                                        <li>
                                           <a href="{{ route('customer.edit', ['id' => $customer_data['id']]) }}"
-                                                   class="badge bg-warning-light" style="color:#28084b;">Edit</a>
+                                                   class="badge bg-warning-light" style="color:#28084b;text-transform:uppercase">Edit</a>
                                        </li>
                                        <li>
                                           <a href="#delete{{ $customer_data['id'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".customerdelete-modal-xl{{ $customer_data['id'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                          data-bs-target=".customerdelete-modal-xl{{ $customer_data['id'] }}" class="badge bg-danger-light" style="color: #28084b;text-transform:uppercase">Delete</a>
                                        </li>
                                     </ul>
                                  
@@ -108,24 +108,24 @@
 
 
                               <tr>
-                                 <td>{{ $customer_data['name'] }}</td>
-                                 <td>{{ $customer_data['address'] }}</td>
-                                 <td>{{ $customer_data['phonenumber'] }}</td>
-                                 <td>{{ $customer_data['email_id'] }}</td>
-                                 <td>{{ $customer_data['employee'] }}</td>
+                                 <td style="text-transform:uppercase">{{ $customer_data['name'] }}</td>
+                                 <td style="text-transform:uppercase">{{ $customer_data['address'] }}</td>
+                                 <td style="text-transform:uppercase">{{ $customer_data['phonenumber'] }}</td>
+                                 <td style="text-transform:uppercase">{{ $customer_data['email_id'] }}</td>
+                                 <td style="text-transform:uppercase">{{ $customer_data['employee'] }}</td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
                                           <a class="badge" href="#customerview{{ $customer_data['id'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".customerview-modal-xl{{ $customer_data['id'] }}" style="color: #f8f9fa;background: #8068dc;">View</a>
+                                          data-bs-target=".customerview-modal-xl{{ $customer_data['id'] }}" style="color: #f8f9fa;background: #8068dc;text-transform:uppercase">View</a>
                                        </li>
                                        <li>
                                           <a href="{{ route('customer.edit', ['id' => $customer_data['id']]) }}"
-                                                   class="badge bg-warning-light" style="color:#28084b;">Edit</a>
+                                                   class="badge bg-warning-light" style="color:#28084b;text-transform:uppercase">Edit</a>
                                        </li>
                                        <li>
                                           <a href="#delete{{ $customer_data['id'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".customerdelete-modal-xl{{ $customer_data['id'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                          data-bs-target=".customerdelete-modal-xl{{ $customer_data['id'] }}" class="badge bg-danger-light" style="color: #28084b;text-transform:uppercase">Delete</a>
                                        </li>
                                     </ul>
                                  

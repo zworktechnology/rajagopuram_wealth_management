@@ -81,19 +81,23 @@ class HomeController extends Controller
         }
 
 
-        $followuyp = Followup::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
+        $followuyp = Followup::where('soft_delete', '!=', 1)->where('next_call_date', '=', $today)->where('status', '=', 0)->orderBy('id', 'DESC')->get();
         $followupdata = [];
         foreach ($followuyp as $key => $followuyps) {
             
             $followupcustomer = Customer::findOrFail($followuyps->customer_id);
             $followupemployee = Employee::findOrFail($followuyps->employee_id);
+            $product = Product::findOrFail($followuyps->product_id);
 
             $followupdata[] = array(
                 'unique_key' => $followuyps->unique_key,
                 'customer_id' => $followuyps->customer_id,
                 'customer' => $followupcustomer->name,
+                'phonenumber' => $followupcustomer->phonenumber,
                 'date' => $followuyps->date,
                 'employee_id' => $followuyps->employee_id,
+                'product' => $product->name,
+                'product_id' => $followuyps->product_id,
                 'employee' => $followupemployee->name,
                 'time' => $followuyps->time,
                 'description' => $followuyps->description,
@@ -103,8 +107,12 @@ class HomeController extends Controller
         }
 
 
-
-            return view('home', compact('today', 'total_Employee', 'total_Customer', 'total_Product', 'Billingdata', 'followupdata'));
+        $currentdate = Carbon::now()->format('Y-m-d');
+        $timenow = Carbon::now()->format('H:i');
+        $employee = Employee::where('soft_delete', '!=', 1)->get();
+        $customer = Customer::where('soft_delete', '!=', 1)->get();
+        $product = Product::where('soft_delete', '!=', 1)->get();
+            return view('home', compact('today', 'total_Employee', 'total_Customer', 'total_Product', 'Billingdata', 'followupdata', 'currentdate', 'employee', 'customer', 'product', 'timenow'));
     }
 
 
@@ -159,19 +167,23 @@ class HomeController extends Controller
 
 
 
-        $followuyp = Followup::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'DESC')->get();
+        $followuyp = Followup::where('soft_delete', '!=', 1)->where('next_call_date', '=', $today)->where('status', '=', 0)->orderBy('id', 'DESC')->get();
         $followupdata = [];
         foreach ($followuyp as $key => $followuyps) {
             
             $followupcustomer = Customer::findOrFail($followuyps->customer_id);
             $followupemployee = Employee::findOrFail($followuyps->employee_id);
+            $product = Product::findOrFail($followuyps->product_id);
 
             $followupdata[] = array(
                 'unique_key' => $followuyps->unique_key,
                 'customer_id' => $followuyps->customer_id,
                 'customer' => $followupcustomer->name,
+                'phonenumber' => $followupcustomer->phonenumber,
                 'date' => $followuyps->date,
                 'employee_id' => $followuyps->employee_id,
+                'product' => $product->name,
+                'product_id' => $followuyps->product_id,
                 'employee' => $followupemployee->name,
                 'time' => $followuyps->time,
                 'description' => $followuyps->description,
@@ -179,7 +191,12 @@ class HomeController extends Controller
                 'id' => $followuyps->id
             );
         }
+        $currentdate = Carbon::now()->format('Y-m-d');
+        $timenow = Carbon::now()->format('H:i');
+        $employee = Employee::where('soft_delete', '!=', 1)->get();
+        $customer = Customer::where('soft_delete', '!=', 1)->get();
+        $product = Product::where('soft_delete', '!=', 1)->get();
 
-            return view('home', compact('today', 'total_Employee', 'total_Customer', 'total_Product', 'Billingdata', 'followupdata'));
+            return view('home', compact('today', 'total_Employee', 'total_Customer', 'total_Product', 'Billingdata', 'followupdata', 'currentdate', 'employee', 'customer', 'product', 'timenow'));
     }
 }

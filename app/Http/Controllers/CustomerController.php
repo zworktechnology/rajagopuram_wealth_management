@@ -51,11 +51,20 @@ class CustomerController extends Controller
                 'address' => $datas->address,
                 'source_from' => $datas->source_from,
                 'customer_photo' => $datas->customer_photo,
+                'proof_one' => $datas->proof_one,
+                'proof_two' => $datas->proof_two,
+                'proof_three' => $datas->proof_three,
+                'proof_four' => $datas->proof_four,
+                'proof_five' => $datas->proof_five,
+                'prooftype_one' => $datas->prooftype_one,
+                'prooftype_two' => $datas->prooftype_two,
+                'prooftype_three' => $datas->prooftype_three,
+                'prooftype_four' => $datas->prooftype_four,
+                'prooftype_five' => $datas->prooftype_five,
                 'birth_date' => $datas->birth_date,
                 'wedding_date' => $datas->wedding_date,
                 'unique_key' => $datas->unique_key,
                 'id' => $datas->id,
-                'customer_photo' => $datas->customer_photo,
                 'employee_id' => $datas->employee_id,
                 'employee' => $employeename,
                 'families' => $families,
@@ -100,6 +109,53 @@ class CustomerController extends Controller
         $filename_customer_photo = $data->name . '_' . $random_no . '_' . 'Photo' . '.' . $customer_photo->getClientOriginalExtension();
         $request->customer_photo->move('assets/customer_photo', $filename_customer_photo);
         $data->customer_photo = $filename_customer_photo;
+
+        
+        if($request->get('prooftype_one') != ""){
+            $data->prooftype_one = $request->get('prooftype_one');
+            $proof_one = $request->proof_one;
+            $filename_proof_one = $data->name . '_' . $random_no . '_' . 'proof_one' . '.' . $proof_one->getClientOriginalExtension();
+            $request->proof_one->move('assets/proof_one', $filename_proof_one);
+            $data->proof_one = $filename_proof_one;
+        }
+        
+        if($request->get('prooftype_two') != ""){
+            $data->prooftype_two = $request->get('prooftype_two');
+            $proof_two = $request->proof_two;
+            $filename_proof_two = $data->name . '_' . $random_no . '_' . 'proof_two' . '.' . $proof_two->getClientOriginalExtension();
+            $request->proof_two->move('assets/proof_two', $filename_proof_two);
+            $data->proof_two = $filename_proof_two;
+        }
+        
+
+        if($request->get('prooftype_three') != ""){
+            $data->prooftype_three = $request->get('prooftype_three');
+            $proof_three = $request->proof_three;
+            $filename_proof_three = $data->name . '_' . $random_no . '_' . 'proof_three' . '.' . $proof_three->getClientOriginalExtension();
+            $request->proof_three->move('assets/proof_three', $filename_proof_three);
+            $data->proof_three = $filename_proof_three;
+        }
+        
+
+        if($request->get('prooftype_four') != ""){
+            $data->prooftype_four = $request->get('prooftype_four');
+            $proof_four = $request->proof_four;
+            $filename_proof_four = $data->name . '_' . $random_no . '_' . 'proof_four' . '.' . $proof_four->getClientOriginalExtension();
+            $request->proof_four->move('assets/proof_four', $filename_proof_four);
+            $data->proof_four = $filename_proof_four;
+        }
+        
+
+        if($request->get('prooftype_five') != ""){
+            $data->prooftype_five = $request->get('prooftype_five');
+            $proof_five = $request->proof_five;
+            $filename_proof_five = $data->name . '_' . $random_no . '_' . 'proof_five' . '.' . $proof_five->getClientOriginalExtension();
+            $request->proof_five->move('assets/proof_five', $filename_proof_five);
+            $data->proof_five = $filename_proof_five;
+        }
+        
+
+
         $data->save();
 
 
@@ -156,6 +212,79 @@ class CustomerController extends Controller
         } else {
            $Insertedproof_customer_photo = $CustomerData->customer_photo;
            $CustomerData->customer_photo = $Insertedproof_customer_photo;
+        }
+
+
+
+        if($request->get('prooftype_one') != ""){
+            $CustomerData->prooftype_one = $request->get('prooftype_one');
+            if ($request->file('proof_one') != "") {
+                $proof_one = $request->proof_one;
+                $filename_proof_one = $CustomerData->name . '_' . $random_no . '_' . 'proof_one' . '.' . $proof_one->getClientOriginalExtension();
+                $request->proof_one->move('assets/proof_one', $filename_proof_one);
+                $CustomerData->proof_one = $filename_proof_one;
+            } else {
+                $Insertedproof_one = $CustomerData->proof_one;
+                $CustomerData->proof_one = $Insertedproof_one;
+             }
+        }
+        
+        if($request->get('prooftype_two') != ""){
+            $CustomerData->prooftype_two = $request->get('prooftype_two');
+            if ($request->file('proof_two') != "") {
+                $proof_two = $request->proof_two;
+                $filename_proof_two = $CustomerData->name . '_' . $random_no . '_' . 'proof_two' . '.' . $proof_two->getClientOriginalExtension();
+                $request->proof_two->move('assets/proof_two', $filename_proof_two);
+                $CustomerData->proof_two = $filename_proof_two;
+            } else {
+                $Insertedproof_two = $CustomerData->proof_two;
+                $CustomerData->proof_two = $Insertedproof_two;
+             }
+            
+        }
+        
+
+        if($request->get('prooftype_three') != ""){
+            $CustomerData->prooftype_three = $request->get('prooftype_three');
+            if ($request->file('proof_three') != "") {
+                $proof_three = $request->proof_three;
+                $filename_proof_three = $CustomerData->name . '_' . $random_no . '_' . 'proof_three' . '.' . $proof_three->getClientOriginalExtension();
+                $request->proof_three->move('assets/proof_three', $filename_proof_three);
+                $CustomerData->proof_three = $filename_proof_three;
+            } else {
+                $Insertedproof_three = $CustomerData->proof_three;
+                $CustomerData->proof_three = $Insertedproof_three;
+             }
+            
+        }
+        
+
+        if($request->get('prooftype_four') != ""){
+            $CustomerData->prooftype_four = $request->get('prooftype_four');
+            if ($request->file('proof_four') != "") {
+                $proof_four = $request->proof_four;
+                $filename_proof_four = $CustomerData->name . '_' . $random_no . '_' . 'proof_four' . '.' . $proof_four->getClientOriginalExtension();
+                $request->proof_four->move('assets/proof_four', $filename_proof_four);
+                $CustomerData->proof_four = $filename_proof_four;
+            } else {
+                $Insertedproof_four = $CustomerData->proof_four;
+                $CustomerData->proof_four = $Insertedproof_four;
+             }
+        }
+        
+
+        if($request->get('prooftype_five') != ""){
+            $CustomerData->prooftype_five = $request->get('prooftype_five');
+            if ($request->file('proof_five') != "") {
+                $proof_five = $request->proof_five;
+                $filename_proof_five = $CustomerData->name . '_' . $random_no . '_' . 'proof_five' . '.' . $proof_five->getClientOriginalExtension();
+                $request->proof_five->move('assets/proof_five', $filename_proof_five);
+                $CustomerData->proof_five = $filename_proof_five;
+            } else {
+                $Insertedproof_five = $CustomerData->proof_five;
+                $CustomerData->proof_five = $Insertedproof_five;
+             }
+            
         }
 
 

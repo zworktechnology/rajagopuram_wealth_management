@@ -21,6 +21,9 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
 
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
 
@@ -28,6 +31,7 @@ return new class extends Migration
             $table->string('time')->nullable();
             $table->string('description')->nullable();
             $table->string('next_call_date')->nullable();
+            $table->string('status')->default(0);
             $table->timestamps();
         });
     }

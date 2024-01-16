@@ -2,8 +2,8 @@
       <div class="modal-content modal-filled bg-danger">
          <div class="modal-body">
             <div class="form-header">
-               <h6 class="text-white">Delete Billing</h6>
-               <p class="text-white">Are you sure want to delete?</p>
+               <h6 class="text-white" style="text-transform:uppercase">Delete Billing</h6>
+               <p class="text-white" style="text-transform:uppercase">Are you sure want to delete?</p>
             </div>
             <div class="modal-btn delete-action">
                <div class="row">

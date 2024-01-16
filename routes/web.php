@@ -78,6 +78,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/product/store', [ProductController::class, 'store'])->name('product.store');
     // EDIT
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/product/edit/{unique_key}', [ProductController::class, 'edit'])->name('product.edit');
+    // VIEW
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-rajagopuram/product/view/{id}', [ProductController::class, 'view'])->name('product.view');
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/product/delete/{unique_key}', [ProductController::class, 'delete'])->name('product.delete');
 });
@@ -106,6 +108,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/followup/store', [FollowupController::class, 'store'])->name('followup.store');
     // EDIT
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/followup/edit/{unique_key}', [FollowupController::class, 'edit'])->name('followup.edit');
+    // UPDATE
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/followup/updatestatus/{unique_key}', [FollowupController::class, 'updatestatus'])->name('followup.updatestatus');
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/followup/delete/{unique_key}', [FollowupController::class, 'delete'])->name('followup.delete');
     // DATAE FILTER
@@ -127,3 +131,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // EXCEL IMPORT
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/lead/excel_import', [LeadController::class, 'excel_import'])->name('lead.excel_import');
 });
+
+
+Route::get('/getproductusedCustomers', [ProductController::class, 'getproductusedCustomers']);

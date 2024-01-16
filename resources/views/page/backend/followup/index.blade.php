@@ -7,7 +7,7 @@
 
       <div class="page-header">
          <div class="content-page-header">
-            <h6>Day By Day</h6>
+            <h6 style="text-transform:uppercase">Day By Day</h6>
                <div class="list-btn">
                   <div style="display:flex;">
                         <div class="page-btn">
@@ -28,7 +28,7 @@
                         </div>
                      <ul class="filter-list">
                         <li>
-                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".followup-modal-xl">
+                        <a class="btn btn-primary" data-bs-toggle="modal" style="text-transform:uppercase" data-bs-target=".followup-modal-xl">
                               <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Followup</a>
                         </li>
                      </ul>
@@ -47,14 +47,15 @@
                         <table class="table table-center table-hover datatable table-striped">
                            <thead class="thead-light">
                               <tr>
-                                 <th style="width:15%">Date</th>
-                                 <th style="width:15%">Customer</th>
+                                 <th style="width:15%;text-transform:uppercase">Date</th>
+                                 <th style="width:15%;text-transform:uppercase">Customer</th>
+                                 <th style="width:15%;text-transform:uppercase">Product</th>
                                  @if(Auth::user()->role != 'Admin')
-                                    <th style="width:15%">Employee</th>
+                                    <th style="width:15%;text-transform:uppercase">Employee</th>
                                  @endif
-                                 <th style="width:15%">Description</th>
-                                 <th style="width:15%">Next Call Date</th>
-                                 <th style="width:20%">Action</th>
+                                 <th style="width:15%;text-transform:uppercase">Description</th>
+                                 <th style="width:15%;text-transform:uppercase">Next Call Date</th>
+                                 <th style="width:20%;text-transform:uppercase">Action</th>
                               </tr>
                            </thead>
                            <tbody>
@@ -62,11 +63,12 @@
                               @if(Auth::user()->role == 'Admin')
                                  @if(Auth::user()->emp_id == $followup_data['employee_id'])
                               <tr>
-                                 <td>{{ date('d-m-Y', strtotime($followup_data['date'])) }}</td>
-                                 <td>{{ $followup_data['customer'] }}</td>
-                                 <td>{{ $followup_data['description'] }}</td>
-                                 <td>{{ date('d M Y', strtotime($followup_data['next_call_date'])) }}</td>
-                                 <td>
+                                 <td style="text-transform:uppercase">{{ date('d-m-Y', strtotime($followup_data['date'])) }}</td>
+                                 <td style="text-transform:uppercase">{{ $followup_data['customer'] }}</td>
+                                 <td style="text-transform:uppercase">{{ $followup_data['product'] }}</td>
+                                 <td style="text-transform:uppercase">{{ $followup_data['description'] }}</td>
+                                 <td style="text-transform:uppercase">{{ date('d M Y', strtotime($followup_data['next_call_date'])) }}</td>
+                                 <td style="text-transform:uppercase">
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
                                        <a class="badge bg-warning-light" href="#edit{{ $followup_data['unique_key'] }}" data-bs-toggle="modal"
@@ -99,12 +101,13 @@
 
 
                               <tr>
-                                 <td>{{ date('d-m-Y', strtotime($followup_data['date'])) }}</td>
-                                 <td>{{ $followup_data['customer'] }}</td>
-                                 <td>{{ $followup_data['employee'] }}</td>
-                                 <td>{{ $followup_data['description'] }}</td>
-                                 <td>{{ date('d M Y', strtotime($followup_data['next_call_date'])) }}</td>
-                                 <td>
+                                 <td style="text-transform:uppercase">{{ date('d-m-Y', strtotime($followup_data['date'])) }}</td>
+                                 <td style="text-transform:uppercase">{{ $followup_data['customer'] }}</td>
+                                 <td style="text-transform:uppercase">{{ $followup_data['product'] }}</td>
+                                 <td style="text-transform:uppercase">{{ $followup_data['employee'] }}</td>
+                                 <td style="text-transform:uppercase">{{ $followup_data['description'] }}</td>
+                                 <td style="text-transform:uppercase">{{ date('d M Y', strtotime($followup_data['next_call_date'])) }}</td>
+                                 <td style="text-transform:uppercase">
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
                                        <a class="badge bg-warning-light" href="#edit{{ $followup_data['unique_key'] }}" data-bs-toggle="modal"

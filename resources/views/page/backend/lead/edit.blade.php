@@ -3,7 +3,7 @@
 
         <div class="modal-header border-0 pb-0">
             <div class="form-header modal-header-title text-start mb-0">
-                <h6 class="mb-0">Update Leads</h6>
+                <h6 class="mb-0" style="text-transform:uppercase">Update Leads</h6>
             </div>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                 <span class="align-center" aria-hidden="true">&times;</span>
@@ -15,14 +15,14 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="form-group">
-                            <label>Name <span class="text-danger">*</span></label>
+                            <label style="text-transform:uppercase">Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" placeholder="Enter Lead Name" name="name" value="{{$Lead_datas['name']}}"
                                 id="name" required>
                         </div>
                     </div>
                     <div class="col-lg-12 col-md-12">
                         <div class="form-group">
-                            <label>Phone Number <span class="text-danger">*</span></label>
+                            <label style="text-transform:uppercase">Phone Number <span class="text-danger">*</span></label>
                             <input type="text" class="form-control customer_phoneno"
                                 placeholder="Enter Lead Contact No" name="phonenumber" id="phonenumber" value="{{$Lead_datas['phonenumber']}}"
                                 required>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-lg-12 col-md-12">
                         <div class="form-group">
-                                       <label>Source From <span class="text-danger">*</span></label>
+                                       <label style="text-transform:uppercase">Source From <span class="text-danger">*</span></label>
                                                 <select class="form-control select source_from js-example-basic-single"
                                                     name="source_from" id="source_from" required>
                                                     <option value="" disabled selected hiddden>Select Source From
@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-lg-12 col-md-12" @if(Auth::user()->role == 'Admin') hidden   @endif>
                         <div class="form-group">
-                                 <label>Staff <span class="text-danger">*</span></label>
+                                 <label style="text-transform:uppercase">Staff <span class="text-danger">*</span></label>
                                                 <select class="form-control select employee_id js-example-basic-single"
                                                     name="employee_id" id="employee_id" required>
                                                     <option value="" disabled selected hiddden>Select Staff

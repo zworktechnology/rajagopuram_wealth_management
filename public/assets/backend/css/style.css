@@ -6860,7 +6860,7 @@ table .badge {
   margin: 0 15px 0 0;
 }
 .customer-details-group .customer-details .customer-widget-icon i {
-  background: #b3b3d3;
+  background: #fff;
   padding: 18px;
   border-radius: 50px;
   font-size: 24px;
@@ -8054,7 +8054,7 @@ body[data-layout-mode=dark] .alertify .ajs-header {
 }
 
 .page-header {
-  margin-bottom: 1.875rem;
+  /* margin-bottom: 1.875rem; */
 }
 @media (max-width: 768px) {
   .page-header {

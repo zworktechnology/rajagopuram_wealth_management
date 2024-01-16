@@ -13,10 +13,12 @@ class Followup extends Model
         'unique_key',
         'soft_delete',
         'customer_id',
+        'product_id',
         'employee_id',
         'date',
         'time',
         'description',
-        'next_call_date'
+        'next_call_date',
+        'status'
     ];
 }

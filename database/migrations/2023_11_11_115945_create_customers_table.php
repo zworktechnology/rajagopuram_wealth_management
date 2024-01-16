@@ -24,6 +24,16 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('source_from')->nullable();
             $table->longText('customer_photo')->nullable();
+            $table->string('prooftype_one')->nullable();
+            $table->string('prooftype_two')->nullable();
+            $table->string('prooftype_three')->nullable();
+            $table->string('prooftype_four')->nullable();
+            $table->string('prooftype_five')->nullable();
+            $table->longText('proof_one')->nullable();
+            $table->longText('proof_two')->nullable();
+            $table->longText('proof_three')->nullable();
+            $table->longText('proof_four')->nullable();
+            $table->longText('proof_five')->nullable();
             $table->string('birth_date')->nullable();
             $table->string('wedding_date')->nullable();
 

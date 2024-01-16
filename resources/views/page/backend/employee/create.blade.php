@@ -3,7 +3,7 @@
 
         <div class="modal-header border-0 pb-0">
             <div class="form-header modal-header-title text-start mb-0">
-                <h6 class="mb-0">Add Employee</h6>
+                <h6 class="mb-0" style="text-transform:uppercase">Add Employee</h6>
             </div>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                 <span class="align-center" aria-hidden="true">&times;</span>
@@ -15,14 +15,14 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
                         <div class="form-group">
-                            <label>Name <span class="text-danger">*</span></label>
+                            <label style="text-transform:uppercase">Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" placeholder="Enter Employee Name" name="name"
                                 id="name" required>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="form-group">
-                            <label>Phone Number <span class="text-danger">*</span></label>
+                            <label style="text-transform:uppercase">Phone Number <span class="text-danger">*</span></label>
                             <input type="text" class="form-control customer_phoneno"
                                 placeholder="Enter Employee Contact No" name="phonenumber" id="emp_phonenumber"
                                 required>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="form-group">
-                            <label>Alternate Phone Number <span class="text-danger">*</span></label>
+                            <label style="text-transform:uppercase">Alternate Phone Number <span class="text-danger">*</span></label>
                             <input type="text" class="form-control customer_phoneno"
                                 placeholder="Enter Employee Alternate Contact No" name="alter_phonenumber"
                                 id="alter_phonenumber">
@@ -38,14 +38,14 @@
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="form-group">
-                            <label>Email ID <span class="text-danger">*</span></label>
+                            <label style="text-transform:uppercase">Email ID <span class="text-danger">*</span></label>
                             <input type="email" class="form-control" placeholder="Enter Employee E-Mail"
                                 name="email_id" id="email_id" required>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="form-group">
-                            <label>Role <span class="text-danger">*</span></label>
+                            <label style="text-transform:uppercase">Role <span class="text-danger">*</span></label>
                             <select class="form-control select source_from js-example-basic-single" name="role"
                                 id="role" required>
                                 <option value="" disabled selected hiddden>Select Role</option>
@@ -56,14 +56,14 @@
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="form-group">
-                            <label>Password <span class="text-danger">*</span></label>
+                            <label style="text-transform:uppercase">Password <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" placeholder="Enter Employee Password"
                                 name="password" id="password" required>
                         </div>
                     </div>
                     <div class="col-lg-12 col-md-12">
                         <div class="form-group">
-                            <label>Address</label>
+                            <label style="text-transform:uppercase">Address</label>
                             <textarea name="address" id="address" class="form-control" placeholder="Enter Address"></textarea>
                         </div>
                     </div>
