@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('phonenumber')->nullable();
             $table->string('source_from')->nullable();
-            $table->unsignedBigInteger('employee_id');
+            $table->unsignedBigInteger('employee_id')->nullable();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
 
             $table->timestamps();

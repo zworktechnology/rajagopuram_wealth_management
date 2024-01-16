@@ -35,8 +35,13 @@
                                                     name="source_from" id="source_from" required>
                                                     <option value="" disabled selected hiddden>Select Source From
                                                     </option>
-                                                    <option value="Facebook"{{ $Lead_datas['source_from'] == 'Facebook' ? 'selected' : '' }}>Facebook</option>
-                                                    <option value="OLX"{{ $Lead_datas['source_from'] == 'OLX' ? 'selected' : '' }}>OLX</option>
+                                                    <option  value="Facebook"{{ $Lead_datas['source_from'] == 'Facebook' ? 'selected' : '' }}>Facebook</option>
+                                                    <option value="Instagram"{{ $Lead_datas['source_from'] == 'Instagram' ? 'selected' : '' }}>Instagram</option>
+                                                    <option value="Walk-in"{{ $Lead_datas['source_from'] == 'Walk-in' ? 'selected' : '' }}>Walk-in</option>
+                                                    <option value="Mail"{{ $Lead_datas['source_from'] == 'Mail' ? 'selected' : '' }}>Mail</option>
+                                                    <option value="Twitter"{{ $Lead_datas['source_from'] == 'Twitter' ? 'selected' : '' }}>Twitter</option>
+                                                    <option value="Just Dial"{{ $Lead_datas['source_from'] == 'Just Dial' ? 'selected' : '' }}>Just Dial</option>
+                                                    <option value="Reference"{{ $Lead_datas['source_from'] == 'Reference' ? 'selected' : '' }}>Reference</option>
                                                 </select>
                         </div>
                     </div>

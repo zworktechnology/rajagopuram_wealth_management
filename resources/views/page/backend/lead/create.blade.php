@@ -36,7 +36,12 @@
                                                     <option value="" disabled selected hiddden>Select Source From
                                                     </option>
                                                     <option value="Facebook">Facebook</option>
-                                                    <option value="OLX">OLX</option>
+                                                    <option value="Instagram">Instagram</option>
+                                                    <option value="Walk-in">Walk-in</option>
+                                                    <option value="Mail">Mail</option>
+                                                    <option value="Twitter">Twitter</option>
+                                                    <option value="Just Dial">Just Dial</option>
+                                                    <option value="Reference">Reference</option>
                                                 </select>
                         </div>
                     </div>
