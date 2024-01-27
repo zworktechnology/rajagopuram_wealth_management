@@ -63,10 +63,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
     // EDIT
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/employee/edit/{unique_key}', [EmployeeController::class, 'edit'])->name('employee.edit');
+    // EDIT
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-rajagopuram/employee/view/{id}', [EmployeeController::class, 'view'])->name('employee.view');
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/employee/delete/{unique_key}', [EmployeeController::class, 'delete'])->name('employee.delete');
     // CHECK DUPLICATE
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/employee/checkduplicate', [EmployeeController::class, 'checkduplicate'])->name('employee.checkduplicate');
+    // DATAE FILTER
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/employee/datefilter', [EmployeeController::class, 'datefilter'])->name('employee.datefilter');
 });
 
 
@@ -93,7 +97,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // STORE
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/billing/store', [BillingController::class, 'store'])->name('billing.store');
     // EDIT
-    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/billing/edit/{unique_key}', [BillingController::class, 'edit'])->name('billing.edit');
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-rajagopuram/billing/edit/{id}', [BillingController::class, 'edit'])->name('billing.edit');
+    // UPDATE
+    Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/billing/update/{id}', [BillingController::class, 'update'])->name('billing.update');
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/billing/delete/{unique_key}', [BillingController::class, 'delete'])->name('billing.delete');
 });
@@ -126,6 +132,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/lead/store', [LeadController::class, 'store'])->name('lead.store');
     // EDIT
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/lead/edit/{id}', [LeadController::class, 'edit'])->name('lead.edit');
+    // EDIT
+    Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-rajagopuram/lead/move/{id}', [LeadController::class, 'move'])->name('lead.move');
+    // STORE
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/lead/leadtocustomer', [LeadController::class, 'leadtocustomer'])->name('lead.leadtocustomer');
     // DELETE
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/lead/delete/{id}', [LeadController::class, 'delete'])->name('lead.delete');
     // EXCEL IMPORT

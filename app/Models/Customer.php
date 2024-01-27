@@ -32,6 +32,7 @@ class Customer extends Model
         'proof_five',
         'birth_date',
         'wedding_date',
-        'employee_id'
+        'employee_id',
+        'lead_id'
     ];
 }

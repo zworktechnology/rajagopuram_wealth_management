@@ -11,9 +11,12 @@ class Lead extends Model
 
     protected $fillable = [
         'soft_delete',
+        'date',
         'name',
         'phonenumber',
         'source_from',
-        'employee_id'
+        'employee_id',
+        'status',
+        'moved_date'
     ];
 }

@@ -79,6 +79,46 @@
 
 
 
+            $(document).on('click', '.addproofs', function() {
+
+                $(".proof_fields").append(
+                    '<tr>' +
+                    '<td><input type="hidden" name="proof_id[]"/><select class="form-control" name="prooftype[]"style="width: 100%;" >' +
+                    '<option value="" disabled selected hidden class="text-muted">Select Type</option>' +
+                    '<option value="Aadhaar Card" >Aadhaar Card</option>' +
+                    '<option value="Pan Card">Pan Card</option>' +
+                    '<option value="Voter ID">Voter ID</option>' +
+                    '<option value="Driving Licence">DrivingLicence</option>' +
+                    '</select></td>' +
+                    '<td><input type="file" name="proof_upload[]" id="proof_upload" class="form-control proof_upload" /></td>' +
+                    '<td><button class="btn btn-danger form-plus-btn remove-prooftr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button></td>' +
+                    '</tr>'
+                );
+            });
+            $(document).on('click', '.remove-prooftr', function() {
+                $(this).parents('tr').remove();
+            });
+
+
+            $(document).on('click', '.add_documents', function() {
+
+                $(".document_fields").append(
+                    '<tr>' +
+                    '<td><input type="hidden" name="document_id[]"/>' +
+                    '<input type="text" name="document_name[]" id="document_name" class="form-control document_name" placeholder="Enter Document Title"/></td>' +
+                    '<td><input type="file" name="document_proof[]" id="document_proof" class="form-control document_proof" /></td>' +
+                    '<td><button class="btn btn-danger form-plus-btn remove-documenttr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button></td>' +
+                    '</tr>'
+                );
+            });
+            $(document).on('click', '.remove-documenttr', function() {
+                $(this).parents('tr').remove();
+            });
+
+
+            $(".billing_close").click(function() {
+                window.location.reload();
+            });
 
 
             $(document).on('click', '.addfamilys', function() {
@@ -90,7 +130,7 @@
                     '<tr>' +
                     '<td><input class="auto_num form-control"  type="text" readonly value="'+rowIndexx+'"/></td>' +
                     '<td><input type="hidden" name="family_id[]" value=""/><input type="text" class="form-control family_name"id="family_name" name="family_name[]" value="" /></td>' +
-                    '<td><input type="text" class="form-control family_relationship"id="family_relationship" name="family_relationship[]" value=""  /></td>' +
+                    '<td><input type="text" class="form-control family_relationship" id="family_relationship" name="family_relationship[]" value=""  /></td>' +
                     '<td><input type="date" class="form-control family_dob"id="family_dob" name="family_dob[]"/></td>' +
                     '<td><input type="date" class="form-control family_weddingdate"id="family_weddingdate" name="family_weddingdate[]"/></td>' +
                     '<td><button class="btn btn-danger form-plus-btn remove-tr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button></td>' +

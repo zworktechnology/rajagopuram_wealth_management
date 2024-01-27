@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Customer;
 use App\Models\CustomerFamily;
+use App\Models\CustomerProof;
 use App\Models\Employee;
 use App\Imports\ImportCustomer;
 use Illuminate\Support\Str;
@@ -21,6 +22,7 @@ class CustomerController extends Controller
 
         $Customer_data = [];
         $families = [];
+        $proofs = [];
         foreach ($data as $key => $datas) {
 
             $CustomerFamilys = CustomerFamily::where('customer_id', '=', $datas->id)->orderBy('id', 'DESC')->get();
@@ -32,6 +34,17 @@ class CustomerController extends Controller
                     'family_dob' => $CustomerFamilysarr->family_dob,
                     'family_weddingdate' => $CustomerFamilysarr->family_weddingdate,
                     'customer_id' => $CustomerFamilysarr->customer_id,
+                );
+            }
+
+
+            $CustomerProofs = CustomerProof::where('customer_id', '=', $datas->id)->orderBy('id', 'DESC')->get();
+            foreach ($CustomerProofs as $key => $CustomerProofsarr) {
+
+                $proofs[] = array(
+                    'prooftype' => $CustomerProofsarr->prooftype,
+                    'proof_upload' => $CustomerProofsarr->proof_upload,
+                    'customer_id' => $CustomerProofsarr->customer_id,
                 );
             }
 
@@ -68,6 +81,7 @@ class CustomerController extends Controller
                 'employee_id' => $datas->employee_id,
                 'employee' => $employeename,
                 'families' => $families,
+                'proofs' => $proofs,
             );
 
         }
@@ -110,67 +124,39 @@ class CustomerController extends Controller
         $request->customer_photo->move('assets/customer_photo', $filename_customer_photo);
         $data->customer_photo = $filename_customer_photo;
 
-        
-        if($request->get('prooftype_one') != ""){
-            $data->prooftype_one = $request->get('prooftype_one');
-            $proof_one = $request->proof_one;
-            $filename_proof_one = $data->name . '_' . $random_no . '_' . 'proof_one' . '.' . $proof_one->getClientOriginalExtension();
-            $request->proof_one->move('assets/proof_one', $filename_proof_one);
-            $data->proof_one = $filename_proof_one;
-        }
-        
-        if($request->get('prooftype_two') != ""){
-            $data->prooftype_two = $request->get('prooftype_two');
-            $proof_two = $request->proof_two;
-            $filename_proof_two = $data->name . '_' . $random_no . '_' . 'proof_two' . '.' . $proof_two->getClientOriginalExtension();
-            $request->proof_two->move('assets/proof_two', $filename_proof_two);
-            $data->proof_two = $filename_proof_two;
-        }
-        
-
-        if($request->get('prooftype_three') != ""){
-            $data->prooftype_three = $request->get('prooftype_three');
-            $proof_three = $request->proof_three;
-            $filename_proof_three = $data->name . '_' . $random_no . '_' . 'proof_three' . '.' . $proof_three->getClientOriginalExtension();
-            $request->proof_three->move('assets/proof_three', $filename_proof_three);
-            $data->proof_three = $filename_proof_three;
-        }
-        
-
-        if($request->get('prooftype_four') != ""){
-            $data->prooftype_four = $request->get('prooftype_four');
-            $proof_four = $request->proof_four;
-            $filename_proof_four = $data->name . '_' . $random_no . '_' . 'proof_four' . '.' . $proof_four->getClientOriginalExtension();
-            $request->proof_four->move('assets/proof_four', $filename_proof_four);
-            $data->proof_four = $filename_proof_four;
-        }
-        
-
-        if($request->get('prooftype_five') != ""){
-            $data->prooftype_five = $request->get('prooftype_five');
-            $proof_five = $request->proof_five;
-            $filename_proof_five = $data->name . '_' . $random_no . '_' . 'proof_five' . '.' . $proof_five->getClientOriginalExtension();
-            $request->proof_five->move('assets/proof_five', $filename_proof_five);
-            $data->proof_five = $filename_proof_five;
-        }
-        
-
-
         $data->save();
 
 
         $customerid = $data->id;
+
+           
+            foreach($request->proof_upload as $key => $proof_upload)
+            {
+                $imageName = $data->name . '_' . time().rand(1,99).'.'.$proof_upload->extension();  
+                $proof_upload->move('assets/proof_one', $imageName);
+  
+                $CustomerProof = new CustomerProof();
+                $CustomerProof->customer_id = $customerid;
+                $CustomerProof->prooftype = $request->prooftype[$key];
+                $CustomerProof->proof_upload = $imageName;
+                $CustomerProof->save();
+            }
+
         
         
             foreach ($request->get('family_name') as $key => $family_name) {
-                $CustomerFamilydata = new CustomerFamily();
 
-                $CustomerFamilydata->customer_id = $customerid;
-                $CustomerFamilydata->family_name = $family_name;
-                $CustomerFamilydata->family_relationship = $request->family_relationship[$key];
-                $CustomerFamilydata->family_dob = $request->family_dob[$key];
-                $CustomerFamilydata->family_weddingdate = $request->family_weddingdate[$key];
-                $CustomerFamilydata->save();
+                if($family_name != ""){
+                    $CustomerFamilydata = new CustomerFamily();
+
+                    $CustomerFamilydata->customer_id = $customerid;
+                    $CustomerFamilydata->family_name = $family_name;
+                    $CustomerFamilydata->family_relationship = $request->family_relationship[$key];
+                    $CustomerFamilydata->family_dob = $request->family_dob[$key];
+                    $CustomerFamilydata->family_weddingdate = $request->family_weddingdate[$key];
+                    $CustomerFamilydata->save();
+                }
+                
             }
 
         return redirect()->route('customer.index')->with('message', 'Added !');
@@ -182,9 +168,10 @@ class CustomerController extends Controller
     {
         $CustomerData = Customer::findOrFail($id);
         $CustomerFamily = CustomerFamily::where('customer_id', '=', $CustomerData->id)->get();
+        $CustomerProof = CustomerProof::where('customer_id', '=', $CustomerData->id)->get();
         $employee = Employee::where('soft_delete', '!=', 1)->get();
 
-        return view('page.backend.customer.edit', compact('CustomerData', 'CustomerFamily', 'employee'));
+        return view('page.backend.customer.edit', compact('CustomerData', 'CustomerFamily', 'employee', 'CustomerProof'));
     }
 
 
@@ -215,82 +202,63 @@ class CustomerController extends Controller
         }
 
 
-
-        if($request->get('prooftype_one') != ""){
-            $CustomerData->prooftype_one = $request->get('prooftype_one');
-            if ($request->file('proof_one') != "") {
-                $proof_one = $request->proof_one;
-                $filename_proof_one = $CustomerData->name . '_' . $random_no . '_' . 'proof_one' . '.' . $proof_one->getClientOriginalExtension();
-                $request->proof_one->move('assets/proof_one', $filename_proof_one);
-                $CustomerData->proof_one = $filename_proof_one;
-            } else {
-                $Insertedproof_one = $CustomerData->proof_one;
-                $CustomerData->proof_one = $Insertedproof_one;
-             }
-        }
-        
-        if($request->get('prooftype_two') != ""){
-            $CustomerData->prooftype_two = $request->get('prooftype_two');
-            if ($request->file('proof_two') != "") {
-                $proof_two = $request->proof_two;
-                $filename_proof_two = $CustomerData->name . '_' . $random_no . '_' . 'proof_two' . '.' . $proof_two->getClientOriginalExtension();
-                $request->proof_two->move('assets/proof_two', $filename_proof_two);
-                $CustomerData->proof_two = $filename_proof_two;
-            } else {
-                $Insertedproof_two = $CustomerData->proof_two;
-                $CustomerData->proof_two = $Insertedproof_two;
-             }
-            
-        }
-        
-
-        if($request->get('prooftype_three') != ""){
-            $CustomerData->prooftype_three = $request->get('prooftype_three');
-            if ($request->file('proof_three') != "") {
-                $proof_three = $request->proof_three;
-                $filename_proof_three = $CustomerData->name . '_' . $random_no . '_' . 'proof_three' . '.' . $proof_three->getClientOriginalExtension();
-                $request->proof_three->move('assets/proof_three', $filename_proof_three);
-                $CustomerData->proof_three = $filename_proof_three;
-            } else {
-                $Insertedproof_three = $CustomerData->proof_three;
-                $CustomerData->proof_three = $Insertedproof_three;
-             }
-            
-        }
-        
-
-        if($request->get('prooftype_four') != ""){
-            $CustomerData->prooftype_four = $request->get('prooftype_four');
-            if ($request->file('proof_four') != "") {
-                $proof_four = $request->proof_four;
-                $filename_proof_four = $CustomerData->name . '_' . $random_no . '_' . 'proof_four' . '.' . $proof_four->getClientOriginalExtension();
-                $request->proof_four->move('assets/proof_four', $filename_proof_four);
-                $CustomerData->proof_four = $filename_proof_four;
-            } else {
-                $Insertedproof_four = $CustomerData->proof_four;
-                $CustomerData->proof_four = $Insertedproof_four;
-             }
-        }
-        
-
-        if($request->get('prooftype_five') != ""){
-            $CustomerData->prooftype_five = $request->get('prooftype_five');
-            if ($request->file('proof_five') != "") {
-                $proof_five = $request->proof_five;
-                $filename_proof_five = $CustomerData->name . '_' . $random_no . '_' . 'proof_five' . '.' . $proof_five->getClientOriginalExtension();
-                $request->proof_five->move('assets/proof_five', $filename_proof_five);
-                $CustomerData->proof_five = $filename_proof_five;
-            } else {
-                $Insertedproof_five = $CustomerData->proof_five;
-                $CustomerData->proof_five = $Insertedproof_five;
-             }
-            
-        }
-
-
         $CustomerData->update();
         $customer_id = $CustomerData->id;
 
+
+
+        $getInsertedproof = CustomerProof::where('customer_id', '=', $customer_id)->get();
+        $proofsarr = array();
+        foreach ($getInsertedproof as $key => $getInsertedproofs) {
+            $proofsarr[] = $getInsertedproofs->id;
+        }
+
+        $updated_proofs = $request->proof_id;
+        $updated_proofs_ids = array_filter($updated_proofs);
+        $different_proofids = array_merge(array_diff($proofsarr, $updated_proofs_ids), array_diff($updated_proofs_ids, $proofsarr));
+
+        if (!empty($different_proofids)) {
+            foreach ($different_proofids as $key => $different_proofid) {
+                CustomerProof::where('id', $different_proofid)->delete();
+            }
+        }
+            error_reporting(0);
+        foreach ($request->get('proof_id') as $key => $proof_id) {
+            if ($proof_id > 0) {
+
+                $ids = $proof_id;
+                $prooftype = $request->prooftype[$key];
+
+                if ($request->proof_upload[$key] != "") {
+                    $proof_upload = $request->proof_upload[$key];
+                    $imageName = $CustomerData->name . '_' . time().rand(1,99).'.'.$proof_upload->extension();  
+                    $proof_upload->move('assets/proof_one', $imageName);
+
+                }else {
+                    $getInsertedproofimg = CustomerProof::where('id', '=', $proof_id)->first();
+                    $Insertedproof = $getInsertedproofimg->proof_upload;
+                    $imageName = $Insertedproof;
+                }
+
+                DB::table('customer_proofs')->where('id', $proof_id)->update([
+                    'customer_id' => $customer_id, 'prooftype' => $prooftype, 'proof_upload' => $imageName
+                ]);
+
+            } else if ($proof_id == '') {
+
+                if($request->proof_upload[$key] != ""){
+                    $proof_upload = $request->proof_upload[$key];
+                    $imageName = $CustomerData->name . '_' . time().rand(1,99).'.'.$proof_upload->extension();  
+                    $proof_upload->move('assets/proof_one', $imageName);
+    
+                    $CustomerProof = new CustomerProof();
+                    $CustomerProof->customer_id = $customer_id;
+                    $CustomerProof->prooftype = $request->prooftype[$key];
+                    $CustomerProof->proof_upload = $imageName;
+                    $CustomerProof->save();
+                }
+            }
+        }
 
 
 

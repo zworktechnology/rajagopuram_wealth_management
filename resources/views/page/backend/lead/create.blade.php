@@ -15,6 +15,12 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="form-group">
+                            <label style="text-transform:uppercase">Date <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control"  name="date" id="date" value="{{$today}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <div class="form-group">
                             <label style="text-transform:uppercase">Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" placeholder="Enter Lead Name" name="name"
                                 id="name" required>

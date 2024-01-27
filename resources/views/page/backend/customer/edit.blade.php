@@ -18,7 +18,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title" style="text-transform:uppercase">Basic Details</h5>
+                                <h6 class="card-title" style="text-transform:uppercase">Basic Details</h6>
                             </div>
                             <div class="card-body">
                                 <div class="form-group-item border-0 mb-0">
@@ -118,175 +118,87 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title" style="text-transform:uppercase">Proof</h5>
+                                    <h6 class="card-title" style="text-transform:uppercase">Proof</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group-item border-0 mb-0">
                                         <div class="row align-item-center">
-                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="col-lg-6 col-md-12 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Customer Photo <span class="text-danger">*</span></label>
                                                         <div style="display: flex">
                                                             <img
                                                                     src="{{ asset('assets/customer_photo/' . $CustomerData->customer_photo) }}"
                                                                     alt=""
-                                                                    style="width: 100px !important; height: 100px !important;">
+                                                                    style="width: 60px !important; height: 60px !important;">
                                                         </div>
                                                         <input type="file" name="customer_photo" id="customer_photo"
                                                             class="form-control customer_photo" />
                                                         <img src="#" id="customer-img-tag" width="150" height="100" style="display:none;"/>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label style="text-transform:uppercase">Proof Type <span class="text-danger">*</span></label>
-                                                        <select class="form-control js-example-basic-single" name="prooftype_one"
-                                                                    style="width: 100%;" >
-                                                                    <option value="" disabled selected hidden
-                                                                        class="text-muted">Select Type</option>
-                                                                    <option value="Aadhaar Card"{{ $CustomerData->prooftype_one == 'Aadhaar Card' ? 'selected' : '' }}  class="text-muted">Aadhaar Card
-                                                                    </option>
-                                                                    <option value="Pan Card"{{ $CustomerData->prooftype_one == 'Pan Card' ? 'selected' : '' }} class="text-muted">Pan Card</option>
-                                                                    <option value="Voter ID"{{ $CustomerData->prooftype_one == 'Voter ID' ? 'selected' : '' }} class="text-muted">Voter ID</option>
-                                                                    <option value="Driving Licence"{{ $CustomerData->prooftype_one == 'Driving Licence' ? 'selected' : '' }} class="text-muted">Driving
-                                                                        Licence</option>
-                                                                </select>
-                                                    </div>
+
+                                              
+                                                
+                                                <div class="table-responsive no-pagination">
+                                                    <table class="table table-center table-hover datatable">
+                                                        <thead class="thead-light">
+                                                            <tr>
+                                                                <th style="width:40%;text-transform:uppercase;">Proof Type</th>
+                                                                <th style="width:40%;text-transform:uppercase;">File</th>
+                                                                <th style="width:10%;text-transform:uppercase;">Image</th>
+                                                                <th style="width:10%;text-transform:uppercase;">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="proof_fields">
+                                                        @foreach ($CustomerProof as $index => $CustomerProofs)
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="hidden" name="proof_id[]" value="{{ $CustomerProofs->id }}" />
+                                                                    <select class="form-control" name="prooftype[]"
+                                                                        style="width: 100%;" >
+                                                                        <option value="" disabled selected hidden
+                                                                            class="text-muted">Select Type</option>
+                                                                        <option value="Aadhaar Card"{{ $CustomerProofs->prooftype == 'Aadhaar Card' ? 'selected' : '' }}>Aadhaar Card</option>
+                                                                        <option value="Pan Card"{{ $CustomerProofs->prooftype == 'Pan Card' ? 'selected' : '' }} >Pan Card</option>
+                                                                        <option value="Voter ID"{{ $CustomerProofs->prooftype == 'Voter ID' ? 'selected' : '' }}>Voter ID</option>
+                                                                        <option value="Driving Licence"{{ $CustomerProofs->prooftype == 'Driving Licence' ? 'selected' : '' }}>DrivingLicence</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    
+                                                                    <input type="file" name="proof_upload[]" id="proof_upload" class="form-control proof_upload" /></td>
+                                                                <td>
+                                                                <img src="{{ asset('assets/proof_one/' . $CustomerProofs->proof_upload) }}"
+                                                                            alt="" style="width: 60px !important; height: 60px !important;">
+                                                                </td>
+                                                                <td><button class="btn btn-danger form-plus-btn remove-prooftr" type="button" id="" value="Add"><i class="fe fe-minus-circle"></i></button>
+                                                                </td>
+                                                            </tr>
+                                                            @endforeach
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="hidden" name="proof_id[]"/>
+                                                                    <select class="form-control" name="prooftype[]"
+                                                                        style="width: 100%;" >
+                                                                        <option value="" disabled selected hidden
+                                                                            class="text-muted">Select Type</option>
+                                                                        <option value="Aadhaar Card">Aadhaar Card</option>
+                                                                        <option value="Pan Card" >Pan Card</option>
+                                                                        <option value="Voter ID">Voter ID</option>
+                                                                        <option value="Driving Licence">DrivingLicence</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td><input type="file" name="proof_upload[]" id="proof_upload" class="form-control proof_upload" /></td>
+                                                                <td><button class="btn btn-primary form-plus-btn addproofs"type="button" id="" value="Add"><i
+                                                                    class="fe fe-plus-circle"></i></button></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label style="text-transform:uppercase">Proof 1 </label>
-                                                        @if ($CustomerData->proof_one)
-                                                        <div style="display: flex">
-                                                            <img src="{{ asset('assets/proof_one/' . $CustomerData->proof_one) }}" alt=""
-                                                                    style="width: 100px !important; height: 100px !important; ">
-                                                        </div>
-                                                        @endif
-                                                        <input type="file" name="proof_one" id="proof_one"
-                                                            class="form-control proof_one" />
-                                                        <img src="#" id="customer-img-tagone" width="150" height="100" style="display:none;"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label style="text-transform:uppercase">Proof Type <span class="text-danger">*</span></label>
-                                                        <select class="form-control js-example-basic-single" name="prooftype_two"
-                                                                    style="width: 100%;" >
-                                                                    <option value="" disabled selected hidden
-                                                                        class="text-muted">Select Type</option>
-                                                                    <option value="Aadhaar Card"{{ $CustomerData->prooftype_two == 'Aadhaar Card' ? 'selected' : '' }}  class="text-muted">Aadhaar Card
-                                                                    </option>
-                                                                    <option value="Pan Card"{{ $CustomerData->prooftype_two == 'Pan Card' ? 'selected' : '' }} class="text-muted">Pan Card</option>
-                                                                    <option value="Voter ID"{{ $CustomerData->prooftype_two == 'Voter ID' ? 'selected' : '' }} class="text-muted">Voter ID</option>
-                                                                    <option value="Driving Licence"{{ $CustomerData->prooftype_two == 'Driving Licence' ? 'selected' : '' }} class="text-muted">Driving
-                                                                        Licence</option>
-                                                                </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label style="text-transform:uppercase">Proof 2</label>
-                                                        @if ($CustomerData->proof_two)
-                                                        <div style="display: flex">
-                                                            <img src="{{ asset('assets/proof_two/' . $CustomerData->proof_two) }}" alt=""
-                                                                    style="width: 100px !important; height: 100px !important; ">
-                                                        </div>
-                                                        @endif
-                                                        <input type="file" name="proof_two" id="proof_two"
-                                                            class="form-control proof_two" />
-                                                        <img src="#" id="customer-img-tagtwo" width="150" height="100" style="display:none;"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label style="text-transform:uppercase">Proof Type <span class="text-danger">*</span></label>
-                                                        <select class="form-control js-example-basic-single" name="prooftype_three"
-                                                                    style="width: 100%;" >
-                                                                    <option value="" disabled selected hidden
-                                                                        class="text-muted">Select Type</option>
-                                                                    <option value="Aadhaar Card"{{ $CustomerData->prooftype_three == 'Aadhaar Card' ? 'selected' : '' }}  class="text-muted">Aadhaar Card
-                                                                    </option>
-                                                                    <option value="Pan Card"{{ $CustomerData->prooftype_three == 'Pan Card' ? 'selected' : '' }} class="text-muted">Pan Card</option>
-                                                                    <option value="Voter ID"{{ $CustomerData->prooftype_three == 'Voter ID' ? 'selected' : '' }} class="text-muted">Voter ID</option>
-                                                                    <option value="Driving Licence"{{ $CustomerData->prooftype_three == 'Driving Licence' ? 'selected' : '' }} class="text-muted">Driving
-                                                                        Licence</option>
-                                                                </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label style="text-transform:uppercase">Proof 3</label>
-                                                        @if ($CustomerData->proof_three)
-                                                        <div style="display: flex">
-                                                            <img src="{{ asset('assets/proof_three/' . $CustomerData->proof_three) }}" alt=""
-                                                                    style="width: 100px !important; height: 100px !important; ">
-                                                        </div>
-                                                        @endif
-                                                        <input type="file" name="proof_three" id="proof_three"
-                                                            class="form-control proof_three" />
-                                                        <img src="#" id="customer-img-tagthree" width="150" height="100" style="display:none;"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label style="text-transform:uppercase">Proof Type <span class="text-danger">*</span></label>
-                                                        <select class="form-control js-example-basic-single" name="prooftype_four"
-                                                                    style="width: 100%;" >
-                                                                    <option value="" disabled selected hidden
-                                                                        class="text-muted">Select Type</option>
-                                                                    <option value="Aadhaar Card"{{ $CustomerData->prooftype_four == 'Aadhaar Card' ? 'selected' : '' }}  class="text-muted">Aadhaar Card
-                                                                    </option>
-                                                                    <option value="Pan Card"{{ $CustomerData->prooftype_four == 'Pan Card' ? 'selected' : '' }} class="text-muted">Pan Card</option>
-                                                                    <option value="Voter ID"{{ $CustomerData->prooftype_four == 'Voter ID' ? 'selected' : '' }} class="text-muted">Voter ID</option>
-                                                                    <option value="Driving Licence"{{ $CustomerData->prooftype_four == 'Driving Licence' ? 'selected' : '' }} class="text-muted">Driving
-                                                                        Licence</option>
-                                                                </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label style="text-transform:uppercase">Proof 4 </label>
-                                                        @if ($CustomerData->proof_four)
-                                                        <div style="display: flex">
-                                                            <img src="{{ asset('assets/proof_four/' . $CustomerData->proof_four) }}" alt=""
-                                                                    style="width: 100px !important; height: 100px !important; ">
-                                                        </div>
-                                                        @endif
-                                                        <input type="file" name="proof_four" id="proof_four"
-                                                            class="form-control proof_four" />
-                                                        <img src="#" id="customer-img-tagfour" width="150" height="100" style="display:none;"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label style="text-transform:uppercase">Proof Type <span class="text-danger">*</span></label>
-                                                        <select class="form-control js-example-basic-single" name="prooftype_five"
-                                                                    style="width: 100%;" >
-                                                                    <option value="" disabled selected hidden
-                                                                        class="text-muted">Select Type</option>
-                                                                    <option value="Aadhaar Card"{{ $CustomerData->prooftype_five == 'Aadhaar Card' ? 'selected' : '' }}  class="text-muted">Aadhaar Card
-                                                                    </option>
-                                                                    <option value="Pan Card"{{ $CustomerData->prooftype_five == 'Pan Card' ? 'selected' : '' }} class="text-muted">Pan Card</option>
-                                                                    <option value="Voter ID"{{ $CustomerData->prooftype_five == 'Voter ID' ? 'selected' : '' }} class="text-muted">Voter ID</option>
-                                                                    <option value="Driving Licence"{{ $CustomerData->prooftype_five == 'Driving Licence' ? 'selected' : '' }} class="text-muted">Driving
-                                                                        Licence</option>
-                                                                </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label style="text-transform:uppercase">Proof 5 </label>
-                                                        @if ($CustomerData->proof_five)
-                                                        <div style="display: flex">
-                                                            <img src="{{ asset('assets/proof_five/' . $CustomerData->proof_five) }}" alt=""
-                                                                    style="width: 100px !important; height: 100px !important; ">
-                                                        </div>
-                                                        @endif
-                                                        <input type="file" name="proof_five" id="proof_five"
-                                                            class="form-control proof_five" />
-                                                        <img src="#" id="customer-img-tagfive" width="150" height="100" style="display:none;"/>
-                                                    </div>
-                                                </div>
+                                               
+                                                
+                                                
 
 
                                         </div>
@@ -303,7 +215,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title" style="text-transform:uppercase">Family Details</h5>
+                                    <h6 class="card-title" style="text-transform:uppercase">Family Details</h6>
                                 </div>
                                 <div class="card-body">
 

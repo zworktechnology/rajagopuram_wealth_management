@@ -56,6 +56,7 @@
                            <thead class="thead-light">
                               <tr>
                               <th style="width:15%;text-transform:uppercase">S.No</th>
+                                 <th style="width:15%;text-transform:uppercase">Date</th>
                                  <th style="width:15%;text-transform:uppercase">Name</th>
                                  <th style="width:15%;text-transform:uppercase">Staff</th>
                                  <th style="width:15%;text-transform:uppercase">Phone No</th>
@@ -65,9 +66,11 @@
                            </thead>
                            <tbody>
                            @foreach ($Lead_data as $keydata => $Lead_datas)
+                              @if($Lead_datas['status'] == '0')
                               <tr>
                               <td>{{ ++$keydata }}</td>
-                                 <td style="text-transform:uppercase">{{ $Lead_datas['name'] }}</td>
+                                 <td style="text-transform:uppercase">{{ date('d-m-Y', strtotime($Lead_datas['date'])) }}</td>
+                                 <td style="text-transform:uppercase">{{ $Lead_datas['employee'] }}</td>
                                  <td style="text-transform:uppercase">{{ $Lead_datas['employee'] }}</td>
                                  <td style="text-transform:uppercase">{{ $Lead_datas['phonenumber'] }}</td>
                                  <td style="text-transform:uppercase">{{ $Lead_datas['source_from'] }}</td>
@@ -80,6 +83,10 @@
                                        <li>
                                           <a href="#delete{{ $Lead_datas['id'] }}" data-bs-toggle="modal"
                                           data-bs-target=".leaddelete-modal-xl{{ $Lead_datas['id'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                       </li>
+                                       <li>
+                                          <a href="{{ route('lead.move', ['id' => $Lead_datas['id']]) }}"
+                                                   class="badge bg-success" style="color:#eee;text-transform:uppercase">Lead to Customer</a>
                                        </li>
                                     </ul>
                                  
@@ -98,6 +105,7 @@
                                     aria-hidden="true">
                                     @include('page.backend.lead.delete')
                               </div>
+                              @endif
                            @endforeach
                            </tbody>
                         </table>

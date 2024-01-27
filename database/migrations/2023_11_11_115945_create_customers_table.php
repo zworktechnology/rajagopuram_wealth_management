@@ -40,6 +40,8 @@ return new class extends Migration
             $table->unsignedBigInteger('employee_id')->nullable();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
 
+            $table->unsignedBigInteger('lead_id')->nullable();
+
             
             $table->timestamps();
         });

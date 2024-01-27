@@ -5,10 +5,10 @@
         <div class="content container-fluid">
             <div class="page-header">
                 <div class="content-page-header">
-                    <h6 style="text-transform:uppercase">Add Customer</h6>
+                    <h6 style="text-transform:uppercase">Lead to Customer</h6>
                 </div>
             </div>
-            <form autocomplete="off" method="POST" action="{{ route('customer.store') }}" enctype="multipart/form-data">
+            <form autocomplete="off" method="POST" action="{{ route('lead.leadtocustomer') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-12">
@@ -19,12 +19,20 @@
                             <div class="card-body">
                                 <div class="form-group-item border-0 mb-0">
                                     <div class="row align-item-center">
+
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label style="text-transform:uppercase">Date<span class="text-danger">*</span></label>
+                                                <input type="date"  class="form-control" name="moved_date" id="moved_date" value="{{$today}}"
+                                                    required>
+                                            </div>
+                                        </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <label style="text-transform:uppercase">Customer Name <span class="text-danger">*</span></label>
-                                                <input type="text" value="" class="form-control"
-                                                    placeholder="Enter Customer Name" name="name" id="name"
+                                                <input type="text"  class="form-control" placeholder="Enter Customer Name" name="name" id="name" value="{{$LeadData->name}}"
                                                     required>
+                                                <input type="hidden" class="form-control"  name="lead_id" id="lead_id" value="{{$LeadData->id}}">    
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12"  @if(Auth::user()->role == 'Admin') hidden   @endif>
@@ -48,20 +56,20 @@
                                                     name="source_from" id="source_from" required>
                                                     <option value="" disabled selected hiddden>Select Source From
                                                     </option>
-                                                    <option value="Facebook">Facebook</option>
-                                                    <option value="Instagram">Instagram</option>
-                                                    <option value="Walk-in">Walk-in</option>
-                                                    <option value="Mail">Mail</option>
-                                                    <option value="Twitter">Twitter</option>
-                                                    <option value="Just Dial">Just Dial</option>
-                                                    <option value="Reference">Reference</option>
+                                                    <option  value="Facebook"{{ $LeadData->source_from == 'Facebook' ? 'selected' : '' }}>Facebook</option>
+                                                    <option value="Instagram"{{ $LeadData->source_from == 'Instagram' ? 'selected' : '' }}>Instagram</option>
+                                                    <option value="Walk-in"{{ $LeadData->source_from == 'Walk-in' ? 'selected' : '' }}>Walk-in</option>
+                                                    <option value="Mail"{{ $LeadData->source_from == 'Mail' ? 'selected' : '' }}>Mail</option>
+                                                    <option value="Twitter"{{ $LeadData->source_from == 'Twitter' ? 'selected' : '' }}>Twitter</option>
+                                                    <option value="Just Dial"{{ $LeadData->source_from == 'Just Dial' ? 'selected' : '' }}>Just Dial</option>
+                                                    <option value="Reference"{{ $LeadData->source_from == 'Reference' ? 'selected' : '' }}>Reference</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <label style="text-transform:uppercase">Phone Number <span class="text-danger">*</span></label>
-                                                <input type="text" value="" class="form-control"
+                                                <input type="text"  value="{{$LeadData->phonenumber}}"class="form-control"
                                                     placeholder="Enter Phone No" name="phonenumber" id="phonenumber"
                                                     required>
                                             </div>
@@ -226,7 +234,7 @@
 
                     <div class="text-end" style="margin-top:3%">
                         <input type="submit" class="btn btn-primary" />
-                        <a href="{{ route('customer.index') }}" class="btn btn-cancel btn-danger" style="text-transform:uppercase">Cancel</a>
+                        <a href="{{ route('lead.index') }}" class="btn btn-cancel btn-danger" style="text-transform:uppercase">Cancel</a>
                     </div>
 
 

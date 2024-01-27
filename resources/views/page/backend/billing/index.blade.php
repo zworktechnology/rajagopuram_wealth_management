@@ -54,8 +54,8 @@
                                  <td style="text-transform:uppercase">
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
-                                       <a class="badge bg-warning-light" href="#edit{{ $billingdata['unique_key'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".billing_edit-modal-xl{{ $billingdata['unique_key'] }}" style="color: #28084b;">Edit</a>
+                                       <a href="{{ route('billing.edit', ['id' => $billingdata['id']]) }}"
+                                                   class="badge bg-warning-light" style="color:#28084b;text-transform:uppercase">Edit</a>
                                        </li>
                                        <li>
                                           <a href="#delete{{ $billingdata['unique_key'] }}" data-bs-toggle="modal"
@@ -66,12 +66,6 @@
                                  </td>
                               </tr>
 
-                              <div class="modal fade billing_edit-modal-xl{{ $billingdata['unique_key'] }}"
-                                    tabindex="-1" role="dialog" data-bs-backdrop="static"
-                                    aria-labelledby="billing_editLargeModalLabel{{ $billingdata['unique_key']}}"
-                                    aria-hidden="true">
-                                    @include('page.backend.billing.edit')
-                              </div>
                               <div class="modal fade billingdelete-modal-xl{{ $billingdata['unique_key'] }}"
                                     tabindex="-1" role="dialog"data-bs-backdrop="static"
                                     aria-labelledby="billingdeleteLargeModalLabel{{ $billingdata['unique_key'] }}"
@@ -92,8 +86,8 @@
                                  <td style="text-transform:uppercase">
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
-                                       <a class="badge bg-warning-light" href="#edit{{ $billingdata['unique_key'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".billing_edit-modal-xl{{ $billingdata['unique_key'] }}" style="color: #28084b;">Edit</a>
+                                       <a href="{{ route('billing.edit', ['id' => $billingdata['id']]) }}"
+                                                   class="badge bg-warning-light" style="color:#28084b;text-transform:uppercase">Edit</a>
                                        </li>
                                        <li>
                                           <a href="#delete{{ $billingdata['unique_key'] }}" data-bs-toggle="modal"
@@ -104,12 +98,6 @@
                                  </td>
                               </tr>
 
-                              <div class="modal fade billing_edit-modal-xl{{ $billingdata['unique_key'] }}"
-                                    tabindex="-1" role="dialog" data-bs-backdrop="static"
-                                    aria-labelledby="billing_editLargeModalLabel{{ $billingdata['unique_key']}}"
-                                    aria-hidden="true">
-                                    @include('page.backend.billing.edit')
-                              </div>
                               <div class="modal fade billingdelete-modal-xl{{ $billingdata['unique_key'] }}"
                                     tabindex="-1" role="dialog"data-bs-backdrop="static"
                                     aria-labelledby="billingdeleteLargeModalLabel{{ $billingdata['unique_key'] }}"

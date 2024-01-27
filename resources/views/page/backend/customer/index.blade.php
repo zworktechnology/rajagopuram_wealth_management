@@ -39,7 +39,7 @@
 												</div>
 												<div class="img-upload">
                                        <input type="hidden" name="hidden_field" value="1" />
-                                          <input type="submit" name="import" id="import" class="btn btn-info" value="Import" />
+                                          <input type="submit" name="import" id="import" class="btn btn-info" value="IMPORT" />
 												</div>	
                                  </div>	
                               </form>	
@@ -54,6 +54,7 @@
                         <table class="table table-center table-hover datatable table-striped">
                            <thead class="thead-light">
                               <tr>
+                                 <th style="width:15%;text-transform:uppercase">S.No</th>
                                  <th style="width:15%;text-transform:uppercase">Customer</th>
                                  <th style="width:15%;text-transform:uppercase">Address</th>
                                  <th style="width:15%;text-transform:uppercase">Phone No</th>
@@ -67,6 +68,7 @@
                               @if(Auth::user()->role == 'Admin')
                                  @if(Auth::user()->emp_id == $customer_data['employee_id'])
                               <tr>
+                                 <td>{{ ++$keydata }}</td>
                                  <td style="text-transform:uppercase">{{ $customer_data['name'] }}</td>
                                  <td style="text-transform:uppercase">{{ $customer_data['address'] }}</td>
                                  <td style="text-transform:uppercase">{{ $customer_data['phonenumber'] }}</td>
@@ -108,6 +110,7 @@
 
 
                               <tr>
+                                 <td>{{ ++$keydata }}</td>
                                  <td style="text-transform:uppercase">{{ $customer_data['name'] }}</td>
                                  <td style="text-transform:uppercase">{{ $customer_data['address'] }}</td>
                                  <td style="text-transform:uppercase">{{ $customer_data['phonenumber'] }}</td>
