@@ -7,7 +7,7 @@
                 <div class="page-header">
                     <div class="content-page-header">
                         <div class="page-title">
-                            <h4  style="text-transform:uppercase">Dashboard</h4>
+                            <h4  >Dashboard</h4>
                         </div>
 
                         <div class="page-btn">
@@ -40,8 +40,8 @@
                                     <i class="far fa-user"></i>
                                 </span>
                                 <div class="dash-count">
-                                    <div class="dash-title"  style="text-transform:uppercase">Total Employees</div>
-                                    <div class="dash-counts"  style="text-transform:uppercase">
+                                    <div class="dash-title"  >Total Employees</div>
+                                    <div class="dash-counts"  >
                                         <p> {{$total_Employee}}</p>
                                     </div>
                                 </div>
@@ -58,8 +58,8 @@
                                     <i class="fas fa-user"></i>
                                 </span>
                                 <div class="dash-count">
-                                    <div class="dash-title" style="text-transform:uppercase">Total Customers</div>
-                                    <div class="dash-counts" style="text-transform:uppercase">
+                                    <div class="dash-title" >Total Customers</div>
+                                    <div class="dash-counts" >
                                         <p>{{$total_Customer}}</p>
                                     </div>
                                 </div>
@@ -75,8 +75,8 @@
                                     <i class="fas fa-user"></i>
                                 </span>
                                 <div class="dash-count">
-                                    <div class="dash-title" style="text-transform:uppercase">Total Products</div>
-                                    <div class="dash-counts" style="text-transform:uppercase">
+                                    <div class="dash-title" >Total Products</div>
+                                    <div class="dash-counts" >
                                         <p> {{$total_Product}}</p>
                                     </div>
                                 </div>
@@ -94,7 +94,7 @@
                         <div class="card-header">
                             <div class="row align-center">
                                 <div class="col">
-                                    <h5 class="card-title" style="text-transform:uppercase"> Bills</h5>
+                                    <h5 class="card-title" > Bills</h5>
                                 </div>
                             </div>
                         </div>
@@ -148,25 +148,25 @@
                         <div class="card-header">
                             <div class="row align-center">
                                 <div class="col">
-                                    <h5 class="card-title" style="text-transform:uppercase">Today Followups</h5>
+                                    <h5 class="card-title" >Today Followups</h5>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-center table-hover datatable table-striped">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th class="" style="text-transform:uppercase">PreviousCall Date</th>
-                                            <th class="" style="text-transform:uppercase">Customer</th>
-                                            <th class="" style="text-transform:uppercase">Phone Number</th>
+                                            <th class="" >PreviousCall Date</th>
+                                            <th class="" >Customer</th>
+                                            <th class="" >Phone Number</th>
                                             @if(Auth::user()->role != 'Admin')
-                                            <th class="" style="text-transform:uppercase">Employee</th>
+                                            <th class="" >Employee</th>
                                             @endif
-                                            <th class="" style="text-transform:uppercase">Product</th>
-                                            <th class="" style="text-transform:uppercase">Call Details</th>
-                                            <th class="" style="text-transform:uppercase">Status</th>
+                                            <th class="" >Product</th>
+                                            <th class="" >Call Details</th>
+                                            <th class="" >Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -174,12 +174,12 @@
                                         @if(Auth::user()->role == 'Admin')
                                             @if(Auth::user()->emp_id == $followupdatas['employee_id'])
                                             <tr>
-                                                <td class="" style="text-transform:uppercase">{{ date('d M Y', strtotime($followupdatas['date'])) }}</td>
-                                                <td class="" style="text-transform:uppercase" style="font-weight: 700;">{{ $followupdatas['customer'] }}</td>
-                                                <td class="" style="text-transform:uppercase" style="font-weight: 700;">{{ $followupdatas['phonenumber'] }}</td>
-                                                <td class="" style="text-transform:uppercase" style="font-weight: 700;">{{ $followupdatas['product'] }}</td>
-                                                <td class="" style="text-transform:uppercase">{{ $followupdatas['description'] }}</td>
-                                                <td class="" style="text-transform:uppercase">
+                                                <td class="" >{{ date('d M Y', strtotime($followupdatas['date'])) }}</td>
+                                                <td class=""  style="font-weight: 700;">{{ $followupdatas['customer'] }}</td>
+                                                <td class=""  style="font-weight: 700;">{{ $followupdatas['phonenumber'] }}</td>
+                                                <td class=""  style="font-weight: 700;">{{ $followupdatas['product'] }}</td>
+                                                <td class="" >{{ $followupdatas['description'] }}</td>
+                                                <td class="" >
                                                     <a class="badge bg-warning-light" href="#followup_update{{ $followupdatas['id'] }}" data-bs-toggle="modal"
                                                         data-bs-target=".followup_update-modal-xl{{ $followupdatas['id'] }}" style="color: #28084b;">Update</a>
                                                 </td>
@@ -187,13 +187,13 @@
                                             @endif
                                         @else
                                             <tr>
-                                                <td class="" style="text-transform:uppercase">{{ date('d M Y', strtotime($followupdatas['date'])) }}</td>
-                                                <td class="" style="font-weight: 700;text-transform:uppercase">{{ $followupdatas['customer'] }}</td>
-                                                <td class="" style="text-transform:uppercase" style="font-weight: 700;">{{ $followupdatas['phonenumber'] }}</td>
-                                                <td class="" style="color: red;text-transform:uppercase">{{ $followupdatas['employee'] }}</td>
-                                                <td class="" style="text-transform:uppercase">{{ $followupdatas['product'] }}</td>
-                                                <td class="" style="text-transform:uppercase">{{ $followupdatas['description'] }}</td>
-                                                <td class="" style="text-transform:uppercase">
+                                                <td class="" >{{ date('d M Y', strtotime($followupdatas['date'])) }}</td>
+                                                <td class="" style="font-weight: 700;">{{ $followupdatas['customer'] }}</td>
+                                                <td class=""  style="font-weight: 700;">{{ $followupdatas['phonenumber'] }}</td>
+                                                <td class="" style="color: red;">{{ $followupdatas['employee'] }}</td>
+                                                <td class="" >{{ $followupdatas['product'] }}</td>
+                                                <td class="" >{{ $followupdatas['description'] }}</td>
+                                                <td class="" >
                                                 <a class="badge bg-warning-light" href="#followup_update{{ $followupdatas['id'] }}" data-bs-toggle="modal"
                                                         data-bs-target=".followup_update-modal-xl{{ $followupdatas['id'] }}" style="color: #28084b;">Update</a>
                                                     </td>

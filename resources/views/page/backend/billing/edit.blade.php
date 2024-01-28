@@ -5,7 +5,7 @@
         <div class="content container-fluid">
             <div class="page-header">
                 <div class="content-page-header">
-                    <h6 style="text-transform:uppercase">Update Billing</h6>
+                    <h6 >Update Billing</h6>
                 </div>
             </div>
 
@@ -18,7 +18,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h6 class="card-title" style="text-transform:uppercase">Basic Details</h6>
+                                <h6 class="card-title" >Basic Details</h6>
                             </div>
                             <div class="card-body">
                                 <div class="form-group-item border-0 mb-0">
@@ -27,13 +27,13 @@
 
                                     <div class="col-lg-6 col-md-12">
                                        <div class="form-group">
-                                          <label style="text-transform:uppercase">Date<span class="text-danger">*</span></label>
+                                          <label >Date<span class="text-danger">*</span></label>
                                           <input type="date" class="form-control"  name="date" id="date" value="{{$BillingData->date}}">
                                        </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                        <div class="form-group">
-                                          <label style="text-transform:uppercase">Customer <span class="text-danger">*</span></label>
+                                          <label >Customer <span class="text-danger">*</span></label>
                                           <select class="form-control select  js-example-basic-single" name="customer_id" id="customer_id" required>
                                                 <option value="" disabled selected hiddden>Select Customer</option>
                                                    @foreach ($customer as $customers)
@@ -50,7 +50,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                        <div class="form-group">
-                                          <label style="text-transform:uppercase">Product<span class="text-danger">*</span></label>
+                                          <label >Product<span class="text-danger">*</span></label>
                                           <select class="form-control select product_id js-example-basic-single" name="product_id" id="product_id" required>
                                                 <option value="" disabled selected hiddden>Select Product</option>
                                                    @foreach ($product as $products)
@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-12" @if(Auth::user()->role == 'Admin') hidden   @endif>
                                        <div class="form-group">
-                                          <label style="text-transform:uppercase">Employee</label>
+                                          <label >Employee</label>
                                           <select class="form-control select  js-example-basic-single" name="employee_id" id="employee_id">
                                                 <option value="" disabled selected hiddden>Select Employee</option>
                                                    @foreach ($employee as $employees)
@@ -72,21 +72,21 @@
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                        <div class="form-group">
-                                          <label style="text-transform:uppercase">Starting Date<span class="text-danger">*</span></label>
+                                          <label >Starting Date<span class="text-danger">*</span></label>
                                           <input type="date" class="form-control"  name="starting_date" id="starting_date" required value="{{$BillingData->starting_date}}">
                                        </div>
                                     </div>
-                                    
+
                                     <div class="col-lg-6 col-md-12">
                                        <div class="form-group">
-                                          <label style="text-transform:uppercase">Ending Date<span class="text-danger">*</span></label>
+                                          <label >Ending Date<span class="text-danger">*</span></label>
                                           <input type="date" class="form-control"  name="ending_date" id="ending_date" required value="{{$BillingData->ending_date}}">
                                        </div>
                                     </div>
-                                    
+
                                     <div class="col-lg-6 col-md-12">
                                        <div class="form-group">
-                                          <label style="text-transform:uppercase">Remainder Date<span class="text-danger">*</span></label>
+                                          <label >Remainder Date<span class="text-danger">*</span></label>
                                           <input type="date" class="form-control"  name="remainder_date" id="remainder_date" required value="{{$BillingData->remainder_date}}">
                                        </div>
                                     </div>
@@ -94,15 +94,15 @@
 
                                           <div class="col-lg-12 col-md-12">
                                              <div class="form-group">
-                                             <label style="text-transform:uppercase">Documents Upload<span class="text-danger">*</span></label>
+                                             <label >Documents Upload<span class="text-danger">*</span></label>
                                                 <div class="">
                                                     <table class="table">
                                                         <thead class="thead-light">
                                                             <tr>
-                                                                <th style="width:40%;text-transform:uppercase;">Document Name</th>
-                                                                <th style="width:40%;text-transform:uppercase;">File</th>
-                                                                <th style="width:10%;text-transform:uppercase;">Image</th>
-                                                                <th style="width:10%;text-transform:uppercase;">Action</th>
+                                                                <th style="width:40%;;">Document Name</th>
+                                                                <th style="width:40%;;">File</th>
+                                                                <th style="width:10%;;">Image</th>
+                                                                <th style="width:10%;;">Action</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="document_fields">
@@ -112,7 +112,7 @@
                                                         @endphp
                                                             <tr>
                                                                 <td><input type="hidden" name="document_id[]" value="{{$BillingDocuments->id}}"/>
-                                                                     <input type="text" name="document_name[]" id="document_name" class="form-control document_name" 
+                                                                     <input type="text" name="document_name[]" id="document_name" class="form-control document_name"
                                                                      value="{{$BillingDocuments->document_name}}" placeholder="Enter Document Title"/>
                                                                 </td>
                                                                 <td><input type="file" name="document_proof[]" id="document_proof" class="form-control document_proof" /></td>

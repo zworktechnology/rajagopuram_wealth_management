@@ -6,7 +6,7 @@
 
             <div class="page-header">
                 <div class="content-page-header">
-                    <h6 style="text-transform:uppercase">{{$EmployeeData->name}} -  <span style="color: #212529;font-size: 17px;font-weight: 500;"> {{$from_date}} - {{$to_date}} </span></h6>
+                    <h6 >{{$EmployeeData->name}} -  <span style="color: #212529;font-size: 17px;font-weight: 500;"> {{$from_date}} - {{$to_date}} </span></h6>
                     <div class="list-btn">
                         <div style="display:flex;">
                            <div class="page-btn">
@@ -30,7 +30,7 @@
                      </div>
                 </div>
 
-                     
+
 
 
             <div class="row">
@@ -42,7 +42,7 @@
 											<i class="fas fa-users"></i>
 										</span>
 										<div class="dash-count">
-											<div class="dash-title" style="text-transform:uppercase;">Handled Customers Count</div>
+											<div class="dash-title" style=";">Handled Customers Count</div>
 											<div class="dash-counts">
 												<p>{{$total_customer}}</p>
 											</div>
@@ -59,7 +59,7 @@
 											<i class="fas fa-file-alt"></i>
 										</span>
 										<div class="dash-count">
-											<div class="dash-title" style="text-transform:uppercase;">Handled Lead Count</div>
+											<div class="dash-title" style=";">Handled Lead Count</div>
 											<div class="dash-counts">
 												<p >{{$total_lead}}</p>
 											</div>
@@ -76,7 +76,7 @@
 											<i class="fas fa-users"></i>
 										</span>
 										<div class="dash-count">
-											<div class="dash-title" style="text-transform:uppercase;">Handled Lead to Customers Count</div>
+											<div class="dash-title" style=";">Handled Lead to Customers Count</div>
 											<div class="dash-counts">
 												<p>{{$total_handled_leadtocustomer}}</p>
 											</div>
@@ -101,22 +101,22 @@
                                  <table class="table table-center table-hover datatable table-striped">
                                     <thead class="thead-light">
                                        <tr>
-                                          <th style="width:5%;text-transform:uppercase">S.No</th>
-                                          <th style="width:15%;text-transform:uppercase">Followup Date</th>
-                                          <th style="width:15%;text-transform:uppercase">Customer</th>
-                                          <th style="width:15%;text-transform:uppercase">Product</th>
-                                          <th style="width:15%;text-transform:uppercase">Description</th>
-                                          <th style="width:20%;text-transform:uppercase">Starting Date - Ending Date</th>
+                                          <th style="width:5%;">S.No</th>
+                                          <th style="width:15%;">Followup Date</th>
+                                          <th style="width:15%;">Customer</th>
+                                          <th style="width:15%;">Product</th>
+                                          <th style="width:15%;">Description</th>
+                                          <th style="width:20%;">Starting Date - Ending Date</th>
                                        </tr>
                                     </thead>
                                     @foreach ($followupdata as $keydata => $followupdatas)
                                        <tr>
-                                          <td style="text-transform:uppercase">{{ ++$keydata }}</td>
-                                          <td style="text-transform:uppercase">{{ date('d-m-Y', strtotime($followupdatas['date'])) }}</td>
-                                          <td style="text-transform:uppercase">{{ $followupdatas['customer'] }}</td>
-                                          <td style="text-transform:uppercase">{{ $followupdatas['product'] }}</td>
-                                          <td style="text-transform:uppercase">{{ $followupdatas['description'] }}</td>
-                                          <td style="text-transform:uppercase">{{ date('d M Y', strtotime($followupdatas['starting_date'])) }} - {{ date('d M Y', strtotime($followupdatas['ending_date'])) }}</td>
+                                          <td >{{ ++$keydata }}</td>
+                                          <td >{{ date('d-m-Y', strtotime($followupdatas['date'])) }}</td>
+                                          <td >{{ $followupdatas['customer'] }}</td>
+                                          <td >{{ $followupdatas['product'] }}</td>
+                                          <td >{{ $followupdatas['description'] }}</td>
+                                          <td >{{ date('d M Y', strtotime($followupdatas['starting_date'])) }} - {{ date('d M Y', strtotime($followupdatas['ending_date'])) }}</td>
                                           </td>
                                        </tr>
                                        @endforeach
@@ -137,20 +137,20 @@
                                  <table class="table table-center table-hover datatable table-striped">
                                     <thead class="thead-light">
                                        <tr>
-                                          <th style="width:5%;text-transform:uppercase">S.No</th>
-                                          <th style="width:15%;text-transform:uppercase">Lead Date</th>
-                                          <th style="width:15%;text-transform:uppercase">Name</th>
-                                          <th style="width:15%;text-transform:uppercase">Phone Number</th>
-                                          <th style="width:15%;text-transform:uppercase">Source From</th>
+                                          <th style="width:5%;">S.No</th>
+                                          <th style="width:15%;">Lead Date</th>
+                                          <th style="width:15%;">Name</th>
+                                          <th style="width:15%;">Phone Number</th>
+                                          <th style="width:15%;">Source From</th>
                                        </tr>
                                     </thead>
                                     @foreach ($Lead_data as $keydata => $Lead_datas)
                                        <tr>
-                                          <td style="text-transform:uppercase">{{ ++$keydata }}</td>
-                                          <td style="text-transform:uppercase">{{ date('d-m-Y', strtotime($Lead_datas['date'])) }}</td>
-                                          <td style="text-transform:uppercase">{{ $Lead_datas['name'] }}</td>
-                                          <td style="text-transform:uppercase">{{ $Lead_datas['phonenumber'] }}</td>
-                                          <td style="text-transform:uppercase">{{ $Lead_datas['source_from'] }}</td>
+                                          <td >{{ ++$keydata }}</td>
+                                          <td >{{ date('d-m-Y', strtotime($Lead_datas['date'])) }}</td>
+                                          <td >{{ $Lead_datas['name'] }}</td>
+                                          <td >{{ $Lead_datas['phonenumber'] }}</td>
+                                          <td >{{ $Lead_datas['source_from'] }}</td>
                                           </td>
                                        </tr>
                                        @endforeach
@@ -170,24 +170,24 @@
                                  <table class="table table-center table-hover datatable table-striped">
                                     <thead class="thead-light">
                                        <tr>
-                                          <th style="width:5%;text-transform:uppercase">S.No</th>
-                                          <th style="width:15%;text-transform:uppercase">Moved Date</th>
-                                          <th style="width:15%;text-transform:uppercase">Customer</th>
-                                          <th style="width:15%;text-transform:uppercase">Product</th>
-                                          <th style="width:15%;text-transform:uppercase">Starting Date - Ending Date</th>
-                                          <th style="width:15%;text-transform:uppercase">Source From</th>
-                                          <th style="width:15%;text-transform:uppercase">Phone Number</th>
+                                          <th style="width:5%;">S.No</th>
+                                          <th style="width:15%;">Moved Date</th>
+                                          <th style="width:15%;">Customer</th>
+                                          <th style="width:15%;">Product</th>
+                                          <th style="width:15%;">Starting Date - Ending Date</th>
+                                          <th style="width:15%;">Source From</th>
+                                          <th style="width:15%;">Phone Number</th>
                                        </tr>
                                     </thead>
                                     @foreach ($Leadtocustomer_data as $keydata => $Leadtocustomer_dataS)
                                        <tr>
-                                          <td style="text-transform:uppercase">{{ ++$keydata }}</td>
-                                          <td style="text-transform:uppercase">{{ date('d-m-Y', strtotime($Leadtocustomer_dataS['moved_date'])) }}</td>
-                                          <td style="text-transform:uppercase">{{ $Leadtocustomer_dataS['name'] }}</td>
-                                          <td style="text-transform:uppercase">{{ $Leadtocustomer_dataS['productname'] }}</td>
-                                          <td style="text-transform:uppercase">{{ $Leadtocustomer_dataS['starting_Date'] }} - {{ $Leadtocustomer_dataS['ending_Date']}}</td>
-                                          <td style="text-transform:uppercase">{{ $Leadtocustomer_dataS['source_from'] }}</td>
-                                          <td style="text-transform:uppercase">{{ $Leadtocustomer_dataS['phonenumber'] }}</td>
+                                          <td >{{ ++$keydata }}</td>
+                                          <td >{{ date('d-m-Y', strtotime($Leadtocustomer_dataS['moved_date'])) }}</td>
+                                          <td >{{ $Leadtocustomer_dataS['name'] }}</td>
+                                          <td >{{ $Leadtocustomer_dataS['productname'] }}</td>
+                                          <td >{{ $Leadtocustomer_dataS['starting_Date'] }} - {{ $Leadtocustomer_dataS['ending_Date']}}</td>
+                                          <td >{{ $Leadtocustomer_dataS['source_from'] }}</td>
+                                          <td >{{ $Leadtocustomer_dataS['phonenumber'] }}</td>
                                           </td>
                                        </tr>
                                        @endforeach

@@ -5,7 +5,7 @@
         <div class="content container-fluid">
             <div class="page-header">
                 <div class="content-page-header">
-                    <h6 style="text-transform:uppercase">Update Customer</h6>
+                    <h6 >Update Customer</h6>
                 </div>
             </div>
 
@@ -18,14 +18,14 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h6 class="card-title" style="text-transform:uppercase">Basic Details</h6>
+                                <h6 class="card-title" >Basic Details</h6>
                             </div>
                             <div class="card-body">
                                 <div class="form-group-item border-0 mb-0">
                                     <div class="row align-item-center">
                                         <div class="col-lg-4 col-md-4 col-sm-12">
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Customer Name <span class="text-danger">*</span></label>
+                                                <label >Customer Name <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" placeholder="Enter Customer Name"
                                                     value="{{ $CustomerData->name }}" name="name" id="name"
                                                     required>
@@ -33,7 +33,7 @@
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12" @if(Auth::user()->role == 'Admin') hidden   @endif>
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Staff <span class="text-danger">*</span></label>
+                                                <label >Staff <span class="text-danger">*</span></label>
                                                 <select class="form-control select employee_id js-example-basic-single"
                                                     name="employee_id" id="employee_id" >
                                                     <option value="" disabled selected hiddden>Select Staff
@@ -49,7 +49,7 @@
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12">
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Source From <span class="text-danger">*</span></label>
+                                                <label >Source From <span class="text-danger">*</span></label>
                                                 <select class="form-control select source_from js-example-basic-single"
                                                     name="source_from" id="source_from" required>
                                                     <option disabled selected hiddden>Select Source From
@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12">
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Phone Number <span class="text-danger">*</span></label>
+                                                <label >Phone Number <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" placeholder="Enter Phone No"
                                                     name="phonenumber" id="phonenumber"
                                                     value="{{ $CustomerData->phonenumber }}" required>
@@ -74,7 +74,7 @@
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12">
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Alter Phone Number</label>
+                                                <label >Alter Phone Number</label>
                                                 <input type="text" class="form-control"
                                                     placeholder="Enter Alter Phone No" name="alter_phonenumber"
                                                     id="alter_phonenumber" value="{{ $CustomerData->alter_phonenumber }}">
@@ -82,7 +82,7 @@
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12">
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">E-Mail ID</label>
+                                                <label >E-Mail ID</label>
                                                 <input type="text" value="{{ $CustomerData->email_id }}"
                                                     class="form-control" placeholder="Enter E-Mail" name="email_id"
                                                     id="email_id">
@@ -90,21 +90,21 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Date of Birth <span class="text-danger">*</span></label>
+                                                <label >Date of Birth <span class="text-danger">*</span></label>
                                                 <input type="date" class="form-control" name="birth_date" id="birth_date"
                                                     value="{{ $CustomerData->birth_date }}">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Wedding Date</label>
+                                                <label >Wedding Date</label>
                                                 <input type="date" class="form-control" name="wedding_date"
                                                     id="wedding_date" value="{{ $CustomerData->wedding_date }}">
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Address <span class="text-danger">*</span></label>
+                                                <label >Address <span class="text-danger">*</span></label>
                                                 <textarea name="address" id="address" class="form-control" placeholder="Enter Address">{{ $CustomerData->address }}</textarea>
                                             </div>
                                         </div>
@@ -118,7 +118,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h6 class="card-title" style="text-transform:uppercase">Proof</h6>
+                                    <h6 class="card-title" >Proof</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group-item border-0 mb-0">
@@ -138,16 +138,16 @@
                                                     </div>
                                                 </div>
 
-                                              
-                                                
+
+
                                                 <div class="table-responsive no-pagination">
                                                     <table class="table table-center table-hover datatable">
                                                         <thead class="thead-light">
                                                             <tr>
-                                                                <th style="width:40%;text-transform:uppercase;">Proof Type</th>
-                                                                <th style="width:40%;text-transform:uppercase;">File</th>
-                                                                <th style="width:10%;text-transform:uppercase;">Image</th>
-                                                                <th style="width:10%;text-transform:uppercase;">Action</th>
+                                                                <th style="width:40%;;">Proof Type</th>
+                                                                <th style="width:40%;;">File</th>
+                                                                <th style="width:10%;;">Image</th>
+                                                                <th style="width:10%;;">Action</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="proof_fields">
@@ -166,7 +166,7 @@
                                                                     </select>
                                                                 </td>
                                                                 <td>
-                                                                    
+
                                                                     <input type="file" name="proof_upload[]" id="proof_upload" class="form-control proof_upload" /></td>
                                                                 <td>
                                                                 <img src="{{ asset('assets/proof_one/' . $CustomerProofs->proof_upload) }}"
@@ -196,9 +196,9 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                               
-                                                
-                                                
+
+
+
 
 
                                         </div>
@@ -215,24 +215,24 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h6 class="card-title" style="text-transform:uppercase">Family Details</h6>
+                                    <h6 class="card-title" >Family Details</h6>
                                 </div>
                                 <div class="card-body">
 
                                     <div class="table-responsive no-pagination">
                                         <div class="text-end" style="margin-bottom:15px">
-                                        <button class="btn btn-primary form-plus-btn addfamilys" type="button" style="text-transform:uppercase"
+                                        <button class="btn btn-primary form-plus-btn addfamilys" type="button"
                                             id="" value="Add"><i class="fe fe-plus-circle"></i><span> Add One More Member</span></button>
                                         </div>
                                         <table class="table table-center table-hover datatable">
                                             <thead class="thead-light">
                                                 <tr>
-                                                    <th style="width:10%;text-transform:uppercase">S.No <span class="text-danger">*</span></th>
-                                                    <th style="width:30%;text-transform:uppercase">Name <span class="text-danger">*</span></th>
-                                                    <th style="width:20%;text-transform:uppercase">Relationship <span class="text-danger">*</span></th>
-                                                    <th style="width:15%;text-transform:uppercase">Date of Birth <span class="text-danger">*</span></th>
-                                                    <th style="width:15%;text-transform:uppercase">Wedding Date</th>
-                                                    <th style="width:10%;text-transform:uppercase">Action</th>
+                                                    <th style="width:10%;">S.No <span class="text-danger">*</span></th>
+                                                    <th style="width:30%;">Name <span class="text-danger">*</span></th>
+                                                    <th style="width:20%;">Relationship <span class="text-danger">*</span></th>
+                                                    <th style="width:15%;">Date of Birth <span class="text-danger">*</span></th>
+                                                    <th style="width:15%;">Wedding Date</th>
+                                                    <th style="width:10%;">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="family_fields">

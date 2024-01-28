@@ -7,17 +7,17 @@
 
       <div class="page-header">
          <div class="content-page-header">
-            <h6 style="text-transform:uppercase">Billing</h6>
+            <h6 >Billing</h6>
                <div class="list-btn">
                   <div style="display:flex;">
                      <ul class="filter-list">
                         <li>
-                        <a class="btn btn-primary" data-bs-toggle="modal" style="text-transform:uppercase" data-bs-target=".billing-modal-xl">
+                        <a class="btn btn-primary" data-bs-toggle="modal"  data-bs-target=".billing-modal-xl">
                               <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Billing</a>
                         </li>
                      </ul>
                   </div>
-                  
+
                </div>
          </div>
       </div>
@@ -25,20 +25,20 @@
       <div class="row">
          <div class="col-sm-12">
             <div class="card">
-               
+
                   <div class="card-body">
                      <div class="table-responsive">
                         <table class="table table-center table-hover datatable table-striped">
                            <thead class="thead-light">
                               <tr>
-                                 <th style="width:15%;text-transform:uppercase">Date</th>
-                                 <th style="width:15%;text-transform:uppercase">Customer</th>
-                                 <th style="width:15%;text-transform:uppercase">Product</th>
-                                 <th style="width:15%;text-transform:uppercase">Starting - Ending Date</th>
+                                 <th style="width:15%;">Date</th>
+                                 <th style="width:15%;">Customer</th>
+                                 <th style="width:15%;">Product</th>
+                                 <th style="width:15%;">Starting - Ending Date</th>
                                  @if(Auth::user()->role != 'Admin')
-                                    <th style="width:15%;text-transform:uppercase">Employee</th>
+                                    <th style="width:15%;">Employee</th>
                                  @endif
-                                 <th style="width:20%;text-transform:uppercase">Action</th>
+                                 <th style="width:20%;">Action</th>
                               </tr>
                            </thead>
                            <tbody>
@@ -47,22 +47,22 @@
                               @if(Auth::user()->role == 'Admin')
                                  @if(Auth::user()->emp_id == $billingdata['employee_id'])
                               <tr>
-                                 <td style="text-transform:uppercase">{{ date('d-m-Y', strtotime($billingdata['date'])) }}</td>
-                                 <td style="text-transform:uppercase">{{ $billingdata['customer'] }}</td>
-                                 <td style="text-transform:uppercase">{{ $billingdata['product'] }}</td>
-                                 <td style="text-transform:uppercase">{{ date('d M Y', strtotime($billingdata['starting_date'])) }} - {{ date('d M Y', strtotime($billingdata['ending_date'])) }}</td>
-                                 <td style="text-transform:uppercase">
+                                 <td >{{ date('d-m-Y', strtotime($billingdata['date'])) }}</td>
+                                 <td >{{ $billingdata['customer'] }}</td>
+                                 <td >{{ $billingdata['product'] }}</td>
+                                 <td >{{ date('d M Y', strtotime($billingdata['starting_date'])) }} - {{ date('d M Y', strtotime($billingdata['ending_date'])) }}</td>
+                                 <td >
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
                                        <a href="{{ route('billing.edit', ['id' => $billingdata['id']]) }}"
-                                                   class="badge bg-warning-light" style="color:#28084b;text-transform:uppercase">Edit</a>
+                                                   class="badge bg-warning-light" style="color:#28084b;">Edit</a>
                                        </li>
                                        <li>
                                           <a href="#delete{{ $billingdata['unique_key'] }}" data-bs-toggle="modal"
                                           data-bs-target=".billingdelete-modal-xl{{ $billingdata['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                     </ul>
-                                 
+
                                  </td>
                               </tr>
 
@@ -78,23 +78,23 @@
 
 
                               <tr>
-                                 <td style="text-transform:uppercase">{{ date('d-m-Y', strtotime($billingdata['date'])) }}</td>
-                                 <td style="text-transform:uppercase">{{ $billingdata['customer'] }}</td>
-                                 <td style="text-transform:uppercase">{{ $billingdata['product'] }}</td>
-                                 <td style="text-transform:uppercase">{{ date('d M Y', strtotime($billingdata['starting_date'])) }} - {{ date('d M Y', strtotime($billingdata['ending_date'])) }}</td>
-                                 <td style="text-transform:uppercase">{{ $billingdata['employee'] }}</td>
-                                 <td style="text-transform:uppercase">
+                                 <td >{{ date('d-m-Y', strtotime($billingdata['date'])) }}</td>
+                                 <td >{{ $billingdata['customer'] }}</td>
+                                 <td >{{ $billingdata['product'] }}</td>
+                                 <td >{{ date('d M Y', strtotime($billingdata['starting_date'])) }} - {{ date('d M Y', strtotime($billingdata['ending_date'])) }}</td>
+                                 <td >{{ $billingdata['employee'] }}</td>
+                                 <td >
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
                                        <a href="{{ route('billing.edit', ['id' => $billingdata['id']]) }}"
-                                                   class="badge bg-warning-light" style="color:#28084b;text-transform:uppercase">Edit</a>
+                                                   class="badge bg-warning-light" style="color:#28084b;">Edit</a>
                                        </li>
                                        <li>
                                           <a href="#delete{{ $billingdata['unique_key'] }}" data-bs-toggle="modal"
                                           data-bs-target=".billingdelete-modal-xl{{ $billingdata['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                     </ul>
-                                 
+
                                  </td>
                               </tr>
 
@@ -111,7 +111,7 @@
                         </table>
                      </div>
                   </div>
-               
+
             </div>
          </div>
 

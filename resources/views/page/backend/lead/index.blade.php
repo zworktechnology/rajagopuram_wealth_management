@@ -7,19 +7,19 @@
 
       <div class="page-header">
          <div class="content-page-header">
-            <h6 style="text-transform:uppercase">Leads</h6>
+            <h6 >Leads</h6>
                <div class="list-btn">
                   <div style="display:flex;">
                      <ul class="filter-list">
                         <li>
-                        <a class="btn btn-primary" style="text-transform:uppercase" data-bs-toggle="modal" data-bs-target=".lead-modal-xl">
+                        <a class="btn btn-primary"  data-bs-toggle="modal" data-bs-target=".lead-modal-xl">
                               <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Leads</a>
                         </li>
                      </ul>
                   </div>
-                  
+
                </div>
-               
+
 
 
 
@@ -29,39 +29,40 @@
       <div class="row">
          <div class="col-sm-12">
                <div class="profile-picture">
-                 
+
                               <form id="csvimport_form" method="POST" action="{{ route('lead.excel_import') }}" enctype="multipart/form-data" class="form-horizontal">
                               @csrf
                                  <div style="display:flex;">
 						                  <div class="upload-profile">
-													<div class="add-profile">
-														<input type="file" name="lead_file" id="lead_file" class="form-control"/>
+                                            <div class="add-profile" style="display:flex;">
+                                                <p>Import CSV <span style="color: red">*</span></p>
+														<input type="file" name="lead_file" id="lead_file" class="form-control" readonly/>
 													</div>
 												</div>
 												<div class="img-upload">
                                        <input type="hidden" name="hidden_field" value="1" />
-                                          <input type="submit" name="import" id="import" class="btn btn-info" value="Import" />
-												</div>	
-                                 </div>	
-                              </form>	
-                  							
+                                          <input type="submit" name="import" id="import" class="btn btn-info" value="Import Leads" />
+												</div>
+                                 </div>
+                              </form>
+
 					</div>
-            
+
             <div class="card">
-               
-               
+
+
                   <div class="card-body">
                      <div class="table-responsive">
                         <table class="table table-center table-hover datatable table-striped">
                            <thead class="thead-light">
                               <tr>
-                              <th style="width:15%;text-transform:uppercase">S.No</th>
-                                 <th style="width:15%;text-transform:uppercase">Date</th>
-                                 <th style="width:15%;text-transform:uppercase">Name</th>
-                                 <th style="width:15%;text-transform:uppercase">Staff</th>
-                                 <th style="width:15%;text-transform:uppercase">Phone No</th>
-                                 <th style="width:15%;text-transform:uppercase">Source From</th>
-                                 <th style="width:20%;text-transform:uppercase">Action</th>
+                              <th style="width:15%;">S.No</th>
+                                 <th style="width:15%;">Date</th>
+                                 <th style="width:15%;">Name</th>
+                                 <th style="width:15%;">Phone No</th>
+                                 <th style="width:15%;">Source From</th>
+                                 <th style="width:15%;">Hand By</th>
+                                 <th style="width:20%;">Action</th>
                               </tr>
                            </thead>
                            <tbody>
@@ -69,12 +70,12 @@
                               @if($Lead_datas['status'] == '0')
                               <tr>
                               <td>{{ ++$keydata }}</td>
-                                 <td style="text-transform:uppercase">{{ date('d-m-Y', strtotime($Lead_datas['date'])) }}</td>
-                                 <td style="text-transform:uppercase">{{ $Lead_datas['employee'] }}</td>
-                                 <td style="text-transform:uppercase">{{ $Lead_datas['employee'] }}</td>
-                                 <td style="text-transform:uppercase">{{ $Lead_datas['phonenumber'] }}</td>
-                                 <td style="text-transform:uppercase">{{ $Lead_datas['source_from'] }}</td>
-                                 <td style="text-transform:uppercase">
+                                 <td >{{ date('d-m-Y', strtotime($Lead_datas['date'])) }}</td>
+                                 <td >{{ $Lead_datas['name'] }}</td>
+                                 <td >{{ $Lead_datas['phonenumber'] }}</td>
+                                 <td >{{ $Lead_datas['source_from'] }}</td>
+                                 <td >{{ $Lead_datas['employee'] }}</td>
+                                 <td >
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
                                        <a class="badge bg-warning-light" href="#edit{{ $Lead_datas['id'] }}" data-bs-toggle="modal"
@@ -86,10 +87,10 @@
                                        </li>
                                        <li>
                                           <a href="{{ route('lead.move', ['id' => $Lead_datas['id']]) }}"
-                                                   class="badge bg-success" style="color:#eee;text-transform:uppercase">Lead to Customer</a>
+                                                   class="badge bg-success" style="color:#eee;">Lead to Customer</a>
                                        </li>
                                     </ul>
-                                 
+
                                  </td>
                               </tr>
 
@@ -111,7 +112,7 @@
                         </table>
                      </div>
                   </div>
-               
+
             </div>
          </div>
 

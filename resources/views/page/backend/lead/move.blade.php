@@ -5,7 +5,7 @@
         <div class="content container-fluid">
             <div class="page-header">
                 <div class="content-page-header">
-                    <h6 style="text-transform:uppercase">Lead to Customer</h6>
+                    <h6 >Lead to Customer</h6>
                 </div>
             </div>
             <form autocomplete="off" method="POST" action="{{ route('lead.leadtocustomer') }}" enctype="multipart/form-data">
@@ -14,30 +14,30 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h6 class="card-title" style="text-transform:uppercase">Basic Details</h6>
+                                <h5 class="card-title" >Basic Details</h5>
                             </div>
                             <div class="card-body">
                                 <div class="form-group-item border-0 mb-0">
                                     <div class="row align-item-center">
 
-                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="col-lg-4 col-md-4 col-sm-12" hidden>
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Date<span class="text-danger">*</span></label>
+                                                <label >Date<span class="text-danger">*</span></label>
                                                 <input type="date"  class="form-control" name="moved_date" id="moved_date" value="{{$today}}"
                                                     required>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12">
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Customer Name <span class="text-danger">*</span></label>
+                                                <label >Customer Name <span class="text-danger">*</span></label>
                                                 <input type="text"  class="form-control" placeholder="Enter Customer Name" name="name" id="name" value="{{$LeadData->name}}"
                                                     required>
-                                                <input type="hidden" class="form-control"  name="lead_id" id="lead_id" value="{{$LeadData->id}}">    
+                                                <input type="hidden" class="form-control"  name="lead_id" id="lead_id" value="{{$LeadData->id}}">
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12"  @if(Auth::user()->role == 'Admin') hidden   @endif>
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Staff <span class="text-danger">*</span></label>
+                                                <label >Staff <span class="text-danger">*</span></label>
                                                 <select class="form-control select employee_id js-example-basic-single"
                                                     name="employee_id" id="employee_id" required>
                                                     <option value="" disabled selected hiddden>Select Staff
@@ -51,7 +51,7 @@
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12">
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Source From <span class="text-danger">*</span></label>
+                                                <label >Source From <span class="text-danger">*</span></label>
                                                 <select class="form-control select source_from js-example-basic-single"
                                                     name="source_from" id="source_from" required>
                                                     <option value="" disabled selected hiddden>Select Source From
@@ -68,7 +68,7 @@
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12">
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Phone Number <span class="text-danger">*</span></label>
+                                                <label >Phone Number <span class="text-danger">*</span></label>
                                                 <input type="text"  value="{{$LeadData->phonenumber}}"class="form-control"
                                                     placeholder="Enter Phone No" name="phonenumber" id="phonenumber"
                                                     required>
@@ -76,7 +76,7 @@
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12">
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Alter Phone Number</label>
+                                                <label >Alter Phone Number</label>
                                                 <input type="text" value="" class="form-control"
                                                     placeholder="Enter Alter Phone No" name="alter_phonenumber"
                                                     id="alter_phonenumber">
@@ -84,28 +84,28 @@
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12">
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">E-Mail ID</label>
+                                                <label >E-Mail ID</label>
                                                 <input type="text" value="" class="form-control"
                                                     placeholder="Enter E-Mail" name="email_id" id="email_id">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Date of Birth <span class="text-danger">*</span></label>
+                                                <label >Date of Birth <span class="text-danger">*</span></label>
                                                 <input type="date" value="" class="form-control" name="birth_date"
                                                     id="birth_date">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Wedding Date</label>
+                                                <label >Wedding Date</label>
                                                 <input type="date" value="" class="form-control"
                                                     name="wedding_date" id="wedding_date">
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
                                             <div class="form-group">
-                                                <label style="text-transform:uppercase">Address</label>
+                                                <label >Address</label>
                                                 <textarea name="address" id="address" class="form-control" placeholder="Enter Address"></textarea>
                                             </div>
                                         </div>
@@ -120,14 +120,14 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h6 class="card-title" style="text-transform:uppercase">Proof</h6>
+                                        <h5 class="card-title" >Proof</h5>
                                     </div>
                                     <div class="card-body">
                                         <div class="form-group-item border-0 mb-0">
                                             <div class="row align-item-center">
-                                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                                <div class="col-lg-12 col-md-12 col-sm-12">
                                                     <div class="form-group">
-                                                        <label style="text-transform:uppercase">Customer Photo <span class="text-danger">*</span></label>
+                                                        <label >Customer Photo <span class="text-danger">*</span></label>
                                                         <input type="file" name="customer_photo" id="customer_photo"
                                                             class="form-control customer_photo" />
                                                         <img src="#" id="customer-img-tag" width="150" height="100" style="display:none;"/>
@@ -135,12 +135,13 @@
                                                 </div>
 
                                                 <div class="table-responsive no-pagination">
+                                                    <label >KYC (Know Your Customer) <span class="text-danger">*</span></label>
                                                     <table class="table table-center table-hover datatable">
                                                         <thead class="thead-light">
                                                             <tr>
-                                                                <th style="width:40%;text-transform:uppercase;">Proof Type</th>
-                                                                <th style="width:50%;text-transform:uppercase;">File</th>
-                                                                <th style="width:10%;text-transform:uppercase;">Action</th>
+                                                                <th style="width:40%;;">Proof Type</th>
+                                                                <th style="width:50%;;">File</th>
+                                                                <th style="width:10%;;">Action</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="proof_fields">
@@ -166,8 +167,8 @@
 
 
 
-                                               
-                                              
+
+
                                             </div>
                                         </div>
 
@@ -180,7 +181,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h6 class="card-title" style="text-transform:uppercase">Family Details</h6>
+                                    <h5 class="card-title" >Family Details</h5>
                                 </div>
                                 <div class="card-body">
 
@@ -188,12 +189,12 @@
                                         <table class="table table-center table-hover datatable">
                                             <thead class="thead-light">
                                                 <tr>
-                                                    <th style="width:10%;text-transform:uppercase">S.No <span class="text-danger">*</span></th>
-                                                    <th style="width:30%;text-transform:uppercase">Name <span class="text-danger">*</span></th>
-                                                    <th style="width:20%;text-transform:uppercase">Relationship <span class="text-danger">*</span></th>
-                                                    <th style="width:15%;text-transform:uppercase">Date of Birth <span class="text-danger">*</span></th>
-                                                    <th style="width:15%;text-transform:uppercase">Wedding Date</th>
-                                                    <th style="width:10%;text-transform:uppercase">Action</th>
+                                                    <th style="width:10%;">S.No <span class="text-danger">*</span></th>
+                                                    <th style="width:30%;">Name <span class="text-danger">*</span></th>
+                                                    <th style="width:20%;">Relationship <span class="text-danger">*</span></th>
+                                                    <th style="width:15%;">Date of Birth <span class="text-danger">*</span></th>
+                                                    <th style="width:15%;">Wedding Date</th>
+                                                    <th style="width:10%;">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="family_fields">
@@ -205,7 +206,7 @@
                                                     </td>
                                                     <td><input type="hidden" name="family_id[]" value="" />
                                                         <input type="text" class="form-control family_name"
-                                                            id="family_name" name="family_name[]" 
+                                                            id="family_name" name="family_name[]"
                                                             value="" />
                                                     </td>
                                                     <td><input type="text" class="form-control family_relationship"
@@ -234,7 +235,7 @@
 
                     <div class="text-end" style="margin-top:3%">
                         <input type="submit" class="btn btn-primary" />
-                        <a href="{{ route('lead.index') }}" class="btn btn-cancel btn-danger" style="text-transform:uppercase">Cancel</a>
+                        <a href="{{ route('lead.index') }}" class="btn btn-cancel btn-danger" >Cancel</a>
                     </div>
 
 

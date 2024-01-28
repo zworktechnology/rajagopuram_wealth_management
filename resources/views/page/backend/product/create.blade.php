@@ -3,7 +3,7 @@
 
       <div class="modal-header border-0 pb-0">
          <div class="form-header modal-header-title text-start mb-0">
-            <h6 class="mb-0"  style="text-transform:uppercase">Add Product</h6>
+            <h6 class="mb-0"  >Add Product</h6>
          </div>
          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span class="align-center" aria-hidden="true">&times;</span>
@@ -15,20 +15,20 @@
          <div class="row">
                <div class="col-lg-12 col-md-12">
                   <div class="form-group">
-                     <label  style="text-transform:uppercase">Name <span class="text-danger">*</span></label>
+                     <label  >Name <span class="text-danger">*</span></label>
                      <input type="text" class="form-control" placeholder="Enter Product Name" name="name" id="name" required>
                   </div>
                </div>
                <div class="col-lg-12 col-md-12">
                   <div class="form-group">
-                     <label  style="text-transform:uppercase">Description</label>
+                     <label  >Description</label>
                      <textarea name="description" id="description" class="form-control" placeholder="Enter Description"></textarea>
                   </div>
                </div>
                <div class="col-lg-12 col-md-12">
                   <div class="form-group">
-                     <label  style="text-transform:uppercase">Image</label>
-                     <input type="file" name="product_image" id="product_image" class="form-control product_image" />
+                     <label  >Image <span class="text-danger">*</span></label>
+                     <input type="file" name="product_image" id="product_image" class="form-control product_image" required />
                   </div>
                </div>
          </div>
