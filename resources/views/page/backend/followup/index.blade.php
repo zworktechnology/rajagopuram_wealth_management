@@ -51,13 +51,14 @@
                         <table class="table table-center table-hover datatable table-striped">
                            <thead class="thead-light">
                               <tr>
+                                 <th style="width:15%;">Type</th>
                                  <th style="width:15%;">Customer</th>
-                                 <th style="width:15%;">Product</th>
+                                 <th style="width:10%;">Product</th>
                                  @if(Auth::user()->role != 'Admin')
                                     <th style="width:15%;">Employee</th>
                                  @endif
                                  <th style="width:15%;">Description</th>
-                                 <th style="width:15%;">Next Call Date</th>
+                                 <th style="width:10%;">Next Call Date</th>
                                  <th style="width:20%;">Action</th>
                               </tr>
                            </thead>
@@ -66,6 +67,7 @@
                               @if(Auth::user()->role == 'Admin')
                                  @if(Auth::user()->emp_id == $followup_data['employee_id'])
                               <tr>
+                                 <td >Customer / Lead</td>
                                  <td >{{ $followup_data['customer'] }}</td>
                                  <td >{{ $followup_data['product'] }}</td>
                                  <td >{{ $followup_data['description'] }}</td>
@@ -99,6 +101,7 @@
 
 
                               <tr>
+                                <td >Customer / Lead</td>
                                  <td >{{ $followup_data['customer'] }}</td>
                                  <td >{{ $followup_data['product'] }}</td>
                                  <td >{{ $followup_data['employee'] }}</td>
