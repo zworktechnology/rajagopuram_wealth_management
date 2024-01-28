@@ -7,7 +7,7 @@
 
       <div class="page-header">
          <div class="content-page-header">
-            <h6 >Day By Day</h6>
+            <h6 >Day By Day - Follow Up</h6>
                <div class="list-btn">
                   <div style="display:flex;">
                         <div class="page-btn">
@@ -29,8 +29,12 @@
                      <ul class="filter-list">
                         <li>
                         <a class="btn btn-primary" data-bs-toggle="modal"  data-bs-target=".followup-modal-xl">
-                              <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Followup</a>
+                              <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Customer</a>
                         </li>
+                        <li>
+                            <a class="btn btn-danger" data-bs-toggle="modal"  data-bs-target=".followup-modal-xl">
+                                  <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Lead</a>
+                            </li>
                      </ul>
                   </div>
 
@@ -47,14 +51,14 @@
                         <table class="table table-center table-hover datatable table-striped">
                            <thead class="thead-light">
                               <tr>
-                                 <th style="width:15%;">Date</th>
+                                 <th style="width:15%;">Type</th>
                                  <th style="width:15%;">Customer</th>
-                                 <th style="width:15%;">Product</th>
+                                 <th style="width:10%;">Product</th>
                                  @if(Auth::user()->role != 'Admin')
                                     <th style="width:15%;">Employee</th>
                                  @endif
                                  <th style="width:15%;">Description</th>
-                                 <th style="width:15%;">Next Call Date</th>
+                                 <th style="width:10%;">Next Call Date</th>
                                  <th style="width:20%;">Action</th>
                               </tr>
                            </thead>
@@ -63,7 +67,7 @@
                               @if(Auth::user()->role == 'Admin')
                                  @if(Auth::user()->emp_id == $followup_data['employee_id'])
                               <tr>
-                                 <td >{{ date('d-m-Y', strtotime($followup_data['date'])) }}</td>
+                                 <td >Customer / Lead</td>
                                  <td >{{ $followup_data['customer'] }}</td>
                                  <td >{{ $followup_data['product'] }}</td>
                                  <td >{{ $followup_data['description'] }}</td>
@@ -72,11 +76,7 @@
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
                                        <a class="badge bg-warning-light" href="#edit{{ $followup_data['unique_key'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".followup_edit-modal-xl{{ $followup_data['unique_key'] }}" style="color: #28084b;">Edit</a>
-                                       </li>
-                                       <li>
-                                          <a href="#delete{{ $followup_data['unique_key'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".followupdelete-modal-xl{{ $followup_data['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                          data-bs-target=".followup_edit-modal-xl{{ $followup_data['unique_key'] }}" style="color: white;">Edit</a>
                                        </li>
                                     </ul>
 
@@ -101,7 +101,7 @@
 
 
                               <tr>
-                                 <td >{{ date('d-m-Y', strtotime($followup_data['date'])) }}</td>
+                                <td >Customer / Lead</td>
                                  <td >{{ $followup_data['customer'] }}</td>
                                  <td >{{ $followup_data['product'] }}</td>
                                  <td >{{ $followup_data['employee'] }}</td>
@@ -111,11 +111,11 @@
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
                                        <a class="badge bg-warning-light" href="#edit{{ $followup_data['unique_key'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".followup_edit-modal-xl{{ $followup_data['unique_key'] }}" style="color: #28084b;">Edit</a>
+                                          data-bs-target=".followup_edit-modal-xl{{ $followup_data['unique_key'] }}" style="color: white;">Edit</a>
                                        </li>
                                        <li>
                                           <a href="#delete{{ $followup_data['unique_key'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".followupdelete-modal-xl{{ $followup_data['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                          data-bs-target=".followupdelete-modal-xl{{ $followup_data['unique_key'] }}" class="badge bg-danger-light" style="color: white;">Delete</a>
                                        </li>
                                     </ul>
 
