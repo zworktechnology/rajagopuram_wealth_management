@@ -31,7 +31,7 @@
                                             <div class="form-group">
                                                 <label >Customer Name <span class="text-danger">*</span></label>
                                                 <input type="text"  class="form-control" placeholder="Enter Customer Name" name="name" id="name" value="{{$LeadData->name}}"
-                                                    required>
+                                                    readonly>
                                                 <input type="hidden" class="form-control"  name="lead_id" id="lead_id" value="{{$LeadData->id}}">
                                             </div>
                                         </div>
@@ -39,11 +39,11 @@
                                             <div class="form-group">
                                                 <label >Staff <span class="text-danger">*</span></label>
                                                 <select class="form-control select employee_id js-example-basic-single"
-                                                    name="employee_id" id="employee_id" required>
+                                                    name="employee_id" id="employee_id" disabled>
                                                     <option value="" disabled selected hiddden>Select Staff
                                                     </option>
                                                     @foreach ($employee as $employees)
-                                                        <option value="{{ $employees->id }}" {{ Auth::user()->emp_id == $employees->id ? 'selected' : '' }}>{{ $employees->name }}
+                                                        <option value="{{ $employees->id }}" {{ $LeadData->employee_id == $employees->id ? 'selected' : '' }}>{{ $employees->name }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -53,7 +53,7 @@
                                             <div class="form-group">
                                                 <label >Source From <span class="text-danger">*</span></label>
                                                 <select class="form-control select source_from js-example-basic-single"
-                                                    name="source_from" id="source_from" required>
+                                                    name="source_from" id="source_from" disabled>
                                                     <option value="" disabled selected hiddden>Select Source From
                                                     </option>
                                                     <option  value="Facebook"{{ $LeadData->source_from == 'Facebook' ? 'selected' : '' }}>Facebook</option>
@@ -71,7 +71,7 @@
                                                 <label >Phone Number <span class="text-danger">*</span></label>
                                                 <input type="text"  value="{{$LeadData->phonenumber}}"class="form-control"
                                                     placeholder="Enter Phone No" name="phonenumber" id="phonenumber"
-                                                    required>
+                                                    readonly>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12">

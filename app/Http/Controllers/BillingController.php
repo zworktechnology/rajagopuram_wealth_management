@@ -82,8 +82,8 @@ class BillingController extends Controller
 
         $billing_id = $data->id;
 
-
-        foreach($request->document_proof as $key => $document_proof)
+        if($request->document_proof != ""){
+            foreach($request->document_proof as $key => $document_proof)
             {
                 $imageName = $data->customer_id . $data->product_id . '_' . time().rand(1,99).'.'.$document_proof->extension();  
                 $document_proof->move('assets/document_proof', $imageName);
@@ -94,6 +94,8 @@ class BillingController extends Controller
                 $BillingDocument->document_proof = $imageName;
                 $BillingDocument->save();
             }
+        }
+            
 
       
         return redirect()->route('billing.index')->with('message', 'Added !');

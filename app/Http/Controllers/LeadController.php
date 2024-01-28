@@ -26,12 +26,18 @@ class LeadController extends Controller
 
             $employee = Employee::findOrFail($datas->employee_id);
 
+            if($datas->date != ""){
+                $date = date('d-m-Y', strtotime($datas->date));
+            }else {
+                $date = '';
+            }
+
             $Lead_data[] = array(
                 'name' => $datas->name,
                 'phonenumber' => $datas->phonenumber,
                 'source_from' => $datas->source_from,
                 'id' => $datas->id,
-                'date' => $datas->date,
+                'date' => $date,
                 'employee_id' => $datas->employee_id,
                 'status' => $datas->status,
                 'employee' => $employee->name,
@@ -88,26 +94,30 @@ class LeadController extends Controller
     {
         $randomkey = Str::random(5);
 
+        $LeadData = Lead::findOrFail($request->get('lead_id'));
+
         $data = new Customer();
         $random_no =  rand(100,999);
 
         $data->unique_key = $randomkey;
-        $data->name = $request->get('name');
-        $data->phonenumber = $request->get('phonenumber');
+        $data->name = $LeadData->name;
+        $data->phonenumber = $LeadData->phonenumber;
         $data->alter_phonenumber = $request->get('alter_phonenumber');
         $data->email_id = $request->get('email_id');
         $data->address = $request->get('address');
-        $data->source_from = $request->get('source_from');
+        $data->source_from = $LeadData->source_from;
         $data->birth_date = $request->get('birth_date');
         $data->wedding_date = $request->get('wedding_date');
-        $data->employee_id = $request->get('employee_id');
+        $data->employee_id = $LeadData->employee_id;
         $data->lead_id = $request->get('lead_id');
 
-
-        $customer_photo = $request->customer_photo;
-        $filename_customer_photo = $data->name . '_' . $random_no . '_' . 'Photo' . '.' . $customer_photo->getClientOriginalExtension();
-        $request->customer_photo->move('assets/customer_photo', $filename_customer_photo);
-        $data->customer_photo = $filename_customer_photo;
+        if ($request->file('customer_photo') != "") {
+            $customer_photo = $request->customer_photo;
+            $filename_customer_photo = $data->name . '_' . $random_no . '_' . 'Photo' . '.' . $customer_photo->getClientOriginalExtension();
+            $request->customer_photo->move('assets/customer_photo', $filename_customer_photo);
+            $data->customer_photo = $filename_customer_photo;
+        }
+        
 
         $data->save();
 
@@ -116,23 +126,22 @@ class LeadController extends Controller
 
         DB::table('leads')->where('id', $request->get('lead_id'))->update(['status' => 1, 'moved_date' => $request->get('moved_date')]);
 
-           
-            foreach($request->proof_upload as $key => $proof_upload)
-            {
-                $imageName = $data->name . '_' . time().rand(1,99).'.'.$proof_upload->extension();  
-                $proof_upload->move('assets/proof_one', $imageName);
-  
-                $CustomerProof = new CustomerProof();
-                $CustomerProof->customer_id = $customerid;
-                $CustomerProof->prooftype = $request->prooftype[$key];
-                $CustomerProof->proof_upload = $imageName;
-                $CustomerProof->save();
-            }
-
+        if($request->proof_upload != ""){
+                foreach($request->proof_upload as $key => $proof_upload)
+                {
+                    $imageName = $data->name . '_' . time().rand(1,99).'.'.$proof_upload->extension();  
+                    $proof_upload->move('assets/proof_one', $imageName);
+      
+                    $CustomerProof = new CustomerProof();
+                    $CustomerProof->customer_id = $customerid;
+                    $CustomerProof->prooftype = $request->prooftype[$key];
+                    $CustomerProof->proof_upload = $imageName;
+                    $CustomerProof->save();
+                }
+        }
         
-        
+        if($request->get('family_name') != ""){
             foreach ($request->get('family_name') as $key => $family_name) {
-
                 if($family_name != ""){
                     $CustomerFamilydata = new CustomerFamily();
 
@@ -143,8 +152,8 @@ class LeadController extends Controller
                     $CustomerFamilydata->family_weddingdate = $request->family_weddingdate[$key];
                     $CustomerFamilydata->save();
                 }
-                
             }
+        }
 
         return redirect()->route('lead.index')->with('message', 'Added !');
     }

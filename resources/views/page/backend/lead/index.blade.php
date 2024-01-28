@@ -21,8 +21,6 @@
                </div>
 
 
-
-
          </div>
       </div>
 
@@ -56,8 +54,7 @@
                         <table class="table table-center table-hover datatable table-striped">
                            <thead class="thead-light">
                               <tr>
-                              <th style="width:5%;">S.No</th>
-                                 <th style="width:10%;">Date</th>
+                                 <th style="width:15%;">Date</th>
                                  <th style="width:15%;">Name</th>
                                  <th style="width:10%;">Phone No</th>
                                  <th style="width:10%;">Source From</th>
@@ -72,8 +69,7 @@
                            @foreach ($Lead_data as $keydata => $Lead_datas)
                               @if($Lead_datas['status'] == '0')
                               <tr>
-                              <td>{{ ++$keydata }}</td>
-                                 <td >{{ date('d-m-Y', strtotime($Lead_datas['date'])) }}</td>
+                                 <td >{{ $Lead_datas['date'] }}</td>
                                  <td >{{ $Lead_datas['name'] }}</td>
                                  <td >{{ $Lead_datas['phonenumber'] }}</td>
                                  <td >{{ $Lead_datas['source_from'] }}</td>
