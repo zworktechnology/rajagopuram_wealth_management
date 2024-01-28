@@ -58,12 +58,15 @@
                                  <th style="width:5%;">S.No</th>
                                  <th style="width:15%;">Name</th>
                                  {{-- <th style="width:15%;">Address</th> --}}
-                                 <th style="width:15%;">Phone No</th>
+                                 <th style="width:10%;">Phone No</th>
                                  {{-- <th style="width:15%;">Email</th> --}}
-                                 <th style="width:15%;">Source From</th>
-                                 <th style="width:15%;">Hand By</th>
+                                 <th style="width:10%;">Source From</th>
+                                 @if(Auth::user()->role == 'Super-Admin')
+                                 <th style="width:20%;">Hand By</th>
+                                 @endif
+                                 <th style="width:10%">Last Connect</th>
                                  <th style="width:15%">Active On</th>
-                                 <th style="width:20%;">Action</th>
+                                 <th style="width:15%;">Action</th>
                               </tr>
                            </thead>
                            <tbody>
@@ -73,12 +76,16 @@
                               <tr>
                                  <td>{{ ++$keydata }}</td>
                                  <td >{{ $customer_data['name'] }}</td>
-                                 <td >{{ $customer_data['address'] }}</td>
                                  <td >{{ $customer_data['phonenumber'] }}</td>
-                                 <td >{{ $customer_data['email_id'] }}</td>
-                                 <td >{{ $customer_data['employee'] }}</td>
+                                 <td >{{ $customer_data['source_from'] }}</td>
+                                 <td >01.01.2024</td>
+                                 <td ><span class="badge bg-info-light" style="color: black">IIFL</span> <span class="badge bg-info-light" style="color: black">Bike</span></td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
+                                        <li>
+                                            <a class="badge" href="#customerview{{ $customer_data['id'] }}" data-bs-toggle="modal"
+                                            data-bs-target=".customerview-modal-xl{{ $customer_data['id'] }}" style="color: #f8f9fa;background: #095255;">D bY D</a>
+                                         </li>
                                        <li>
                                           <a class="badge" href="#customerview{{ $customer_data['id'] }}" data-bs-toggle="modal"
                                           data-bs-target=".customerview-modal-xl{{ $customer_data['id'] }}" style="color: #f8f9fa;background: #8068dc;">View</a>
@@ -86,10 +93,6 @@
                                        <li>
                                           <a href="{{ route('customer.edit', ['id' => $customer_data['id']]) }}"
                                                    class="badge bg-warning-light" style="color:#28084b;">Edit</a>
-                                       </li>
-                                       <li>
-                                          <a href="#delete{{ $customer_data['id'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".customerdelete-modal-xl{{ $customer_data['id'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
                                        </li>
                                     </ul>
 
@@ -119,11 +122,16 @@
                                  <td >{{ $customer_data['phonenumber'] }}</td>
                                  <td >{{ $customer_data['source_from'] }}</td>
                                  <td >{{ $customer_data['employee'] }}</td>
+                                 <td >01.01.2024</td>
 
                                  <td ><span class="badge bg-info-light" style="color: black">IIFL</span> <span class="badge bg-info-light" style="color: black">Bike</span></td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
-                                       <li>
+                                        <li>
+                                            <a class="badge" href="#customerview{{ $customer_data['id'] }}" data-bs-toggle="modal"
+                                            data-bs-target=".customerview-modal-xl{{ $customer_data['id'] }}" style="color: #f8f9fa;background: #095255;">D bY D</a>
+                                         </li>
+                                        <li>
                                           <a class="badge" href="#customerview{{ $customer_data['id'] }}" data-bs-toggle="modal"
                                           data-bs-target=".customerview-modal-xl{{ $customer_data['id'] }}" style="color: #f8f9fa;background: #8068dc;">View</a>
                                        </li>

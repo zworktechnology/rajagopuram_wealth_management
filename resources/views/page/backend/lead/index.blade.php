@@ -56,12 +56,15 @@
                         <table class="table table-center table-hover datatable table-striped">
                            <thead class="thead-light">
                               <tr>
-                              <th style="width:15%;">S.No</th>
-                                 <th style="width:15%;">Date</th>
+                              <th style="width:5%;">S.No</th>
+                                 <th style="width:10%;">Date</th>
                                  <th style="width:15%;">Name</th>
-                                 <th style="width:15%;">Phone No</th>
-                                 <th style="width:15%;">Source From</th>
+                                 <th style="width:10%;">Phone No</th>
+                                 <th style="width:10%;">Source From</th>
+                                 @if(Auth::user()->role == 'Super-Admin')
                                  <th style="width:15%;">Hand By</th>
+                                 @endif
+                                 <th style="width:15%;">Last Connect</th>
                                  <th style="width:20%;">Action</th>
                               </tr>
                            </thead>
@@ -74,20 +77,29 @@
                                  <td >{{ $Lead_datas['name'] }}</td>
                                  <td >{{ $Lead_datas['phonenumber'] }}</td>
                                  <td >{{ $Lead_datas['source_from'] }}</td>
+                                 @if(Auth::user()->role == 'Super-Admin')
                                  <td >{{ $Lead_datas['employee'] }}</td>
+                                 @endif
+                                 <td >01.01.2024</td>
                                  <td >
                                     <ul class="list-unstyled hstack gap-1 mb-0">
+                                        <li>
+                                            <a class="badge" href="#edit{{ $Lead_datas['id'] }}" data-bs-toggle="modal"
+                                               data-bs-target=".lead_edit-modal-xl{{ $Lead_datas['id'] }}" style="color: white; background: #095255;">D by D</a>
+                                            </li>
                                        <li>
                                        <a class="badge bg-warning-light" href="#edit{{ $Lead_datas['id'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".lead_edit-modal-xl{{ $Lead_datas['id'] }}" style="color: #28084b;">Edit</a>
+                                          data-bs-target=".lead_edit-modal-xl{{ $Lead_datas['id'] }}" style="color: white;">Edit</a>
                                        </li>
+                                       @if(Auth::user()->role == 'Super-Admin')
                                        <li>
                                           <a href="#delete{{ $Lead_datas['id'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".leaddelete-modal-xl{{ $Lead_datas['id'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
+                                          data-bs-target=".leaddelete-modal-xl{{ $Lead_datas['id'] }}" class="badge bg-danger-light" style="color: white;">Delete</a>
                                        </li>
+                                       @endif
                                        <li>
                                           <a href="{{ route('lead.move', ['id' => $Lead_datas['id']]) }}"
-                                                   class="badge bg-success" style="color:#eee;">Lead to Customer</a>
+                                                   class="badge bg-success" style="color:#eee;">L to C</a>
                                        </li>
                                     </ul>
 

@@ -24,6 +24,9 @@
                 <li class="{{ Route::is('customer.index', 'customer.create', 'customer.store', 'customer.edit' ) ? 'active' : '' }}">
                     <a href="{{ route('customer.index') }}" ><i class="fe fe-users"></i> <span>Customer</span></a>
                 </li>
+                <li class="{{ Route::is('lead.index', 'lead.store') ? 'active' : '' }}">
+                    <a href="{{ route('lead.index') }}" ><i class="fe fe-user"></i> <span>Leads</span></a>
+                </li>
                 @if(Auth::user()->role == 'Super-Admin')
                 <li class="{{ Route::is('employee.index', 'employee.store') ? 'active' : '' }}">
                     <a href="{{ route('employee.index') }}" ><i class="fe fe-user"></i> <span>Staff</span></a>
@@ -37,9 +40,6 @@
                 </li>
                 <li class="{{ Route::is('followup.index', 'followup.store') ? 'active' : '' }}">
                     <a href="{{ route('followup.index') }}" ><i class="fe fe-book-open"></i> <span>Day by Day</span></a>
-                </li>
-                <li class="{{ Route::is('lead.index', 'lead.store') ? 'active' : '' }}">
-                    <a href="{{ route('lead.index') }}" ><i class="fe fe-book-open"></i> <span>Leads</span></a>
                 </li>
             </ul>
 

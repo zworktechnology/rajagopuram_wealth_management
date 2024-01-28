@@ -57,10 +57,6 @@
                                        <a href="{{ route('billing.edit', ['id' => $billingdata['id']]) }}"
                                                    class="badge bg-warning-light" style="color:#28084b;">Edit</a>
                                        </li>
-                                       <li>
-                                          <a href="#delete{{ $billingdata['unique_key'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".billingdelete-modal-xl{{ $billingdata['unique_key'] }}" class="badge bg-danger-light" style="color: #28084b;">Delete</a>
-                                       </li>
                                     </ul>
 
                                  </td>
