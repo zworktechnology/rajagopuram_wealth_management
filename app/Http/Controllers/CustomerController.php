@@ -37,7 +37,6 @@ class CustomerController extends Controller
                 );
             }
 
-
             $CustomerProofs = CustomerProof::where('customer_id', '=', $datas->id)->orderBy('id', 'DESC')->get();
             foreach ($CustomerProofs as $key => $CustomerProofsarr) {
 
@@ -118,28 +117,32 @@ class CustomerController extends Controller
         $data->wedding_date = $request->get('wedding_date');
         $data->employee_id = $request->get('employee_id');
 
-
-        $customer_photo = $request->customer_photo;
-        $filename_customer_photo = $data->name . '_' . $random_no . '_' . 'Photo' . '.' . $customer_photo->getClientOriginalExtension();
-        $request->customer_photo->move('assets/customer_photo', $filename_customer_photo);
-        $data->customer_photo = $filename_customer_photo;
+        if($request->customer_photo != ""){
+            $customer_photo = $request->customer_photo;
+            $filename_customer_photo = $data->name . '_' . $random_no . '_' . 'Photo' . '.' . $customer_photo->getClientOriginalExtension();
+            $request->customer_photo->move('assets/customer_photo', $filename_customer_photo);
+            $data->customer_photo = $filename_customer_photo;
+        }
+        
 
         $data->save();
 
 
         $customerid = $data->id;
-
-           
+        
             foreach($request->proof_upload as $key => $proof_upload)
             {
-                $imageName = $data->name . '_' . time().rand(1,99).'.'.$proof_upload->extension();  
-                $proof_upload->move('assets/proof_one', $imageName);
-  
-                $CustomerProof = new CustomerProof();
-                $CustomerProof->customer_id = $customerid;
-                $CustomerProof->prooftype = $request->prooftype[$key];
-                $CustomerProof->proof_upload = $imageName;
-                $CustomerProof->save();
+                if($proof_upload != ""){
+                    $imageName = $data->name . '_' . time().rand(1,99).'.'.$proof_upload->extension();  
+                    $proof_upload->move('assets/proof_one', $imageName);
+      
+                    $CustomerProof = new CustomerProof();
+                    $CustomerProof->customer_id = $customerid;
+                    $CustomerProof->prooftype = $request->prooftype[$key];
+                    $CustomerProof->proof_upload = $imageName;
+                    $CustomerProof->save();
+                }
+                
             }
 
         
@@ -261,46 +264,47 @@ class CustomerController extends Controller
         }
 
 
+        if($request->family_id != ""){
 
-
-        $getInserted = CustomerFamily::where('customer_id', '=', $customer_id)->get();
-        $purchase_products = array();
-        foreach ($getInserted as $key => $getInserted_produts) {
-            $purchase_products[] = $getInserted_produts->id;
-        }
-
-        $updated_products = $request->family_id;
-        $updated_product_ids = array_filter($updated_products);
-        $different_ids = array_merge(array_diff($purchase_products, $updated_product_ids), array_diff($updated_product_ids, $purchase_products));
-
-        if (!empty($different_ids)) {
-            foreach ($different_ids as $key => $different_id) {
-                CustomerFamily::where('id', $different_id)->delete();
+            $getInserted = CustomerFamily::where('customer_id', '=', $customer_id)->get();
+            $purchase_products = array();
+            foreach ($getInserted as $key => $getInserted_produts) {
+                $purchase_products[] = $getInserted_produts->id;
             }
-        }
 
-        foreach ($request->get('family_id') as $key => $family_id) {
-            if ($family_id > 0) {
+            $updated_products = $request->family_id;
+            $updated_product_ids = array_filter($updated_products);
+            $different_ids = array_merge(array_diff($purchase_products, $updated_product_ids), array_diff($updated_product_ids, $purchase_products));
+
+            if (!empty($different_ids)) {
+                foreach ($different_ids as $key => $different_id) {
+                    CustomerFamily::where('id', $different_id)->delete();
+                }
+            }
+
+            foreach ($request->get('family_id') as $key => $family_id) {
+                if ($family_id > 0) {
 
 
-                $ids = $family_id;
-                $family_name = $request->family_name[$key];
-                $family_relationship = $request->family_relationship[$key];
-                $family_dob = $request->family_dob[$key];
-                $family_weddingdate = $request->family_weddingdate[$key];
+                    $ids = $family_id;
+                    $family_name = $request->family_name[$key];
+                    $family_relationship = $request->family_relationship[$key];
+                    $family_dob = $request->family_dob[$key];
+                    $family_weddingdate = $request->family_weddingdate[$key];
 
-                DB::table('customer_families')->where('id', $ids)->update([
-                    'customer_id' => $customer_id, 'family_name' => $family_name, 'family_relationship' => $family_relationship, 'family_dob' => $family_dob, 'family_weddingdate' => $family_weddingdate
-                ]);
+                    DB::table('customer_families')->where('id', $ids)->update([
+                        'customer_id' => $customer_id, 'family_name' => $family_name, 'family_relationship' => $family_relationship, 'family_dob' => $family_dob, 'family_weddingdate' => $family_weddingdate
+                    ]);
 
-            } else if ($family_id == '') {
-                $CustomerFamilydata = new CustomerFamily();
-                $CustomerFamilydata->customer_id = $customer_id;
-                $CustomerFamilydata->family_name = $request->family_name[$key];
-                $CustomerFamilydata->family_relationship = $request->family_relationship[$key];
-                $CustomerFamilydata->family_dob = $request->family_dob[$key];
-                $CustomerFamilydata->family_weddingdate = $request->family_weddingdate[$key];
-                $CustomerFamilydata->save();
+                } else if ($family_id == '') {
+                    $CustomerFamilydata = new CustomerFamily();
+                    $CustomerFamilydata->customer_id = $customer_id;
+                    $CustomerFamilydata->family_name = $request->family_name[$key];
+                    $CustomerFamilydata->family_relationship = $request->family_relationship[$key];
+                    $CustomerFamilydata->family_dob = $request->family_dob[$key];
+                    $CustomerFamilydata->family_weddingdate = $request->family_weddingdate[$key];
+                    $CustomerFamilydata->save();
+                }
             }
         }
 

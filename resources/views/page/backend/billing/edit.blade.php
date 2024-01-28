@@ -42,7 +42,7 @@
                                                    <option value="{{ $customers->id }}"@if ($customers->id === $BillingData->customer_id) selected='selected' @endif>{{ $customers->name }} </option>
                                                          @endif
                                                       @else
-                                                      <option value="{{ $customers->id }}">{{ $customers->name }} </option>
+                                                      <option value="{{ $customers->id }}"@if ($customers->id === $BillingData->customer_id) selected='selected' @endif>{{ $customers->name }} </option>
                                                       @endif
                                                    @endforeach
                                           </select>

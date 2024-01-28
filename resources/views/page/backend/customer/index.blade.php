@@ -73,10 +73,10 @@
                               <tr>
                                  <td>{{ ++$keydata }}</td>
                                  <td >{{ $customer_data['name'] }}</td>
-                                 <td >{{ $customer_data['address'] }}</td>
                                  <td >{{ $customer_data['phonenumber'] }}</td>
-                                 <td >{{ $customer_data['email_id'] }}</td>
+                                 <td >{{ $customer_data['source_from'] }}</td>
                                  <td >{{ $customer_data['employee'] }}</td>
+                                 <td ></td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
