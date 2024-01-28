@@ -49,10 +49,10 @@
                                  <td >{{ $employee_data->email_id }}</td>
                                  <td >
                                     <ul class="list-unstyled hstack gap-1 mb-0">
-                                       <li>
+                                       {{-- <li>
                                           <a href="{{ route('employee.view', ['id' => $employee_data->id]) }}"
                                                    class="badge" style="color: #f8f9fa;background: #8068dc;">View</a>
-                                       </li>
+                                       </li> --}}
                                        <li>
                                        <a class="badge bg-warning-light" href="#edit{{ $employee_data->unique_key }}" data-bs-toggle="modal"
                                           data-bs-target=".employeeedit-modal-xl{{ $employee_data->unique_key }}" style="color: #28084b;">Edit</a>
