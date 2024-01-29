@@ -7,13 +7,13 @@
 
       <div class="page-header">
          <div class="content-page-header">
-            <h6 >Billing</h6>
+            <h6 >Programme</h6>
                <div class="list-btn">
                   <div style="display:flex;">
                      <ul class="filter-list">
                         <li>
                         <a class="btn btn-primary" data-bs-toggle="modal"  data-bs-target=".billing-modal-xl">
-                              <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Billing</a>
+                              <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Programme</a>
                         </li>
                      </ul>
                   </div>

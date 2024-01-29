@@ -2,7 +2,7 @@
       <div class="modal-content modal-filled bg-danger">
          <div class="modal-body">
             <div class="form-header">
-               <h6 class="text-white" >Delete Billing</h6>
+               <h6 class="text-white" >Delete Programme</h6>
                <p class="text-white" >Are you sure want to delete?</p>
             </div>
             <div class="modal-btn delete-action">

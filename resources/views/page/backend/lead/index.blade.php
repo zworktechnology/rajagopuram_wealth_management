@@ -80,11 +80,11 @@
                                        <td >{{ $Lead_datas['nextcall'] }}</td>
                                        <td >
                                           <ul class="list-unstyled hstack gap-1 mb-0">
-                                             <li>
+                                             {{-- <li>
                                                 <a class="badge" href="#leadupdate{{ $Lead_datas['last_call_followupid'] }}" data-bs-toggle="modal"
                                                    data-bs-target=".leadupdate-modal-xl{{ $Lead_datas['last_call_followupid'] }}" style="color: white; background: #095255;">D by D</a>
                                                 </li>
-                                             <li>
+                                             <li> --}}
                                              <a class="badge" href="#edit{{ $Lead_datas['id'] }}" data-bs-toggle="modal"
                                                 data-bs-target=".lead_edit-modal-xl{{ $Lead_datas['id'] }}" style="color: white;background: #86ad25;">Edit</a>
                                              </li>
