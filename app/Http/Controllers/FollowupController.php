@@ -8,7 +8,7 @@ use App\Models\Employee;
 use App\Models\Followup;
 use App\Models\Customer;
 use App\Models\Product;
-use App\Models\lead;
+use App\Models\Lead;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
@@ -41,7 +41,7 @@ class FollowupController extends Controller
 
 
             if($datas->lead_id != ""){
-                $lead = lead::findOrFail($datas->lead_id);
+                $lead = Lead::findOrFail($datas->lead_id);
                 $leadname = $lead->name;
                 $lead_id = $datas->lead_id;
             }else {
@@ -86,7 +86,7 @@ class FollowupController extends Controller
 
 
             if($datas->lead_id != ""){
-                $lead = lead::findOrFail($datas->lead_id);
+                $lead = Lead::findOrFail($datas->lead_id);
                 $leadname = $lead->name;
                 $lead_id = $datas->lead_id;
             }else {
@@ -115,7 +115,7 @@ class FollowupController extends Controller
         $employee = Employee::where('soft_delete', '!=', 1)->get();
         $customer = Customer::where('soft_delete', '!=', 1)->get();
         $product = Product::where('soft_delete', '!=', 1)->get();
-        $lead = lead::where('soft_delete', '!=', 1)->get();
+        $lead = Lead::where('soft_delete', '!=', 1)->get();
         return view('page.backend.followup.index', compact('customerfollowupdata', 'today', 'employee', 'customer', 'timenow', 'product', 'lead', 'leadfollowupdata'));
     }
 
@@ -146,7 +146,7 @@ class FollowupController extends Controller
 
 
             if($datas->lead_id != ""){
-                $lead = lead::findOrFail($datas->lead_id);
+                $lead = Lead::findOrFail($datas->lead_id);
                 $leadname = $lead->name;
                 $lead_id = $datas->lead_id;
             }else {
@@ -191,7 +191,7 @@ class FollowupController extends Controller
 
 
             if($datas->lead_id != ""){
-                $lead = lead::findOrFail($datas->lead_id);
+                $lead = Lead::findOrFail($datas->lead_id);
                 $leadname = $lead->name;
                 $lead_id = $datas->lead_id;
             }else {
@@ -220,7 +220,7 @@ class FollowupController extends Controller
         $employee = Employee::where('soft_delete', '!=', 1)->get();
         $customer = Customer::where('soft_delete', '!=', 1)->get();
         $product = Product::where('soft_delete', '!=', 1)->get();
-        $lead = lead::where('soft_delete', '!=', 1)->get();
+        $lead = Lead::where('soft_delete', '!=', 1)->get();
         return view('page.backend.followup.index', compact('customerfollowupdata', 'today', 'employee', 'customer', 'timenow', 'product', 'lead', 'leadfollowupdata'));
 
     }
