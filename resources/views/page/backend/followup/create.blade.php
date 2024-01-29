@@ -28,7 +28,7 @@
                <div class="col-lg-3 col-md-12">
                   <div class="form-group">
                      <label >Customer <span class="text-danger">*</span></label>
-                     <select class="form-control select js-example-basic-single" name="customer_id" id="followupcustomer_id" required>
+                     <select class="form-control select js-example-basic-single" name="customer_id" required>
                            <option value="" disabled selected hiddden>Select Customer</option>
                            @foreach ($customer as $customers)
                                  @if(Auth::user()->role == 'Admin')
@@ -52,7 +52,7 @@
                <div class="col-lg-6 col-md-12" @if(Auth::user()->role == 'Admin') hidden   @endif>
                      <div class="form-group">
                         <label >Staff <span class="text-danger">*</span></label>
-                        <select class="form-control select  js-example-basic-single" name="employee_id" id="followupemployee_id" required>
+                        <select class="form-control select  js-example-basic-single" name="employee_id" required>
                            <option value="" disabled selected hiddden>Select Staff</option>
                            @foreach ($employee as $employees)
                               <option value="{{ $employees->id }}" {{ Auth::user()->emp_id == $employees->id ? 'selected' : '' }}>{{ $employees->name }}</option>
@@ -63,9 +63,12 @@
                <div class="col-lg-6 col-md-12">
                   <div class="form-group">
                      <label >Product </label>
-                     <select class="form-control select js-example-basic-single" name="product_id" id="followupproduct_id" required>
-                           <option value="" disabled selected hiddden>Select Product</option>
-                      </select>
+                     <select class="form-control select js-example-basic-single" name="product_id">
+                        <option value="" disabled selected hiddden>Select Product</option>
+                        @foreach ($product as $products)
+                           <option value="{{ $products->id }}">{{ $products->name }}</option>
+                        @endforeach
+                   </select>
                   </div>
                </div>
 

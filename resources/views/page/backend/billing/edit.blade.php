@@ -5,7 +5,7 @@
         <div class="content container-fluid">
             <div class="page-header">
                 <div class="content-page-header">
-                    <h6 >Update Billing</h6>
+                    <h6 >Update Programme</h6>
                 </div>
             </div>
 

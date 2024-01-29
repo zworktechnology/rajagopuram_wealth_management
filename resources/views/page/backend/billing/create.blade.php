@@ -3,7 +3,7 @@
 
       <div class="modal-header border-0 pb-0">
          <div class="form-header modal-header-title text-start mb-0">
-            <h6 class="mb-0" >Add Billing</h6>
+            <h6 class="mb-0" >Add Programme</h6>
          </div>
          <button type="button" class="close billing_close" data-bs-dismiss="modal" aria-label="Close">
             <span class="align-center" aria-hidden="true">&times;</span>
