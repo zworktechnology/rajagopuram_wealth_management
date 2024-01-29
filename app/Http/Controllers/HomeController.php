@@ -8,7 +8,7 @@ use App\Models\Employee;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Billing;
-use App\Models\lead;
+use App\Models\Lead;
 use App\Models\Followup;
 use Carbon\Carbon;
 
@@ -102,7 +102,7 @@ class HomeController extends Controller
 
 
             if($followuyps->lead_id != ""){
-                $lead = lead::findOrFail($followuyps->lead_id);
+                $lead = Lead::findOrFail($followuyps->lead_id);
                 $leadname = $lead->name;
                 $lead_id = $followuyps->lead_id;
                 $lead_phonenumber = $lead->phonenumber;
@@ -139,7 +139,7 @@ class HomeController extends Controller
         $employee = Employee::where('soft_delete', '!=', 1)->get();
         $customer = Customer::where('soft_delete', '!=', 1)->get();
         $product = Product::where('soft_delete', '!=', 1)->get();
-        $lead = lead::where('soft_delete', '!=', 1)->get();
+        $lead = Lead::where('soft_delete', '!=', 1)->get();
             return view('home', compact('today', 'total_Employee', 'total_Customer', 'total_Product', 'Billingdata', 'followupdata', 'currentdate', 'employee', 'customer', 'product', 'timenow', 'lead'));
     }
 
@@ -216,7 +216,7 @@ class HomeController extends Controller
 
 
             if($followuyps->lead_id != ""){
-                $lead = lead::findOrFail($followuyps->lead_id);
+                $lead = Lead::findOrFail($followuyps->lead_id);
                 $leadname = $lead->name;
                 $lead_id = $followuyps->lead_id;
                 $lead_phonenumber = $lead->phonenumber;
@@ -250,7 +250,7 @@ class HomeController extends Controller
         $employee = Employee::where('soft_delete', '!=', 1)->get();
         $customer = Customer::where('soft_delete', '!=', 1)->get();
         $product = Product::where('soft_delete', '!=', 1)->get();
-        $lead = lead::where('soft_delete', '!=', 1)->get();
+        $lead = Lead::where('soft_delete', '!=', 1)->get();
 
             return view('home', compact('today', 'total_Employee', 'total_Customer', 'total_Product', 'Billingdata', 'followupdata', 'currentdate', 'employee', 'customer', 'product', 'timenow', 'lead'));
     }
