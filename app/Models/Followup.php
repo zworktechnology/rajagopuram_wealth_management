@@ -13,6 +13,7 @@ class Followup extends Model
         'unique_key',
         'soft_delete',
         'customer_id',
+        'lead_id',
         'product_id',
         'employee_id',
         'date',

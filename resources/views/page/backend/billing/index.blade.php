@@ -55,7 +55,7 @@
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
                                        <a href="{{ route('billing.edit', ['id' => $billingdata['id']]) }}"
-                                                   class="badge bg-warning-light" style="color:#28084b;">Edit</a>
+                                                   class="badge" style="color:#28084b;background: #86ad25;">Edit</a>
                                        </li>
                                     </ul>
 
@@ -83,7 +83,7 @@
                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                        <li>
                                        <a href="{{ route('billing.edit', ['id' => $billingdata['id']]) }}"
-                                                   class="badge bg-warning-light" style="color:#28084b;">Edit</a>
+                                                   class="badge" style="color:#28084b;background: #86ad25;">Edit</a>
                                        </li>
                                        <li>
                                           <a href="#delete{{ $billingdata['unique_key'] }}" data-bs-toggle="modal"

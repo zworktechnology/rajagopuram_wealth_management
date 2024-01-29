@@ -57,7 +57,8 @@
                                             <a class="badge bg-info-light" href="{{ route('product.view', ['id' => $product_datas['id']]) }}"  style="color: #28084b;">View Customers</a>
                                         </li>
                                        <li>
-                                            <a class="badge bg-warning-light" href="#edit{{ $product_datas['unique_key'] }}" data-bs-toggle="modal" data-bs-target=".productedit-modal-xl{{ $product_datas['unique_key'] }}" style="color: #28084b;">Edit</a>
+                                            <a class="badge" href="#edit{{ $product_datas['unique_key'] }}" data-bs-toggle="modal" 
+                                            data-bs-target=".productedit-modal-xl{{ $product_datas['unique_key'] }}" style="color: #28084b;background: #86ad25;">Edit</a>
                                        </li>
                                        <li>
                                           <a href="#delete{{ $product_datas['unique_key'] }}" data-bs-toggle="modal"

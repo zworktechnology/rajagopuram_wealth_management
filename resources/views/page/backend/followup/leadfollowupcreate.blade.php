@@ -3,13 +3,13 @@
 
       <div class="modal-header border-0 pb-0">
          <div class="form-header modal-header-title text-start mb-0">
-            <h6 class="mb-0" >Add Customer Followup</h6>
+            <h6 class="mb-0" >Add Lead Followup</h6>
          </div>
          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span class="align-center" aria-hidden="true">&times;</span>
          </button>
       </div>
-      <form autocomplete="off" method="POST" action="{{ route('followup.store') }}">
+      <form autocomplete="off" method="POST" action="{{ route('followup.leadfollowup_store') }}">
       @csrf
       <div class="modal-body">
          <div class="row">
@@ -27,16 +27,16 @@
                </div>
                <div class="col-lg-3 col-md-12">
                   <div class="form-group">
-                     <label >Customer <span class="text-danger">*</span></label>
-                     <select class="form-control select js-example-basic-single" name="customer_id" id="followupcustomer_id" required>
-                           <option value="" disabled selected hiddden>Select Customer</option>
-                           @foreach ($customer as $customers)
+                     <label >Lead <span class="text-danger">*</span></label>
+                     <select class="form-control select js-example-basic-single" name="lead_id" id="lead_id" required>
+                           <option value="" disabled selected hiddden>Select Lead</option>
+                           @foreach ($lead as $leads)
                                  @if(Auth::user()->role == 'Admin')
-                                    @if(Auth::user()->emp_id == $customers->employee_id)
-                              <option value="{{ $customers->id }}">{{ $customers->name }} </option>
+                                    @if(Auth::user()->emp_id == $leads->employee_id)
+                              <option value="{{ $leads->id }}">{{ $leads->name }} </option>
                                     @endif
                                  @else
-                                 <option value="{{ $customers->id }}">{{ $customers->name }} </option>
+                                 <option value="{{ $leads->id }}">{{ $leads->name }} </option>
                                  @endif
                               @endforeach
                       </select>
@@ -63,8 +63,11 @@
                <div class="col-lg-6 col-md-12">
                   <div class="form-group">
                      <label >Product </label>
-                     <select class="form-control select js-example-basic-single" name="product_id" id="followupproduct_id" required>
+                     <select class="form-control select js-example-basic-single" name="product_id" id="product_id" required>
                            <option value="" disabled selected hiddden>Select Product</option>
+                           @foreach ($product as $products)
+                              <option value="{{ $products->id }}">{{ $products->name }}</option>
+                           @endforeach
                       </select>
                   </div>
                </div>

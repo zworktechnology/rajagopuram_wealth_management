@@ -9,7 +9,9 @@ use App\Models\Employee;
 use App\Models\Lead;
 use App\Models\Customer;
 use App\Models\CustomerFamily;
+use App\Models\Followup;
 use App\Models\CustomerProof;
+use App\Models\Product;
 use Illuminate\Support\Str;
 use App\Imports\ImportLead;
 use Illuminate\Support\Facades\Storage;
@@ -32,6 +34,17 @@ class LeadController extends Controller
                 $date = '';
             }
 
+            $followup_Date = Followup::where('soft_delete', '!=', 1)->where('lead_id', '=', $datas->id)->latest('id')->first();
+            if($followup_Date != ""){
+                $last_call_date = date('d-m-Y', strtotime($followup_Date->date));
+                $nextcall = date('d-m-Y', strtotime($followup_Date->next_call_date));
+                $last_call_followupid = $followup_Date->id;
+            }else {
+                $last_call_date = '';
+                $last_call_followupid = '';
+                $nextcall = '';
+            }
+
             $Lead_data[] = array(
                 'name' => $datas->name,
                 'phonenumber' => $datas->phonenumber,
@@ -41,12 +54,17 @@ class LeadController extends Controller
                 'employee_id' => $datas->employee_id,
                 'status' => $datas->status,
                 'employee' => $employee->name,
+                'last_call_date' => $last_call_date,
+                'nextcall' => $nextcall,
+                'last_call_followupid' => $last_call_followupid,
             );
 
         }
         $today = Carbon::now()->format('Y-m-d');
+        $timenow = Carbon::now()->format('H:i');
         $employee = Employee::where('soft_delete', '!=', 1)->get();
-        return view('page.backend.lead.index', compact('Lead_data', 'today', 'employee'));
+        $product = Product::where('soft_delete', '!=', 1)->get();
+        return view('page.backend.lead.index', compact('Lead_data', 'today', 'employee', 'timenow', 'product'));
     }
 
 

@@ -112,6 +112,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->get('/zworktech-rajagopuram/followup', [FollowupController::class, 'index'])->name('followup.index');
     // STORE
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/followup/store', [FollowupController::class, 'store'])->name('followup.store');
+    // STORE
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/followup/leadfollowup_store', [FollowupController::class, 'leadfollowup_store'])->name('followup.leadfollowup_store');
     // EDIT
     Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/followup/edit/{unique_key}', [FollowupController::class, 'edit'])->name('followup.edit');
     // UPDATE
@@ -120,6 +122,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/followup/delete/{unique_key}', [FollowupController::class, 'delete'])->name('followup.delete');
     // DATAE FILTER
     Route::middleware(['auth:sanctum', 'verified'])->put('/zworktech-rajagopuram/followup/datefilter', [FollowupController::class, 'datefilter'])->name('followup.datefilter');
+    // UPDATE
+    Route::middleware(['auth:sanctum', 'verified'])->post('/zworktech-rajagopuram/followup/leadupdatestatus/{id}', [FollowupController::class, 'leadupdatestatus'])->name('followup.leadupdatestatus');
 });
 
 

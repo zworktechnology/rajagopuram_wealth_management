@@ -57,9 +57,7 @@
                               <tr>
                                  <th style="width:5%;">S.No</th>
                                  <th style="width:15%;">Name</th>
-                                 {{-- <th style="width:15%;">Address</th> --}}
                                  <th style="width:10%;">Phone No</th>
-                                 {{-- <th style="width:15%;">Email</th> --}}
                                  <th style="width:10%;">Source From</th>
                                  @if(Auth::user()->role == 'Super-Admin')
                                  <th style="width:20%;">Hand By</th>
@@ -78,13 +76,18 @@
                                  <td >{{ $customer_data['name'] }}</td>
                                  <td >{{ $customer_data['phonenumber'] }}</td>
                                  <td >{{ $customer_data['source_from'] }}</td>
-                                 <td >01.01.2024</td>
-                                 <td ><span class="badge bg-info-light" style="color: black">IIFL</span> <span class="badge bg-info-light" style="color: black">Bike</span></td>
+                                 <td >{{ $customer_data['last_call_date'] }}</td>
+                                 <td >
+                                 @foreach ($customer_data['productArr'] as $index => $productArr)
+                                                    @if ($productArr['customer_id'] == $customer_data['id'])
+                                                    <span class="badge bg-info-light" style="color: black">{{ $productArr['products'] }}</span>
+                                                    @endif
+                                                    @endforeach</td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
-                                        <li>
-                                            <a class="badge" href="#customerview{{ $customer_data['id'] }}" data-bs-toggle="modal"
-                                            data-bs-target=".customerview-modal-xl{{ $customer_data['id'] }}" style="color: #f8f9fa;background: #095255;">D bY D</a>
+                                          <li hidden>
+                                            <a class="badge" href="#followup_update{{ $customer_data['id'] }}" data-bs-toggle="modal"
+                                            data-bs-target=".followup_update-modal-xl{{ $customer_data['id'] }}" style="color: #f8f9fa;background: #095255;">D bY D</a>
                                          </li>
                                        <li>
                                           <a class="badge" href="#customerview{{ $customer_data['id'] }}" data-bs-toggle="modal"
@@ -92,13 +95,18 @@
                                        </li>
                                        <li>
                                           <a href="{{ route('customer.edit', ['id' => $customer_data['id']]) }}"
-                                                   class="badge bg-warning-light" style="color:#28084b;">Edit</a>
+                                                   class="badge" style="color:#28084b;background: #86ad25;">Edit</a>
                                        </li>
                                     </ul>
 
                                  </td>
                               </tr>
-
+                              <div class="modal fade followup_update-modal-xl{{ $customer_data['id'] }}"
+                                                tabindex="-1" role="dialog" data-bs-backdrop="static"
+                                                aria-labelledby="followup_updateLargeModalLabel{{ $customer_data['id']}}"
+                                                aria-hidden="true">
+                                                @include('page.backend.customer.followupupdate')
+                                        </div>
                               <div class="modal fade customerview-modal-xl{{ $customer_data['id'] }}"
                                     tabindex="-1" role="dialog" data-bs-backdrop="static"
                                     aria-labelledby="customerviewLargeModalLabel{{ $customer_data['id'] }}"
@@ -118,18 +126,21 @@
                               <tr>
                                  <td>{{ ++$keydata }}</td>
                                  <td >{{ $customer_data['name'] }}</td>
-                                 {{-- <td >{{ $customer_data['address'] }}</td> --}}
                                  <td >{{ $customer_data['phonenumber'] }}</td>
                                  <td >{{ $customer_data['source_from'] }}</td>
                                  <td >{{ $customer_data['employee'] }}</td>
-                                 <td >01.01.2024</td>
+                                 <td >{{ $customer_data['last_call_date'] }}</td>
 
-                                 <td ><span class="badge bg-info-light" style="color: black">IIFL</span> <span class="badge bg-info-light" style="color: black">Bike</span></td>
+                                 <td > @foreach ($customer_data['productArr'] as $index => $productArr)
+                                                    @if ($productArr['customer_id'] == $customer_data['id'])
+                                                    <span class="badge bg-info-light" style="color: black">{{ $productArr['products'] }}</span>
+                                                    @endif
+                                                    @endforeach</td>
                                  <td>
                                     <ul class="list-unstyled hstack gap-1 mb-0">
-                                        <li>
-                                            <a class="badge" href="#customerview{{ $customer_data['id'] }}" data-bs-toggle="modal"
-                                            data-bs-target=".customerview-modal-xl{{ $customer_data['id'] }}" style="color: #f8f9fa;background: #095255;">D bY D</a>
+                                        <li hidden>
+                                            <a class="badge" href="#followup_update{{ $customer_data['id'] }}" data-bs-toggle="modal"
+                                            data-bs-target=".followup_update-modal-xl{{ $customer_data['id'] }}" style="color: #f8f9fa;background: #095255;">D bY D</a>
                                          </li>
                                         <li>
                                           <a class="badge" href="#customerview{{ $customer_data['id'] }}" data-bs-toggle="modal"
@@ -137,7 +148,7 @@
                                        </li>
                                        <li>
                                           <a href="{{ route('customer.edit', ['id' => $customer_data['id']]) }}"
-                                                   class="badge bg-warning-light" style="color:#28084b;">Edit</a>
+                                                   class="badge" style="color:#28084b;background: #86ad25;">Edit</a>
                                        </li>
                                        <li>
                                           <a href="#delete{{ $customer_data['id'] }}" data-bs-toggle="modal"
@@ -147,7 +158,12 @@
 
                                  </td>
                               </tr>
-
+                              <div class="modal fade followup_update-modal-xl{{ $customer_data['id'] }}"
+                                                tabindex="-1" role="dialog" data-bs-backdrop="static"
+                                                aria-labelledby="followup_updateLargeModalLabel{{ $customer_data['id']}}"
+                                                aria-hidden="true">
+                                                @include('page.backend.customer.followupupdate')
+                                        </div>  
                               <div class="modal fade customerview-modal-xl{{ $customer_data['id'] }}"
                                     tabindex="-1" role="dialog" data-bs-backdrop="static"
                                     aria-labelledby="customerviewLargeModalLabel{{ $customer_data['id'] }}"

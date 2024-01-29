@@ -8,6 +8,7 @@ use App\Models\Employee;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Billing;
+use App\Models\lead;
 use App\Models\Followup;
 use Carbon\Carbon;
 
@@ -85,15 +86,40 @@ class HomeController extends Controller
         $followupdata = [];
         foreach ($followuyp as $key => $followuyps) {
             
-            $followupcustomer = Customer::findOrFail($followuyps->customer_id);
             $followupemployee = Employee::findOrFail($followuyps->employee_id);
             $product = Product::findOrFail($followuyps->product_id);
 
+            if($followuyps->customer_id != ""){
+                $customer = Customer::findOrFail($followuyps->customer_id);
+                $customername = $customer->name;
+                $customer_id = $followuyps->customer_id;
+                $customer_phonenumber = $customer->phonenumber;
+            }else {
+                $customername = '';
+                $customer_id = '';
+                $customer_phonenumber = '';
+            }
+
+
+            if($followuyps->lead_id != ""){
+                $lead = lead::findOrFail($followuyps->lead_id);
+                $leadname = $lead->name;
+                $lead_id = $followuyps->lead_id;
+                $lead_phonenumber = $lead->phonenumber;
+            }else {
+                $leadname = '';
+                $lead_id = '';
+                $lead_phonenumber = '';
+            }
+
             $followupdata[] = array(
                 'unique_key' => $followuyps->unique_key,
-                'customer_id' => $followuyps->customer_id,
-                'customer' => $followupcustomer->name,
-                'phonenumber' => $followupcustomer->phonenumber,
+                'customer_id' => $customer_id,
+                'customer' => $customername,
+                'lead_id' => $lead_id,
+                'leadname' => $leadname,
+                'customer_phonenumber' => $customer_phonenumber,
+                'lead_phonenumber' => $lead_phonenumber,
                 'date' => $followuyps->date,
                 'employee_id' => $followuyps->employee_id,
                 'product' => $product->name,
@@ -107,12 +133,14 @@ class HomeController extends Controller
         }
 
 
+
         $currentdate = Carbon::now()->format('Y-m-d');
         $timenow = Carbon::now()->format('H:i');
         $employee = Employee::where('soft_delete', '!=', 1)->get();
         $customer = Customer::where('soft_delete', '!=', 1)->get();
         $product = Product::where('soft_delete', '!=', 1)->get();
-            return view('home', compact('today', 'total_Employee', 'total_Customer', 'total_Product', 'Billingdata', 'followupdata', 'currentdate', 'employee', 'customer', 'product', 'timenow'));
+        $lead = lead::where('soft_delete', '!=', 1)->get();
+            return view('home', compact('today', 'total_Employee', 'total_Customer', 'total_Product', 'Billingdata', 'followupdata', 'currentdate', 'employee', 'customer', 'product', 'timenow', 'lead'));
     }
 
 
@@ -171,15 +199,41 @@ class HomeController extends Controller
         $followupdata = [];
         foreach ($followuyp as $key => $followuyps) {
             
-            $followupcustomer = Customer::findOrFail($followuyps->customer_id);
             $followupemployee = Employee::findOrFail($followuyps->employee_id);
             $product = Product::findOrFail($followuyps->product_id);
 
+
+            if($followuyps->customer_id != ""){
+                $customer = Customer::findOrFail($followuyps->customer_id);
+                $customername = $customer->name;
+                $customer_id = $followuyps->customer_id;
+                $customer_phonenumber = $customer->phonenumber;
+            }else {
+                $customername = '';
+                $customer_id = '';
+                $customer_phonenumber = '';
+            }
+
+
+            if($followuyps->lead_id != ""){
+                $lead = lead::findOrFail($followuyps->lead_id);
+                $leadname = $lead->name;
+                $lead_id = $followuyps->lead_id;
+                $lead_phonenumber = $lead->phonenumber;
+            }else {
+                $leadname = '';
+                $lead_id = '';
+                $lead_phonenumber = '';
+            }
+
             $followupdata[] = array(
                 'unique_key' => $followuyps->unique_key,
-                'customer_id' => $followuyps->customer_id,
-                'customer' => $followupcustomer->name,
-                'phonenumber' => $followupcustomer->phonenumber,
+                'customer_id' => $customer_id,
+                'customer' => $customername,
+                'lead_id' => $lead_id,
+                'leadname' => $leadname,
+                'customer_phonenumber' => $customer_phonenumber,
+                'lead_phonenumber' => $lead_phonenumber,
                 'date' => $followuyps->date,
                 'employee_id' => $followuyps->employee_id,
                 'product' => $product->name,
@@ -196,7 +250,8 @@ class HomeController extends Controller
         $employee = Employee::where('soft_delete', '!=', 1)->get();
         $customer = Customer::where('soft_delete', '!=', 1)->get();
         $product = Product::where('soft_delete', '!=', 1)->get();
+        $lead = lead::where('soft_delete', '!=', 1)->get();
 
-            return view('home', compact('today', 'total_Employee', 'total_Customer', 'total_Product', 'Billingdata', 'followupdata', 'currentdate', 'employee', 'customer', 'product', 'timenow'));
+            return view('home', compact('today', 'total_Employee', 'total_Customer', 'total_Product', 'Billingdata', 'followupdata', 'currentdate', 'employee', 'customer', 'product', 'timenow', 'lead'));
     }
 }

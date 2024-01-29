@@ -22,11 +22,19 @@
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
+
+    
     var i = 1;
     var j = 1;
         $(document).ready(function() {
             $('.js-example-basic-single').select2();
 
+            $('.select').each(function () {
+                $(this).select2({
+                    dropdownParent: $(this).parent(),
+                });
+            });
+           
 
             $("#phonenumber").keyup(function() {
                 var query = $(this).val();
@@ -173,126 +181,35 @@
 
 
 
-        function readURLProofOne(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#customer-img-tagone').show();
-                    $('#customer-img-tagone').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $(".proof_one").change(function(){
-            readURLProofOne(this);
-        });
-
-
-        function readURLProofTwo(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#customer-img-tagtwo').show();
-                    $('#customer-img-tagtwo').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $(".proof_two").change(function(){
-            readURLProofTwo(this);
-        });
-
-
-        function readURLProofThree(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#customer-img-tagthree').show();
-                    $('#customer-img-tagthree').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $(".proof_three").change(function(){
-            readURLProofThree(this);
-        });
-
-
-        function readURLProoffour(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#customer-img-tagfour').show();
-                    $('#customer-img-tagfour').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $(".proof_four").change(function(){
-            readURLProoffour(this);
-        });
-
-
-
-        function readURLProoffive(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#customer-img-tagfive').show();
-                    $('#customer-img-tagfive').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $(".proof_five").change(function(){
-            readURLProoffive(this);
-        });
-
-
 
         
     $(document).ready(function() {
-        $('.customerproduct_id').on('change', function() {
-            var customerproduct_id = this.value;
-            var customeremployee_id = $(".customeremployee_id").val();
+        $('#followupcustomer_id').on('change', function() {
+            var followupcustomer_id = this.value;
+            var followupemployee_id = $("#followupemployee_id").val();
 
             $.ajax({
                     url: '/getproductusedCustomers/',
                     type: 'get',
                     data: {_token: "{{ csrf_token() }}",
-                        customerproduct_id: customerproduct_id,
-                        customeremployee_id: customeremployee_id,
+                    followupcustomer_id: followupcustomer_id,
+                    followupemployee_id: followupemployee_id,
                         },
                     dataType: 'json',
                     success: function(response) {
                         console.log(response['data']);
 
                         var output = response['data'].length;
-                            $('.usedcustomer_id').empty();
+                            $('#followupproduct_id').empty();
 
-                            var $select = $('.usedcustomer_id').append(
+                            var $select = $('#followupproduct_id').append(
                                 $('<option>', {
                                     value: '0',
                                     text: 'Select'
                                 }));
 
                             for (var i = 0; i < output; i++) {
-                                $('.usedcustomer_id').append($('<option>', {
+                                $('#followupproduct_id').append($('<option>', {
                                     value: response['data'][i].id,
                                     text: response['data'][i].name
                                 }));

@@ -158,9 +158,11 @@
                                 <table class="table table-center table-hover datatable table-striped">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th class="" >PreviousCall Date</th>
-                                            <th class="" >Customer</th>
+                                            <th class="" >S.No</th>
+                                            <th class="" >Lead / Customer</th>
+                                            <th class="" >Name</th>
                                             <th class="" >Phone Number</th>
+                                            <th class="" >PreviousCall Date</th>
                                             @if(Auth::user()->role != 'Admin')
                                             <th class="" >Employee</th>
                                             @endif
@@ -174,10 +176,20 @@
                                         @if(Auth::user()->role == 'Admin')
                                             @if(Auth::user()->emp_id == $followupdatas['employee_id'])
                                             <tr>
+                                            <td >{{ ++$keydata }}</td>
+                                                @if($followupdatas['customer_id'] != '')
+                                                <td>Customer</td>
+                                                <td class=""  >{{ $followupdatas['customer'] }}</td>
+                                                <td class="" >{{ $followupdatas['customer_phonenumber'] }}</td>
+                                                @elseif ($followupdatas['lead_id'] != '')
+                                                <td>Lead</td>
+                                                <td class="">{{ $followupdatas['leadname'] }}</td>
+                                                <td class="" >{{ $followupdatas['lead_phonenumber'] }}</td>
+                                                @endif
+                                                
+                                                
                                                 <td class="" >{{ date('d M Y', strtotime($followupdatas['date'])) }}</td>
-                                                <td class=""  style="font-weight: 700;">{{ $followupdatas['customer'] }}</td>
-                                                <td class=""  style="font-weight: 700;">{{ $followupdatas['phonenumber'] }}</td>
-                                                <td class=""  style="font-weight: 700;">{{ $followupdatas['product'] }}</td>
+                                                <td class="" >{{ $followupdatas['product'] }}</td>
                                                 <td class="" >{{ $followupdatas['description'] }}</td>
                                                 <td class="" >
                                                     <a class="badge bg-warning-light" href="#followup_update{{ $followupdatas['id'] }}" data-bs-toggle="modal"
@@ -187,10 +199,19 @@
                                             @endif
                                         @else
                                             <tr>
+                                            <td >{{ ++$keydata }}</td>
+                                                @if($followupdatas['customer_id'] != '')
+                                                <td>Customer</td>
+                                                <td class="" >{{ $followupdatas['customer'] }}</td>
+                                                <td class="" >{{ $followupdatas['customer_phonenumber'] }}</td>
+                                                @elseif ($followupdatas['lead_id'] != '')
+                                                <td>Lead</td>
+                                                <td class="">{{ $followupdatas['leadname'] }}</td>
+                                                <td class=""  >{{ $followupdatas['lead_phonenumber'] }}</td>
+                                                @endif
+
                                                 <td class="" >{{ date('d M Y', strtotime($followupdatas['date'])) }}</td>
-                                                <td class="" style="font-weight: 700;">{{ $followupdatas['customer'] }}</td>
-                                                <td class=""  style="font-weight: 700;">{{ $followupdatas['phonenumber'] }}</td>
-                                                <td class="" style="color: red;">{{ $followupdatas['employee'] }}</td>
+                                                <td class="">{{ $followupdatas['employee'] }}</td>
                                                 <td class="" >{{ $followupdatas['product'] }}</td>
                                                 <td class="" >{{ $followupdatas['description'] }}</td>
                                                 <td class="" >

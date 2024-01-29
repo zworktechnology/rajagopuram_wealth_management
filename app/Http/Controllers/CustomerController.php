@@ -8,7 +8,10 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Customer;
 use App\Models\CustomerFamily;
 use App\Models\CustomerProof;
+use App\Models\Product;
 use App\Models\Employee;
+use App\Models\Followup;
+use App\Models\Billing;
 use App\Imports\ImportCustomer;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -23,6 +26,7 @@ class CustomerController extends Controller
         $Customer_data = [];
         $families = [];
         $proofs = [];
+        $productArr = [];
         foreach ($data as $key => $datas) {
 
             $CustomerFamilys = CustomerFamily::where('customer_id', '=', $datas->id)->orderBy('id', 'DESC')->get();
@@ -55,6 +59,25 @@ class CustomerController extends Controller
                 $employeename = '';
             }
 
+            $followup_Date = Followup::where('soft_delete', '!=', 1)->where('customer_id', '=', $datas->id)->latest('id')->first();
+            if($followup_Date != ""){
+                $last_call_date = date('d-m-Y', strtotime($followup_Date->date));
+            }else {
+                $last_call_date = '';
+            }
+
+            
+            $products = Billing::where('soft_delete', '!=', 1)->where('customer_id', '=', $datas->id)->get();
+            foreach ($products as $key => $productsarr) {
+                $followupproduct = Product::findOrFail($productsarr->product_id);
+                $productArr[] = array(
+                    'product_id' => $productsarr->product_id,
+                    'employee_id' => $productsarr->employee_id,
+                    'customer_id' => $productsarr->customer_id,
+                    'products' => $followupproduct->name
+                );
+            }
+
             $Customer_data[] = array(
                 'name' => $datas->name,
                 'phonenumber' => $datas->phonenumber,
@@ -81,6 +104,8 @@ class CustomerController extends Controller
                 'employee' => $employeename,
                 'families' => $families,
                 'proofs' => $proofs,
+                'last_call_date' => $last_call_date,
+                'productArr' => $productArr,
             );
 
         }

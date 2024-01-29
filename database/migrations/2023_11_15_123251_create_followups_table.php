@@ -18,8 +18,11 @@ return new class extends Migration
             $table->string('unique_key')->unique();
             $table->boolean('soft_delete')->default(0);
 
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+
+            $table->unsignedBigInteger('lead_id')->nullable();
+            $table->foreign('lead_id')->references('id')->on('leads')->onDelete('cascade');
 
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

@@ -129,21 +129,21 @@ class ProductController extends Controller
 
     public function getproductusedCustomers()
     {
-        $customerproduct_id = request()->get('customerproduct_id');
-        $customeremployee_id = request()->get('customeremployee_id');
+        $followupcustomer_id = request()->get('followupcustomer_id');
+        $followupemployee_id = request()->get('followupemployee_id');
 
-        $GetCustomer = Billing::where('product_id', '=', $customerproduct_id)->where('employee_id', '=', $customeremployee_id)->where('soft_delete', '!=', 1)->get();
-        $customer_lists = [];
-        foreach ($GetCustomer as $key => $GetCustomers) {
+        $GetProduct = Billing::where('employee_id', '=', $followupemployee_id)->where('customer_id', '=', $followupcustomer_id)->where('soft_delete', '!=', 1)->get();
+        $product_lists = [];
+        foreach ($GetProduct as $key => $GetProducts) {
 
-            $customer = Customer::findOrFail($GetCustomers->customer_id);
+            $products = Product::findOrFail($GetProducts->product_id);
 
-            $customer_lists[] = array(
-                'name' => $customer->name,
-                'id' => $GetCustomers->customer_id,
+            $product_lists[] = array(
+                'name' => $products->name,
+                'id' => $GetProducts->product_id,
             );
         }
-        $userData['data'] = $customer_lists;
+        $userData['data'] = $product_lists;
         echo json_encode($userData);
     }
 }

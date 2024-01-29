@@ -62,58 +62,111 @@
                                  <th style="width:15%;">Hand By</th>
                                  @endif
                                  <th style="width:15%;">Last Connect</th>
+                                 <th style="width:15%;">Next Call</th>
                                  <th style="width:20%;">Action</th>
                               </tr>
                            </thead>
                            <tbody>
                            @foreach ($Lead_data as $keydata => $Lead_datas)
                               @if($Lead_datas['status'] == '0')
-                              <tr>
-                                 <td >{{ $Lead_datas['date'] }}</td>
-                                 <td >{{ $Lead_datas['name'] }}</td>
-                                 <td >{{ $Lead_datas['phonenumber'] }}</td>
-                                 <td >{{ $Lead_datas['source_from'] }}</td>
-                                 @if(Auth::user()->role == 'Super-Admin')
-                                 <td >{{ $Lead_datas['employee'] }}</td>
+                              @if(Auth::user()->role == 'Admin')
+                                 @if(Auth::user()->emp_id == $Lead_datas['employee_id'])
+                                    <tr>
+                                       <td >{{ $Lead_datas['date'] }}</td>
+                                       <td >{{ $Lead_datas['name'] }}</td>
+                                       <td >{{ $Lead_datas['phonenumber'] }}</td>
+                                       <td >{{ $Lead_datas['source_from'] }}</td>
+                                       <td >{{ $Lead_datas['last_call_date'] }}</td>
+                                       <td >{{ $Lead_datas['nextcall'] }}</td>
+                                       <td >
+                                          <ul class="list-unstyled hstack gap-1 mb-0">
+                                             <li>
+                                                <a class="badge" href="#leadupdate{{ $Lead_datas['last_call_followupid'] }}" data-bs-toggle="modal"
+                                                   data-bs-target=".leadupdate-modal-xl{{ $Lead_datas['last_call_followupid'] }}" style="color: white; background: #095255;">D by D</a>
+                                                </li>
+                                             <li>
+                                             <a class="badge" href="#edit{{ $Lead_datas['id'] }}" data-bs-toggle="modal"
+                                                data-bs-target=".lead_edit-modal-xl{{ $Lead_datas['id'] }}" style="color: white;background: #86ad25;">Edit</a>
+                                             </li>
+                                             <li>
+                                                <a href="{{ route('lead.move', ['id' => $Lead_datas['id']]) }}"
+                                                         class="badge bg-success" style="color:#eee;">L to C</a>
+                                             </li>
+                                          </ul>
+
+                                       </td>
+                                    </tr>
+                                    <div class="modal fade leadupdate-modal-xl{{ $Lead_datas['last_call_followupid'] }}"
+                                          tabindex="-1" role="dialog" data-bs-backdrop="static"
+                                          aria-labelledby="leadupdateLargeModalLabel{{ $Lead_datas['last_call_followupid'] }}"
+                                          aria-hidden="true">
+                                          @include('page.backend.lead.leadfollowup')
+                                    </div>
+                                    <div class="modal fade lead_edit-modal-xl{{ $Lead_datas['id'] }}"
+                                          tabindex="-1" role="dialog" data-bs-backdrop="static"
+                                          aria-labelledby="lead_editLargeModalLabel{{ $Lead_datas['id'] }}"
+                                          aria-hidden="true">
+                                          @include('page.backend.lead.edit')
+                                    </div>
+                                    <div class="modal fade leaddelete-modal-xl{{ $Lead_datas['id'] }}"
+                                          tabindex="-1" role="dialog"data-bs-backdrop="static"
+                                          aria-labelledby="leaddeleteLargeModalLabel{{ $Lead_datas['id'] }}"
+                                          aria-hidden="true">
+                                          @include('page.backend.lead.delete')
+                                    </div>
+
                                  @endif
-                                 <td >01.01.2024</td>
-                                 <td >
-                                    <ul class="list-unstyled hstack gap-1 mb-0">
-                                        <li>
-                                            <a class="badge" href="#edit{{ $Lead_datas['id'] }}" data-bs-toggle="modal"
-                                               data-bs-target=".lead_edit-modal-xl{{ $Lead_datas['id'] }}" style="color: white; background: #095255;">D by D</a>
-                                            </li>
-                                       <li>
-                                       <a class="badge bg-warning-light" href="#edit{{ $Lead_datas['id'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".lead_edit-modal-xl{{ $Lead_datas['id'] }}" style="color: white;">Edit</a>
-                                       </li>
-                                       @if(Auth::user()->role == 'Super-Admin')
-                                       <li>
-                                          <a href="#delete{{ $Lead_datas['id'] }}" data-bs-toggle="modal"
-                                          data-bs-target=".leaddelete-modal-xl{{ $Lead_datas['id'] }}" class="badge bg-danger-light" style="color: white;">Delete</a>
-                                       </li>
-                                       @endif
-                                       <li>
-                                          <a href="{{ route('lead.move', ['id' => $Lead_datas['id']]) }}"
-                                                   class="badge bg-success" style="color:#eee;">L to C</a>
-                                       </li>
-                                    </ul>
+                              @else
 
-                                 </td>
-                              </tr>
+                                 <tr>
+                                       <td >{{ $Lead_datas['date'] }}</td>
+                                       <td >{{ $Lead_datas['name'] }}</td>
+                                       <td >{{ $Lead_datas['phonenumber'] }}</td>
+                                       <td >{{ $Lead_datas['source_from'] }}</td>
+                                       <td >{{ $Lead_datas['employee'] }}</td>
+                                       <td >{{ $Lead_datas['last_call_date'] }}</td>
+                                       <td >{{ $Lead_datas['nextcall'] }}</td>
+                                       <td >
+                                          <ul class="list-unstyled hstack gap-1 mb-0">
+                                             <li>
+                                                <a class="badge" href="#leadupdate{{ $Lead_datas['last_call_followupid'] }}" data-bs-toggle="modal"
+                                                   data-bs-target=".leadupdate-modal-xl{{ $Lead_datas['last_call_followupid'] }}" style="color: white; background: #095255;">D by D</a>
+                                                </li>
+                                             <li>
+                                             <a class="badge" href="#edit{{ $Lead_datas['id'] }}" data-bs-toggle="modal"
+                                                data-bs-target=".lead_edit-modal-xl{{ $Lead_datas['id'] }}" style="color: white;background: #86ad25;">Edit</a>
+                                             </li>
+                                             <li>
+                                                <a href="#delete{{ $Lead_datas['id'] }}" data-bs-toggle="modal"
+                                                data-bs-target=".leaddelete-modal-xl{{ $Lead_datas['id'] }}" class="badge bg-danger-light" style="color: white;">Delete</a>
+                                             </li>
+                                             <li>
+                                                <a href="{{ route('lead.move', ['id' => $Lead_datas['id']]) }}"
+                                                         class="badge bg-success" style="color:#eee;">L to C</a>
+                                             </li>
+                                          </ul>
 
-                              <div class="modal fade lead_edit-modal-xl{{ $Lead_datas['id'] }}"
-                                    tabindex="-1" role="dialog" data-bs-backdrop="static"
-                                    aria-labelledby="lead_editLargeModalLabel{{ $Lead_datas['id'] }}"
-                                    aria-hidden="true">
-                                    @include('page.backend.lead.edit')
-                              </div>
-                              <div class="modal fade leaddelete-modal-xl{{ $Lead_datas['id'] }}"
-                                    tabindex="-1" role="dialog"data-bs-backdrop="static"
-                                    aria-labelledby="leaddeleteLargeModalLabel{{ $Lead_datas['id'] }}"
-                                    aria-hidden="true">
-                                    @include('page.backend.lead.delete')
-                              </div>
+                                       </td>
+                                    </tr>
+                                    <div class="modal fade leadupdate-modal-xl{{ $Lead_datas['last_call_followupid'] }}"
+                                          tabindex="-1" role="dialog" data-bs-backdrop="static"
+                                          aria-labelledby="leadupdateLargeModalLabel{{ $Lead_datas['last_call_followupid'] }}"
+                                          aria-hidden="true">
+                                          @include('page.backend.lead.leadfollowup')
+                                    </div>
+                                    <div class="modal fade lead_edit-modal-xl{{ $Lead_datas['id'] }}"
+                                          tabindex="-1" role="dialog" data-bs-backdrop="static"
+                                          aria-labelledby="lead_editLargeModalLabel{{ $Lead_datas['id'] }}"
+                                          aria-hidden="true">
+                                          @include('page.backend.lead.edit')
+                                    </div>
+                                    <div class="modal fade leaddelete-modal-xl{{ $Lead_datas['id'] }}"
+                                          tabindex="-1" role="dialog"data-bs-backdrop="static"
+                                          aria-labelledby="leaddeleteLargeModalLabel{{ $Lead_datas['id'] }}"
+                                          aria-hidden="true">
+                                          @include('page.backend.lead.delete')
+                                    </div>
+                                 @endif
                               @endif
                            @endforeach
                            </tbody>
